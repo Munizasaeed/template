@@ -1,0 +1,3251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aurelle | Soft, Everyday Fashion</title>
+    <meta name="description"
+        content="Aurelle: soft, timeless everyday fashion. Linen, cotton and knits designed to be loved and worn on repeat.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===== Brand tokens (light, soft palette) ===== */
+        :root {
+            --bg: #fbf8f3;
+            --ivory: #fffdf9;
+            --blush: #f8e6e0;
+            --blush-2: #f2d2c8;
+            --sage: #e2eadd;
+            --sage-d: #9fb497;
+            --sand: #f1e8db;
+            --sky: #e2ecf0;
+            --ink: #2a2420;
+            --muted: #7d726a;
+            --clay: #c47a5a;
+            --clay-d: #a8613f;
+            --line: rgba(42, 36, 32, .12);
+            --shadow: 0 18px 50px rgba(120, 90, 70, .14);
+            --shadow-sm: 0 8px 24px rgba(120, 90, 70, .10);
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            font-weight: 400;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        ul {
+            list-style: none
+        }
+
+        button {
+            font-family: inherit
+        }
+
+        section {
+            scroll-margin-top: 96px
+        }
+
+        .container {
+            width: min(1200px, 92%);
+            margin-inline: auto
+        }
+
+        .section {
+            padding: 104px 0
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--serif);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -.5px
+        }
+
+        em {
+            font-style: italic;
+            color: var(--clay)
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .78rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--clay);
+            margin-bottom: 16px
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: var(--clay)
+        }
+
+        .title {
+            font-size: clamp(2.5rem, 5.4vw, 4.2rem);
+            margin-bottom: 16px
+        }
+
+        .sub {
+            color: var(--muted);
+            max-width: 520px;
+            font-size: 1.04rem
+        }
+
+        .head {
+            margin-bottom: 54px
+        }
+
+        .head.center {
+            text-align: center
+        }
+
+        .head.center .sub {
+            margin-inline: auto
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 32px;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: .92rem;
+            letter-spacing: .4px;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: .3s;
+            background: transparent;
+            color: var(--ink)
+        }
+
+        .btn-dark {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .btn-dark:hover {
+            background: var(--clay);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 26px rgba(196, 122, 90, .35)
+        }
+
+        .btn-ghost {
+            border-color: var(--ink)
+        }
+
+        .btn-ghost:hover {
+            background: var(--ink);
+            color: #fff;
+            transform: translateY(-3px)
+        }
+
+        .btn-soft {
+            background: var(--blush);
+        }
+
+        .btn-soft:hover {
+            background: var(--blush-2);
+            transform: translateY(-3px)
+        }
+
+        .btn-white {
+            background: #fff;
+            box-shadow: var(--shadow-sm)
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow)
+        }
+
+        .ph {
+            background-color: var(--sand);
+            background-image: radial-gradient(circle at 25% 20%, rgba(248, 230, 224, .9), transparent 55%), linear-gradient(145deg, #f4ebdf, #e8dccb);
+            background-size: cover;
+            background-position: center
+        }
+
+        /* ===== Floating header ===== */
+        header {
+            position: fixed;
+            top: 16px;
+            left: 0;
+            right: 0;
+            z-index: 100
+        }
+
+        .pill {
+            width: min(1180px, 94%);
+            margin-inline: auto;
+            background: rgba(255, 253, 249, .82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 70px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, .7);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 12px 10px 28px;
+            position: relative;
+            transition: .3s
+        }
+
+        header.scrolled .pill {
+            box-shadow: var(--shadow);
+            background: rgba(255, 253, 249, .96)
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            line-height: 1;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .logo i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--clay);
+            display: inline-block
+        }
+
+        .pill nav ul {
+            display: flex;
+            gap: 6px
+        }
+
+        .pill nav a {
+            display: block;
+            padding: 9px 16px;
+            border-radius: 40px;
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--muted);
+            transition: .25s
+        }
+
+        .pill nav a:hover {
+            color: var(--ink);
+            background: var(--blush)
+        }
+
+        .pill nav a.active {
+            color: var(--ink);
+            background: var(--blush)
+        }
+
+        .tools-r {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .bag-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            border-radius: 50px;
+            border: 0;
+            background: var(--ink);
+            color: #fff;
+            font-weight: 500;
+            font-size: .88rem;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .bag-btn:hover {
+            background: var(--clay)
+        }
+
+        .bag-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .bag-btn b {
+            background: #fff;
+            color: var(--ink);
+            min-width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: .72rem
+        }
+
+        .burger {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 0;
+            background: var(--blush);
+            cursor: pointer
+        }
+
+        .burger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--ink);
+            margin: 5px auto;
+            border-radius: 2px;
+            transition: .3s
+        }
+
+        .burger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+
+        .burger.open span:nth-child(2) {
+            opacity: 0
+        }
+
+        .burger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+
+        .mmenu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            background: var(--ivory);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            padding: 14px;
+            display: grid;
+            gap: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: .3s
+        }
+
+        .mmenu.open {
+            opacity: 1;
+            visibility: visible;
+            transform: none
+        }
+
+        .mmenu a {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: 1.05rem
+        }
+
+        .mmenu a:hover,
+        .mmenu a.active {
+            background: var(--blush)
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            padding: 170px 0 90px;
+            text-align: center;
+            overflow: hidden
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 620px;
+            height: 620px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--blush) 0%, transparent 68%);
+            top: -160px;
+            left: -180px;
+            z-index: -1
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 560px;
+            height: 560px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--sage) 0%, transparent 68%);
+            top: 60px;
+            right: -200px;
+            z-index: -1
+        }
+
+        .hero .pillbadge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            padding: 8px 18px 8px 10px;
+            border-radius: 40px;
+            box-shadow: var(--shadow-sm);
+            font-size: .84rem;
+            font-weight: 500;
+            margin-bottom: 26px
+        }
+
+        .hero .pillbadge b {
+            background: var(--blush-2);
+            border-radius: 30px;
+            padding: 3px 12px;
+            font-size: .72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase
+        }
+
+        .hero h1 {
+            font-size: clamp(3.2rem, 9vw, 7.4rem);
+            margin-bottom: 22px;
+            letter-spacing: -2px
+        }
+
+        .hero p.lead {
+            max-width: 540px;
+            margin: 0 auto 34px;
+            color: var(--muted);
+            font-size: 1.1rem
+        }
+
+        .hero .btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 70px
+        }
+
+        .hero-art {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1.15fr 1fr;
+            gap: 24px;
+            align-items: end;
+            max-width: 1020px;
+            margin-inline: auto
+        }
+
+        .hero-art .im {
+            box-shadow: var(--shadow)
+        }
+
+        .hero-art .a {
+            height: 360px;
+            border-radius: 34px
+        }
+
+        .hero-art .b {
+            height: 480px;
+            border-radius: 240px 240px 34px 34px
+        }
+
+        .hero-art .c {
+            height: 310px;
+            border-radius: 34px
+        }
+
+        .float {
+            position: absolute;
+            background: rgba(255, 255, 255, .88);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 12px 18px;
+            box-shadow: var(--shadow);
+            font-size: .86rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 3;
+            animation: bob 6s ease-in-out infinite
+        }
+
+        .float .dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--blush);
+            display: grid;
+            place-items: center;
+            color: var(--clay);
+            font-size: 1rem
+        }
+
+        .float strong {
+            display: block;
+            line-height: 1.2;
+            font-weight: 600
+        }
+
+        .float span {
+            color: var(--muted);
+            font-size: .78rem
+        }
+
+        .float.f1 {
+            left: -2%;
+            top: 18%
+        }
+
+        .float.f2 {
+            right: -2%;
+            bottom: 14%;
+            animation-delay: -3s
+        }
+
+        @keyframes bob {
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        /* ===== Perks (services) ===== */
+        .perks {
+            padding: 20px 0 100px
+        }
+
+        .perk-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px
+        }
+
+        .perk {
+            border-radius: 28px;
+            padding: 32px 26px;
+            transition: .35s
+        }
+
+        .perk:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow)
+        }
+
+        .perk:nth-child(1) {
+            background: var(--blush)
+        }
+
+        .perk:nth-child(2) {
+            background: var(--sage)
+        }
+
+        .perk:nth-child(3) {
+            background: var(--sand)
+        }
+
+        .perk:nth-child(4) {
+            background: var(--sky)
+        }
+
+        .perk .ic {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            margin-bottom: 20px
+        }
+
+        .perk .ic svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--ink);
+            fill: none;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .perk h3 {
+            font-size: 1.6rem;
+            margin-bottom: 6px
+        }
+
+        .perk p {
+            color: #6c6159;
+            font-size: .93rem;
+            line-height: 1.6
+        }
+
+        /* ===== Categories (circles) ===== */
+        .cats {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 22px
+        }
+
+        .circ {
+            text-align: center;
+            cursor: pointer;
+            display: block
+        }
+
+        .circ .ring {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            padding: 7px;
+            border: 1.5px dashed var(--clay);
+            transition: .5s
+        }
+
+        .circ:hover .ring {
+            transform: rotate(8deg);
+            border-style: solid
+        }
+
+        .circ .pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: transform .6s
+        }
+
+        .circ:hover .pic {
+            transform: scale(1.04) rotate(-8deg)
+        }
+
+        .circ h3 {
+            font-family: var(--sans);
+            font-size: .98rem;
+            font-weight: 500;
+            letter-spacing: .3px;
+            margin-top: 16px
+        }
+
+        .circ span {
+            font-size: .8rem;
+            color: var(--muted)
+        }
+
+        /* ===== Shop ===== */
+        .shop {
+            background: var(--ivory);
+            border-radius: 56px 56px 0 0
+        }
+
+        .tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 38px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            background: var(--sand);
+            padding: 6px;
+            border-radius: 50px
+        }
+
+        .tab {
+            padding: 10px 22px;
+            border-radius: 40px;
+            border: 0;
+            background: transparent;
+            font-weight: 500;
+            font-size: .88rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .tab:hover {
+            color: var(--ink)
+        }
+
+        .tab.on {
+            background: #fff;
+            color: var(--ink);
+            box-shadow: var(--shadow-sm)
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .filters input,
+        .filters select {
+            padding: 12px 18px;
+            border: 1.5px solid var(--line);
+            border-radius: 40px;
+            background: #fff;
+            font: 400 .9rem var(--sans);
+            min-width: 180px;
+            color: var(--ink)
+        }
+
+        .filters input:focus,
+        .filters select:focus,
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: var(--clay);
+            box-shadow: 0 0 0 4px rgba(196, 122, 90, .15)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 34px 24px
+        }
+
+        .p {
+            display: flex;
+            flex-direction: column
+        }
+
+        .p-img {
+            position: relative;
+            aspect-ratio: 4/5;
+            border-radius: 26px;
+            overflow: hidden
+        }
+
+        .p-img .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform .9s ease
+        }
+
+        .p:hover .p-img .pic {
+            transform: scale(1.06)
+        }
+
+        .p .tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 2;
+            background: rgba(255, 255, 255, .92);
+            border-radius: 30px;
+            padding: 4px 13px;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .p .tag.sale {
+            background: var(--clay);
+            color: #fff
+        }
+
+        .heart {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 0;
+            background: rgba(255, 255, 255, .92);
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: .25s
+        }
+
+        .heart svg {
+            width: 19px;
+            height: 19px;
+            stroke: var(--ink);
+            fill: none;
+            stroke-width: 1.8;
+            transition: .25s
+        }
+
+        .heart:hover {
+            transform: scale(1.1)
+        }
+
+        .heart.on svg {
+            fill: var(--clay);
+            stroke: var(--clay)
+        }
+
+        .p-info {
+            padding: 16px 4px 0
+        }
+
+        .p-info h3 {
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: 1.04rem;
+            letter-spacing: 0;
+            line-height: 1.35;
+            margin-bottom: 2px
+        }
+
+        .p-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 0 14px
+        }
+
+        .price {
+            font-weight: 600
+        }
+
+        .price s {
+            color: var(--muted);
+            font-weight: 400;
+            margin-left: 6px;
+            font-size: .88rem
+        }
+
+        .cat-name {
+            font-size: .78rem;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase
+        }
+
+        .sw {
+            display: flex;
+            gap: 7px
+        }
+
+        .sw button {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 1px var(--line);
+            cursor: pointer;
+            transition: .2s;
+            padding: 0
+        }
+
+        .sw button.on {
+            box-shadow: 0 0 0 2px var(--ink)
+        }
+
+        .add {
+            width: 100%;
+            padding: 13px;
+            border-radius: 40px;
+            border: 1.5px solid var(--ink);
+            background: transparent;
+            font-weight: 500;
+            font-size: .88rem;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .add:hover {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .empty {
+            display: none;
+            text-align: center;
+            padding: 60px 0;
+            color: var(--muted)
+        }
+
+        /* ===== Spotlight ===== */
+        .spot {
+            background: var(--ivory);
+            padding: 0 0 104px
+        }
+
+        .spot-card {
+            background: var(--sage);
+            border-radius: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .spot-card::before {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .35);
+            left: -120px;
+            bottom: -160px
+        }
+
+        .spot-card>* {
+            position: relative
+        }
+
+        .spot-card .sub {
+            color: #56634f
+        }
+
+        .spot-list {
+            margin: 26px 0 32px;
+            display: grid;
+            gap: 12px
+        }
+
+        .spot-list li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-weight: 500
+        }
+
+        .spot-list li::before {
+            content: "\2713";
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            font-size: .8rem;
+            flex: none
+        }
+
+        .spot-img {
+            position: relative;
+            height: 480px
+        }
+
+        .spot-img .pic {
+            position: absolute;
+            inset: 0;
+            border-radius: 200px 200px 34px 34px;
+            box-shadow: var(--shadow)
+        }
+
+        .spot-img .off {
+            position: absolute;
+            left: -26px;
+            bottom: 34px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--clay);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            line-height: 1;
+            box-shadow: var(--shadow);
+            z-index: 2
+        }
+
+        .spot-img .off small {
+            display: block;
+            font-family: var(--sans);
+            font-size: .68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px
+        }
+
+        /* ===== About ===== */
+        .about {
+            background: var(--sand);
+            border-radius: 56px;
+            margin: 0 2%
+        }
+
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center
+        }
+
+        .collage {
+            position: relative;
+            height: 560px
+        }
+
+        .collage .big {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 72%;
+            height: 86%;
+            border-radius: 36px;
+            box-shadow: var(--shadow)
+        }
+
+        .collage .small {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 48%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 10px solid var(--sand);
+            box-shadow: var(--shadow)
+        }
+
+        .collage .note {
+            position: absolute;
+            right: 6%;
+            top: 10%;
+            background: #fff;
+            border-radius: 20px;
+            padding: 14px 18px;
+            box-shadow: var(--shadow);
+            font-size: .84rem;
+            z-index: 3;
+            max-width: 170px;
+            line-height: 1.4
+        }
+
+        .collage .note b {
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            font-weight: 400;
+            display: block;
+            line-height: 1;
+            color: var(--clay)
+        }
+
+        .about p {
+            color: #6c6159;
+            margin-bottom: 16px
+        }
+
+        .vals {
+            display: grid;
+            gap: 14px;
+            margin: 26px 0 30px
+        }
+
+        .val {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, .6);
+            border-radius: 22px;
+            padding: 18px 20px
+        }
+
+        .val .n {
+            flex: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            color: var(--clay)
+        }
+
+        .val h3 {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.02rem;
+            letter-spacing: 0;
+            margin-bottom: 2px
+        }
+
+        .val p {
+            margin: 0;
+            font-size: .92rem
+        }
+
+        .chips {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px
+        }
+
+        .chipstat {
+            background: #fff;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        .chipstat strong {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-right: 6px
+        }
+
+        /* ===== Plans (pricing) ===== */
+        .toggle {
+            display: inline-flex;
+            background: var(--sand);
+            padding: 6px;
+            border-radius: 50px;
+            margin-top: 22px;
+            position: relative
+        }
+
+        .toggle button {
+            position: relative;
+            z-index: 2;
+            border: 0;
+            background: transparent;
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: .9rem;
+            cursor: pointer;
+            color: var(--muted);
+            transition: .25s
+        }
+
+        .toggle button.on {
+            background: #fff;
+            color: var(--ink);
+            box-shadow: var(--shadow-sm)
+        }
+
+        .toggle em {
+            font-style: normal;
+            background: var(--blush-2);
+            color: var(--clay-d);
+            border-radius: 30px;
+            font-size: .7rem;
+            padding: 2px 9px;
+            margin-left: 6px;
+            font-weight: 600
+        }
+
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+            align-items: stretch
+        }
+
+        .plan {
+            background: #fff;
+            border-radius: 34px;
+            padding: 42px 34px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: .35s;
+            border: 1.5px solid transparent
+        }
+
+        .plan:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow)
+        }
+
+        .plan.feat {
+            background: var(--blush);
+            border-color: var(--blush-2)
+        }
+
+        .plan .badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--clay);
+            color: #fff;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            white-space: nowrap
+        }
+
+        .plan h3 {
+            font-size: 2rem;
+            margin-bottom: 6px
+        }
+
+        .plan .desc {
+            color: var(--muted);
+            font-size: .93rem;
+            margin-bottom: 24px;
+            min-height: 46px
+        }
+
+        .plan.feat .desc {
+            color: #7c6459
+        }
+
+        .amt {
+            font-family: var(--serif);
+            font-size: 3.6rem;
+            line-height: 1
+        }
+
+        .amt small {
+            font-family: var(--sans);
+            font-size: .9rem;
+            color: var(--muted);
+            margin-left: 4px
+        }
+
+        .note-s {
+            font-size: .8rem;
+            color: var(--muted);
+            margin: 6px 0 24px;
+            min-height: 1.3em
+        }
+
+        .plan ul {
+            flex: 1;
+            margin-bottom: 28px
+        }
+
+        .plan li {
+            display: flex;
+            gap: 12px;
+            padding: 11px 0;
+            border-top: 1px solid var(--line);
+            font-size: .94rem
+        }
+
+        .plan li::before {
+            content: "\2713";
+            color: var(--clay);
+            font-weight: 600
+        }
+
+        .plan .btn {
+            width: 100%
+        }
+
+        /* ===== Lookbook ===== */
+        .lookbook {
+            background: var(--ivory)
+        }
+
+        .mosaic {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 270px 270px;
+            gap: 16px;
+            grid-template-areas: "a b b c" "a d e c"
+        }
+
+        .m {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden
+        }
+
+        .m .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform .9s ease
+        }
+
+        .m:hover .pic {
+            transform: scale(1.07)
+        }
+
+        .m::after {
+            content: attr(data-cap);
+            position: absolute;
+            left: 16px;
+            bottom: 16px;
+            background: rgba(255, 255, 255, .92);
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: .8rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: .35s
+        }
+
+        .m:hover::after {
+            opacity: 1;
+            transform: none
+        }
+
+        .m.a {
+            grid-area: a
+        }
+
+        .m.b {
+            grid-area: b
+        }
+
+        .m.c {
+            grid-area: c
+        }
+
+        .m.d {
+            grid-area: d
+        }
+
+        .m.e {
+            grid-area: e
+        }
+
+        /* ===== Reviews ===== */
+        .rev-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: start
+        }
+
+        .rev {
+            border-radius: 30px;
+            padding: 36px 32px
+        }
+
+        .rev:nth-child(1) {
+            background: var(--blush)
+        }
+
+        .rev:nth-child(2) {
+            background: var(--sage);
+            margin-top: 40px
+        }
+
+        .rev:nth-child(3) {
+            background: var(--sand)
+        }
+
+        .rev .st {
+            color: var(--clay);
+            letter-spacing: 4px;
+            margin-bottom: 16px
+        }
+
+        .rev p {
+            font-family: var(--serif);
+            font-size: 1.45rem;
+            line-height: 1.35;
+            margin-bottom: 24px
+        }
+
+        .rev .who {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .88rem
+        }
+
+        .rev .av {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            font-family: var(--serif);
+            font-size: 1.3rem
+        }
+
+        .rev .who strong {
+            display: block;
+            line-height: 1.2;
+            font-weight: 600
+        }
+
+        .rev .who span {
+            color: var(--muted);
+            font-size: .78rem
+        }
+
+        .score {
+            display: flex;
+            justify-content: center;
+            gap: 34px;
+            margin-top: 70px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .score strong {
+            font-family: var(--serif);
+            font-size: 2.4rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-right: 8px;
+            vertical-align: middle
+        }
+
+        /* ===== CTA ===== */
+        .cta {
+            padding: 20px 0 104px
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--blush) 0%, var(--blush-2) 100%);
+            border-radius: 50px;
+            padding: 70px 64px;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta-card::before {
+            content: "";
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .3);
+            right: -80px;
+            top: -140px
+        }
+
+        .cta-card h2 {
+            font-size: clamp(2.5rem, 5.6vw, 4.4rem);
+            margin-bottom: 14px
+        }
+
+        .cta-card p {
+            color: #7c6459;
+            max-width: 460px;
+            margin-bottom: 28px
+        }
+
+        .nl {
+            display: flex;
+            max-width: 500px;
+            background: #fff;
+            border-radius: 60px;
+            padding: 6px;
+            box-shadow: var(--shadow-sm)
+        }
+
+        .nl input {
+            flex: 1;
+            min-width: 0;
+            border: 0;
+            background: transparent;
+            padding: 12px 20px;
+            font: 400 .95rem var(--sans)
+        }
+
+        .nl input:focus {
+            outline: none;
+            box-shadow: none
+        }
+
+        .nl button {
+            border: 0;
+            background: var(--ink);
+            color: #fff;
+            font-weight: 500;
+            padding: 0 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: .3s;
+            font-size: .9rem
+        }
+
+        .nl button:hover {
+            background: var(--clay)
+        }
+
+        .nl-msg {
+            margin-top: 16px;
+            font-weight: 500;
+            font-size: .92rem;
+            min-height: 1.4em
+        }
+
+        .cta-img {
+            position: relative;
+            justify-self: center;
+            width: min(360px, 100%);
+            aspect-ratio: 1
+        }
+
+        .cta-img .pic {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 10px solid rgba(255, 255, 255, .7);
+            box-shadow: var(--shadow)
+        }
+
+        .cta-img .sticker {
+            position: absolute;
+            left: -10px;
+            bottom: 20px;
+            background: #fff;
+            border-radius: 22px;
+            padding: 12px 18px;
+            box-shadow: var(--shadow);
+            font-size: .84rem;
+            z-index: 2;
+            line-height: 1.3
+        }
+
+        .cta-img .sticker b {
+            font-family: var(--serif);
+            font-size: 1.7rem;
+            font-weight: 400;
+            color: var(--clay);
+            display: block;
+            line-height: 1
+        }
+
+        /* ===== Help / Contact ===== */
+        .help {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: start
+        }
+
+        details {
+            background: #fff;
+            border-radius: 22px;
+            padding: 0 24px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: .3s
+        }
+
+        details[open] {
+            background: var(--blush)
+        }
+
+        summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 20px 34px 20px 0;
+            font-weight: 500;
+            position: relative
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        summary::after {
+            content: "+";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: .25s
+        }
+
+        details[open] summary::after {
+            transform: translateY(-50%) rotate(45deg)
+        }
+
+        details p {
+            padding: 0 10px 20px 0;
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .contact-list {
+            margin-top: 30px;
+            display: grid;
+            gap: 14px
+        }
+
+        .ci2 {
+            display: flex;
+            gap: 14px;
+            align-items: center
+        }
+
+        .ci2 .ic {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--sage);
+            display: grid;
+            place-items: center
+        }
+
+        .ci2 .ic svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--ink);
+            fill: none;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ci2 small {
+            display: block;
+            color: var(--muted);
+            font-size: .74rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1.2
+        }
+
+        .ci2 span {
+            font-weight: 500
+        }
+
+        form.box {
+            background: #fff;
+            border-radius: 34px;
+            padding: 42px;
+            box-shadow: var(--shadow)
+        }
+
+        form.box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 22px
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .field {
+            margin-bottom: 16px
+        }
+
+        .field label {
+            display: block;
+            font-size: .78rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid var(--line);
+            border-radius: 16px;
+            background: var(--bg);
+            font: 400 .95rem var(--sans);
+            color: var(--ink);
+            transition: .2s
+        }
+
+        form textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .form-msg {
+            display: none;
+            margin-top: 14px;
+            padding: 13px 18px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: .9rem
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--sand);
+            border-radius: 56px 56px 0 0;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .fgrid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 44px;
+            padding-bottom: 56px;
+            position: relative;
+            z-index: 2
+        }
+
+        footer p,
+        footer li {
+            color: #6c6159;
+            font-size: .94rem
+        }
+
+        footer h4 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-bottom: 16px
+        }
+
+        footer li {
+            margin-bottom: 10px
+        }
+
+        footer li a:hover {
+            color: var(--clay)
+        }
+
+        .soc {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px
+        }
+
+        .soc a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            font-size: .78rem;
+            font-weight: 600;
+            transition: .3s
+        }
+
+        .soc a:hover {
+            background: var(--clay);
+            color: #fff;
+            transform: translateY(-3px)
+        }
+
+        .big-word {
+            font-family: var(--serif);
+            font-size: clamp(5rem, 22vw, 19rem);
+            line-height: .8;
+            text-align: center;
+            color: rgba(42, 36, 32, .05);
+            margin-top: -10px;
+            user-select: none;
+            white-space: nowrap;
+            letter-spacing: -4px
+        }
+
+        .copy {
+            border-top: 1px solid var(--line);
+            padding: 22px 0;
+            font-size: .85rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 2
+        }
+
+        .copy .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        /* ===== Cart ===== */
+        .shade {
+            position: fixed;
+            inset: 0;
+            background: rgba(42, 36, 32, .4);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 150;
+            backdrop-filter: blur(2px)
+        }
+
+        .shade.show {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .cart {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            bottom: 12px;
+            width: min(430px, calc(100% - 24px));
+            background: var(--ivory);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            z-index: 160;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(115%);
+            transition: transform .45s cubic-bezier(.7, 0, .2, 1);
+            overflow: hidden
+        }
+
+        .cart.open {
+            transform: none
+        }
+
+        .cart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 26px 14px
+        }
+
+        .cart-head h3 {
+            font-size: 2rem
+        }
+
+        .x {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 0;
+            background: var(--blush);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .x:hover {
+            background: var(--blush-2)
+        }
+
+        .ship {
+            padding: 0 26px 16px;
+            font-size: .86rem;
+            color: var(--muted)
+        }
+
+        .bar {
+            height: 8px;
+            background: var(--sand);
+            border-radius: 10px;
+            margin-top: 8px;
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--clay);
+            border-radius: 10px;
+            transition: width .4s
+        }
+
+        .cart-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 4px 26px
+        }
+
+        .ci {
+            display: grid;
+            grid-template-columns: 78px 1fr auto;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+            align-items: center
+        }
+
+        .ci .th {
+            width: 78px;
+            height: 96px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center
+        }
+
+        .ci h4 {
+            font-weight: 500;
+            font-size: .95rem;
+            line-height: 1.3;
+            margin-bottom: 2px
+        }
+
+        .ci .pr {
+            font-weight: 600;
+            font-size: .9rem
+        }
+
+        .qty {
+            display: inline-flex;
+            align-items: center;
+            background: var(--sand);
+            border-radius: 30px;
+            margin-top: 8px
+        }
+
+        .qty button {
+            width: 30px;
+            height: 30px;
+            border: 0;
+            background: transparent;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50%
+        }
+
+        .qty button:hover {
+            background: var(--blush-2)
+        }
+
+        .qty span {
+            min-width: 26px;
+            text-align: center;
+            font-weight: 600;
+            font-size: .85rem
+        }
+
+        .rm {
+            border: 0;
+            background: transparent;
+            font-size: .78rem;
+            text-decoration: underline;
+            cursor: pointer;
+            color: var(--muted);
+            align-self: start
+        }
+
+        .rm:hover {
+            color: var(--ink)
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 70px 10px;
+            color: var(--muted)
+        }
+
+        .cart-foot {
+            padding: 20px 26px 26px;
+            background: #fff;
+            border-top: 1px solid var(--line)
+        }
+
+        .sum {
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            margin-bottom: 6px;
+            font-size: .94rem
+        }
+
+        .sum.tot {
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 2rem;
+            margin: 10px 0 16px
+        }
+
+        .cart-foot .btn {
+            width: 100%
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 26px;
+            transform: translate(-50%, 30px);
+            background: var(--ink);
+            color: #fff;
+            padding: 14px 26px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: .88rem;
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            max-width: 92vw;
+            text-align: center;
+            box-shadow: var(--shadow)
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0)
+        }
+
+        .totop {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 0;
+            background: #fff;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 90;
+            font-size: 1.1rem
+        }
+
+        .totop.show {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .totop:hover {
+            background: var(--blush)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity .8s ease, transform .8s ease
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width:1100px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .cats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px 22px
+            }
+
+            .perk-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .pill nav a {
+                padding: 9px 11px
+            }
+        }
+
+        @media (max-width:960px) {
+            .pill nav {
+                display: none
+            }
+
+            .burger {
+                display: block
+            }
+
+            .pill {
+                padding: 8px 8px 8px 22px
+            }
+
+            .hero {
+                padding: 140px 0 70px
+            }
+
+            .spot-card {
+                grid-template-columns: 1fr;
+                padding: 44px 32px
+            }
+
+            .spot-img {
+                height: 420px;
+                max-width: 420px;
+                width: 100%;
+                margin-inline: auto
+            }
+
+            .about .container {
+                grid-template-columns: 1fr;
+                gap: 60px
+            }
+
+            .collage {
+                max-width: 520px;
+                margin-inline: auto;
+                width: 100%;
+                height: 500px
+            }
+
+            .plans {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-inline: auto
+            }
+
+            .rev-grid {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+                margin-inline: auto
+            }
+
+            .rev:nth-child(2) {
+                margin-top: 0
+            }
+
+            .cta-card {
+                grid-template-columns: 1fr;
+                padding: 50px 34px;
+                text-align: center
+            }
+
+            .cta-card p,
+            .nl {
+                margin-inline: auto
+            }
+
+            .cta-card .eyebrow {
+                justify-content: center
+            }
+
+            .help {
+                grid-template-columns: 1fr;
+                gap: 56px
+            }
+
+            .fgrid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .section {
+                padding: 80px 0
+            }
+
+            .about {
+                margin: 0 10px;
+                border-radius: 40px
+            }
+
+            .shop {
+                border-radius: 40px 40px 0 0
+            }
+
+            footer {
+                border-radius: 40px 40px 0 0
+            }
+        }
+
+        @media (max-width:640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 28px 14px
+            }
+
+            .cats {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .perk-grid {
+                grid-template-columns: 1fr
+            }
+
+            .hero-art {
+                grid-template-columns: 1fr 1.2fr 1fr;
+                gap: 10px
+            }
+
+            .hero-art .a {
+                height: 200px;
+                border-radius: 22px
+            }
+
+            .hero-art .b {
+                height: 300px;
+                border-radius: 140px 140px 22px 22px
+            }
+
+            .hero-art .c {
+                height: 180px;
+                border-radius: 22px
+            }
+
+            .float.f2 {
+                display: none
+            }
+
+            .float.f1 {
+                left: 2%;
+                top: 4%;
+                padding: 8px 12px
+            }
+
+            .hero .btns .btn {
+                width: 100%
+            }
+
+            .hero .btns {
+                margin-bottom: 50px
+            }
+
+            .bag-btn .t {
+                display: none
+            }
+
+            .bag-btn {
+                padding: 12px 16px
+            }
+
+            .mosaic {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 230px 230px 230px;
+                grid-template-areas: "a b" "a c" "d e"
+            }
+
+            .row {
+                grid-template-columns: 1fr
+            }
+
+            form.box {
+                padding: 26px
+            }
+
+            .collage {
+                height: 420px
+            }
+
+            .collage .note {
+                display: none
+            }
+
+            .spot-img .off {
+                left: -6px;
+                width: 100px;
+                height: 100px;
+                font-size: 1.5rem
+            }
+
+            .fgrid {
+                grid-template-columns: 1fr;
+                gap: 32px
+            }
+
+            .nl {
+                flex-direction: column;
+                border-radius: 26px;
+                padding: 8px
+            }
+
+            .nl button {
+                padding: 14px
+            }
+
+            .copy .container {
+                justify-content: center;
+                text-align: center
+            }
+
+            .tabs {
+                width: 100%;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                border-radius: 30px
+            }
+
+            .tab {
+                white-space: nowrap
+            }
+
+            .filters {
+                width: 100%
+            }
+
+            .filters input,
+            .filters select {
+                flex: 1;
+                min-width: 0
+            }
+
+            .cart {
+                top: 8px;
+                right: 8px;
+                bottom: 8px;
+                width: calc(100% - 16px)
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            .float {
+                animation: none
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- ================= HEADER ================= -->
+    <header id="header">
+        <div class="pill">
+            <a href="#top" class="logo" aria-label="Aurelle home">Aurelle<i></i></a>
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a class="link active" href="#home">Home</a></li>
+                    <li><a class="link" href="#collections">Collections</a></li>
+                    <li><a class="link" href="#shop">Shop</a></li>
+                    <li><a class="link" href="#about">About</a></li>
+                    <li><a class="link" href="#plans">Plans</a></li>
+                    <li><a class="link" href="#lookbook">Lookbook</a></li>
+                    <li><a class="link" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="tools-r">
+                <button class="bag-btn" id="bagBtn" aria-label="Open bag">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 8h12l-1 12H7zM9 8V6a3 3 0 016 0v2" />
+                    </svg>
+                    <span class="t">Bag</span> <b id="bagCount">0</b>
+                </button>
+                <button class="burger" id="burger" aria-label="Open menu"
+                    aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+            <div class="mmenu" id="mmenu">
+                <a class="link" href="#home">Home</a>
+                <a class="link" href="#collections">Collections</a>
+                <a class="link" href="#shop">Shop</a>
+                <a class="link" href="#about">About</a>
+                <a class="link" href="#plans">Plans</a>
+                <a class="link" href="#lookbook">Lookbook</a>
+                <a class="link" href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="pillbadge"><b>New</b> Spring / Summer Collection is here</div>
+                <h1>Dress soft.<br><em>Live bold.</em></h1>
+                <p class="lead">Timeless everyday pieces in breathable linen, cotton and knits. Made to be loved,
+                    layered and worn on repeat.</p>
+                <div class="btns">
+                    <a href="#shop" class="btn btn-dark">Shop the Collection</a>
+                    <a href="#lookbook" class="btn btn-ghost">Explore Looks</a>
+                </div>
+
+                <div class="hero-art">
+                    <div class="float f1">
+                        <div class="dot">&#9733;</div>
+                        <div><strong>4.9 / 5 rating</strong><span>2,300+ happy customers</span></div>
+                    </div>
+                    <div class="im a ph" data-img="hero1"></div>
+                    <div class="im b ph" data-img="hero2"></div>
+                    <div class="im c ph" data-img="hero3"></div>
+                    <div class="float f2">
+                        <div class="dot">&#9825;</div>
+                        <div><strong>Free shipping</strong><span>On orders over Rs. 5,000</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PERKS / SERVICES ================= -->
+        <section class="perks" id="services">
+            <div class="container">
+                <div class="perk-grid">
+                    <div class="perk reveal">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <path
+                                    d="M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z" />
+                            </svg></div>
+                        <h3>Free Delivery</h3>
+                        <p>Free shipping on orders over Rs. 5,000, delivered in 2 to 4 days.</p>
+                    </div>
+                    <div class="perk reveal">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <path d="M3 12a9 9 0 109-9M3 4v5h5" />
+                            </svg></div>
+                        <h3>Easy Returns</h3>
+                        <p>Not quite right? Return or exchange within 14 days, no questions asked.</p>
+                    </div>
+                    <div class="perk reveal">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <rect x="2" y="6" width="20" height="13" rx="2" />
+                                <path d="M2 10h20M6 15h4" />
+                            </svg></div>
+                        <h3>Pay Your Way</h3>
+                        <p>Cash on delivery, card or bank transfer. Whatever suits you best.</p>
+                    </div>
+                    <div class="perk reveal">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" />
+                            </svg></div>
+                        <h3>Free Alterations</h3>
+                        <p>Hemming and fit tweaks on your first order, handled by our tailors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= COLLECTIONS ================= -->
+        <section class="section" id="collections" style="padding-top:0">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="eyebrow">Collections</span>
+                    <h2 class="title">Shop by <em>category</em></h2>
+                    <p class="sub">Find your favourites faster. Tap a category to jump straight into the shop.</p>
+                </div>
+                <div class="cats reveal">
+                    <a class="circ" href="#shop" data-filter="Dresses">
+                        <div class="ring">
+                            <div class="pic ph" data-img="c1"></div>
+                        </div>
+                        <h3>Dresses</h3><span>Floaty &amp; feminine</span>
+                    </a>
+                    <a class="circ" href="#shop" data-filter="Tops">
+                        <div class="ring">
+                            <div class="pic ph" data-img="c2"></div>
+                        </div>
+                        <h3>Shirts &amp; Tops</h3><span>Everyday essentials</span>
+                    </a>
+                    <a class="circ" href="#shop" data-filter="Outerwear">
+                        <div class="ring">
+                            <div class="pic ph" data-img="c3"></div>
+                        </div>
+                        <h3>Outerwear</h3><span>Layer it up</span>
+                    </a>
+                    <a class="circ" href="#shop" data-filter="Bottoms">
+                        <div class="ring">
+                            <div class="pic ph" data-img="c4"></div>
+                        </div>
+                        <h3>Bottoms</h3><span>Skirts &amp; trousers</span>
+                    </a>
+                    <a class="circ" href="#shop" data-filter="Accessories">
+                        <div class="ring">
+                            <div class="pic ph" data-img="c5"></div>
+                        </div>
+                        <h3>Bags</h3><span>Carry in style</span>
+                    </a>
+                    <a class="circ" href="#shop" data-filter="All">
+                        <div class="ring">
+                            <div class="pic ph" data-img="c6"></div>
+                        </div>
+                        <h3>Jewelry</h3><span>Little finishing touches</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SHOP ================= -->
+        <section class="section shop" id="shop">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="eyebrow">New Arrivals</span>
+                    <h2 class="title">Fresh in, <em>just for you</em></h2>
+                    <p class="sub">Small batches, thoughtful details. Choose your colour and add to bag.</p>
+                </div>
+
+                <div class="tools reveal">
+                    <div class="tabs" id="tabs">
+                        <button class="tab on" data-cat="All">All</button>
+                        <button class="tab" data-cat="Tops">Tops</button>
+                        <button class="tab" data-cat="Bottoms">Bottoms</button>
+                        <button class="tab" data-cat="Dresses">Dresses</button>
+                        <button class="tab" data-cat="Outerwear">Outerwear</button>
+                        <button class="tab" data-cat="Accessories">Accessories</button>
+                    </div>
+                    <div class="filters">
+                        <input type="search" id="search" placeholder="Search products" aria-label="Search products">
+                        <select id="sort" aria-label="Sort products">
+                            <option value="featured">Featured</option>
+                            <option value="low">Price: Low to High</option>
+                            <option value="high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid" id="grid"></div>
+                <div class="empty" id="empty">No products match your search. Try another word or category.</div>
+            </div>
+        </section>
+
+        <!-- ================= SPOTLIGHT ================= -->
+        <section class="spot">
+            <div class="container">
+                <div class="spot-card reveal">
+                    <div>
+                        <span class="eyebrow" style="color:#56634f">Collection Spotlight</span>
+                        <h2 class="title">The Linen <em style="color:#56634f">Edit</em></h2>
+                        <p class="sub">Breathable, lightweight and effortlessly chic. Our linen pieces are
+                            garment-washed for a soft, lived-in feel from day one.</p>
+                        <ul class="spot-list">
+                            <li>100% European flax linen</li>
+                            <li>Pre-washed, no shrinking</li>
+                            <li>Relaxed fits in 6 soft colours</li>
+                        </ul>
+                        <a href="#shop" class="btn btn-dark">Shop Linen</a>
+                    </div>
+                    <div class="spot-img">
+                        <div class="pic ph" data-img="spot"></div>
+                        <div class="off">
+                            <div>30%<small>Off</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="section about" id="about">
+            <div class="container">
+                <div class="collage reveal">
+                    <div class="big ph" data-img="about1"></div>
+                    <div class="small ph" data-img="about2"></div>
+                    <div class="note"><b>2018</b>Where our story began, in a tiny studio.</div>
+                </div>
+                <div class="reveal">
+                    <span class="eyebrow">Our Story</span>
+                    <h2 class="title">Made slowly, <em>worn forever</em></h2>
+                    <p>Aurelle began with a simple belief: clothes should feel as good as they look. We design in small
+                        batches, choose natural fabrics and finish every piece by hand so it keeps its shape and
+                        softness wash after wash.</p>
+                    <div class="vals">
+                        <div class="val">
+                            <div class="n">1</div>
+                            <div>
+                                <h3>Natural fabrics</h3>
+                                <p>Linen, cotton and wool blends that breathe and age beautifully.</p>
+                            </div>
+                        </div>
+                        <div class="val">
+                            <div class="n">2</div>
+                            <div>
+                                <h3>Small batches</h3>
+                                <p>Less waste, more character. Every collection is limited.</p>
+                            </div>
+                        </div>
+                        <div class="val">
+                            <div class="n">3</div>
+                            <div>
+                                <h3>Kind to people &amp; planet</h3>
+                                <p>Fair wages, ethical workshops and recycled packaging.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chips">
+                        <div class="chipstat"><strong data-count="6" data-suffix="+">0</strong>years</div>
+                        <div class="chipstat"><strong data-count="120" data-suffix="+">0</strong>styles</div>
+                        <div class="chipstat"><strong data-count="50" data-suffix="K+">0</strong>orders shipped</div>
+                    </div>
+                    <a href="#shop" class="btn btn-dark">Discover the Collection</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PLANS (PRICING) ================= -->
+        <section class="section" id="plans">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="eyebrow">Pricing</span>
+                    <h2 class="title">Styling plans, <em>made simple</em></h2>
+                    <p class="sub">Join Aurelle Circle for members-only prices, personal styling and early access to
+                        every drop.</p>
+                    <div class="toggle" id="toggle">
+                        <button class="on" data-mode="m">Monthly</button>
+                        <button data-mode="y">Yearly <em>-20%</em></button>
+                    </div>
+                </div>
+                <div class="plans">
+                    <div class="plan reveal">
+                        <h3>Essentials</h3>
+                        <p class="desc">Everything you need to shop with us.</p>
+                        <div class="amt" data-m="0">Rs. 0<small>/month</small></div>
+                        <div class="note-s">Free forever</div>
+                        <ul>
+                            <li>Member-only newsletter</li>
+                            <li>Birthday discount</li>
+                            <li>Standard delivery</li>
+                            <li>Wishlist &amp; saved bag</li>
+                        </ul>
+                        <a href="#join" class="btn btn-ghost">Join Free</a>
+                    </div>
+
+                    <div class="plan feat reveal">
+                        <span class="badge">Most Popular</span>
+                        <h3>Stylist</h3>
+                        <p class="desc">Personal picks and perks for regular shoppers.</p>
+                        <div class="amt" data-m="1999">Rs. 1,999<small>/month</small></div>
+                        <div class="note-s" data-note>Billed monthly, cancel anytime</div>
+                        <ul>
+                            <li>10% off every order</li>
+                            <li>Monthly personal style edit</li>
+                            <li>Free express delivery</li>
+                            <li>Early access to new drops</li>
+                            <li>Free alterations, always</li>
+                        </ul>
+                        <a href="#join" class="btn btn-dark">Become a Stylist Member</a>
+                    </div>
+
+                    <div class="plan reveal">
+                        <h3>Couture</h3>
+                        <p class="desc">The full wardrobe experience, tailored to you.</p>
+                        <div class="amt" data-m="4999">Rs. 4,999<small>/month</small></div>
+                        <div class="note-s" data-note>Billed monthly, cancel anytime</div>
+                        <ul>
+                            <li>20% off every order</li>
+                            <li>1-on-1 video styling session</li>
+                            <li>Made-to-measure fittings</li>
+                            <li>Priority support on WhatsApp</li>
+                            <li>Seasonal gift box</li>
+                        </ul>
+                        <a href="#join" class="btn btn-ghost">Go Couture</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= LOOKBOOK ================= -->
+        <section class="section lookbook" id="lookbook">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="eyebrow">Lookbook</span>
+                    <h2 class="title">Inspiration for <em>every day</em></h2>
+                    <p class="sub">Real outfits, effortless styling. Borrow a look and make it yours.</p>
+                </div>
+                <div class="mosaic reveal">
+                    <div class="m a" data-cap="Sunday Brunch">
+                        <div class="pic ph" data-img="l1"></div>
+                    </div>
+                    <div class="m b" data-cap="Linen &amp; Light">
+                        <div class="pic ph" data-img="l2"></div>
+                    </div>
+                    <div class="m c" data-cap="Golden Hour">
+                        <div class="pic ph" data-img="l3"></div>
+                    </div>
+                    <div class="m d" data-cap="Weekend Walk">
+                        <div class="pic ph" data-img="l4"></div>
+                    </div>
+                    <div class="m e" data-cap="City Neutrals">
+                        <div class="pic ph" data-img="l5"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= REVIEWS ================= -->
+        <section class="section" id="reviews" style="padding-top:20px">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="eyebrow">Kind Words</span>
+                    <h2 class="title">Loved by <em>our community</em></h2>
+                </div>
+                <div class="rev-grid">
+                    <div class="rev reveal">
+                        <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p>"The linen shirt is unbelievably soft and fits like it was made for me. I have ordered three
+                            more."</p>
+                        <div class="who">
+                            <div class="av">S</div>
+                            <div><strong>Sana M.</strong><span>Verified buyer</span></div>
+                        </div>
+                    </div>
+                    <div class="rev reveal">
+                        <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p>"Beautiful quality, lovely packaging and the free alteration was such a thoughtful touch."
+                        </p>
+                        <div class="who">
+                            <div class="av">A</div>
+                            <div><strong>Areeba K.</strong><span>Verified buyer</span></div>
+                        </div>
+                    </div>
+                    <div class="rev reveal">
+                        <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p>"The Stylist plan is worth every rupee. My monthly edit always feels like it was picked just
+                            for me."</p>
+                        <div class="who">
+                            <div class="av">H</div>
+                            <div><strong>Hina R.</strong><span>Stylist member</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="score reveal">
+                    <div><strong>4.9</strong>average rating</div>
+                    <div><strong>2.3K+</strong>verified reviews</div>
+                    <div><strong>96%</strong>would recommend</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CTA / NEWSLETTER ================= -->
+        <section class="cta" id="join">
+            <div class="container">
+                <div class="cta-card reveal">
+                    <div>
+                        <span class="eyebrow">Join the Circle</span>
+                        <h2>Get <em>10% off</em> your first order</h2>
+                        <p>Be the first to hear about new drops, private sales and styling tips. Unsubscribe anytime.
+                        </p>
+                        <form class="nl" id="nlForm">
+                            <input type="email" id="nlEmail" placeholder="Your email address" aria-label="Email address"
+                                required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                        <div class="nl-msg" id="nlMsg"></div>
+                    </div>
+                    <div class="cta-img">
+                        <div class="pic ph" data-img="cta"></div>
+                        <div class="sticker"><b>10%</b>welcome gift</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HELP / CONTACT ================= -->
+        <section class="section" id="contact" style="padding-top:0">
+            <div class="container help">
+                <div class="reveal">
+                    <span class="eyebrow">Contact</span>
+                    <h2 class="title">We are here <em>to help</em></h2>
+                    <p class="sub" style="margin-bottom:28px">Quick answers below, or send us a message and we will
+                        reply within a few hours.</p>
+
+                    <details open>
+                        <summary>How long does delivery take?</summary>
+                        <p>Most orders arrive in 2 to 4 working days. Orders over Rs. 5,000 ship free.</p>
+                    </details>
+                    <details>
+                        <summary>What is your return policy?</summary>
+                        <p>Return or exchange unworn items with tags within 14 days of delivery.</p>
+                    </details>
+                    <details>
+                        <summary>How do I choose my size?</summary>
+                        <p>Every product has a size guide. Between sizes? Message us and we will help you pick.</p>
+                    </details>
+                    <details>
+                        <summary>Do you offer cash on delivery?</summary>
+                        <p>Yes, on all orders. You can also pay by card or bank transfer.</p>
+                    </details>
+
+                    <div class="contact-list">
+                        <div class="ci2">
+                            <div class="ic"><svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" />
+                                </svg></div>
+                            <div><small>Phone</small><span>+92 000 0000000</span></div>
+                        </div>
+                        <div class="ci2">
+                            <div class="ic"><svg viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="M3 7l9 6 9-6" />
+                                </svg></div>
+                            <div><small>Email</small><span>hello@aurelle.com</span></div>
+                        </div>
+                        <div class="ci2">
+                            <div class="ic"><svg viewBox="0 0 24 24">
+                                    <path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" />
+                                    <circle cx="12" cy="10" r="2.5" />
+                                </svg></div>
+                            <div><small>Studio</small><span>Your Store Address, City</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="box reveal" id="contactForm" novalidate>
+                    <h3>Send a message</h3>
+                    <div class="row">
+                        <div class="field"><label for="cname">Full name</label><input id="cname" type="text"
+                                placeholder="Your name" required></div>
+                        <div class="field"><label for="cphone">Phone</label><input id="cphone" type="tel"
+                                placeholder="+92 300 0000000" required></div>
+                    </div>
+                    <div class="field"><label for="cemail">Email</label><input id="cemail" type="email"
+                            placeholder="you@example.com"></div>
+                    <div class="field">
+                        <label for="ctopic">Topic</label>
+                        <select id="ctopic">
+                            <option>Order status</option>
+                            <option>Size help</option>
+                            <option>Return / exchange</option>
+                            <option>Styling plans</option>
+                            <option>Something else</option>
+                        </select>
+                    </div>
+                    <div class="field"><label for="cmsg">Message</label><textarea id="cmsg"
+                            placeholder="How can we help?"></textarea></div>
+                    <button type="submit" class="btn btn-dark" style="width:100%">Send Message</button>
+                    <div class="form-msg" id="formMsg"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container fgrid">
+            <div>
+                <a href="#top" class="logo">Aurelle<i></i></a>
+                <p style="max-width:300px;margin-top:14px">Soft, timeless everyday fashion made in small batches from
+                    natural fabrics.</p>
+                <div class="soc">
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Pinterest">pin</a>
+                    <a href="#" aria-label="WhatsApp">wa</a>
+                </div>
+            </div>
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#shop">New Arrivals</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#plans">Styling Plans</a></li>
+                    <li><a href="#lookbook">Lookbook</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#join">Join the Circle</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Visit</h4>
+                <ul>
+                    <li>Your Store Address, City</li>
+                    <li><a href="tel:+920000000000">+92 000 0000000</a></li>
+                    <li><a href="mailto:hello@aurelle.com">hello@aurelle.com</a></li>
+                    <li>Mon - Sat, 11 AM - 9 PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="big-word" aria-hidden="true">Aurelle</div>
+        <div class="copy">
+            <div class="container">
+                <span>&copy; <span id="year"></span> Aurelle. All rights reserved.</span>
+                <span>Made with care, softness &amp; linen.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= CART ================= -->
+    <div class="shade" id="shade"></div>
+    <aside class="cart" id="cart" aria-label="Shopping bag" aria-hidden="true">
+        <div class="cart-head">
+            <h3>Your Bag (<span id="cartN">0</span>)</h3><button class="x" id="cartClose"
+                aria-label="Close bag">&times;</button>
+        </div>
+        <div class="ship"><span id="shipTxt"></span>
+            <div class="bar"><i id="shipBar"></i></div>
+        </div>
+        <div class="cart-list" id="cartList"></div>
+        <div class="cart-foot">
+            <div class="sum"><span>Subtotal</span><span id="sub">Rs. 0</span></div>
+            <div class="sum"><span>Shipping</span><span id="shipCost">Rs. 0</span></div>
+            <div class="sum tot"><span>Total</span><span id="total">Rs. 0</span></div>
+            <button class="btn btn-dark" id="checkout">Checkout</button>
+        </div>
+    </aside>
+    <div class="toast" id="toast" role="status"></div>
+    <button class="totop" id="toTop" aria-label="Back to top">&uarr;</button>
+
+    <script>
+        (function () {
+            /* ============================================================
+               IMAGES via Pexels API (loaded in the browser).
+               NOTE: the key below is visible in page source. Fine for testing;
+               before going live regenerate it or put fixed links in IMAGES.
+               IMAGES example: { hero1: "https://images.pexels.com/photos/..." }
+               ============================================================ */
+            var PEXELS_KEY = "No0ZDUM8swzzOnaDFSORYzNs31YWO7SDBUNqjVsWupaXoq175SHtjL0u";
+            var IMAGES = {};
+
+            // q = search words, o = orientation, n = which result, s = size
+            var SLOTS = {
+                hero1: { q: "woman fashion pastel outfit", o: "portrait", n: 0, s: "large" },
+                hero2: { q: "woman fashion pastel outfit", o: "portrait", n: 1, s: "large2x" },
+                hero3: { q: "woman fashion pastel outfit", o: "portrait", n: 2, s: "large" },
+                c1: { q: "summer dress fashion", o: "square", n: 0, s: "medium" },
+                c2: { q: "linen shirt fashion", o: "square", n: 0, s: "medium" },
+                c3: { q: "trench coat fashion", o: "square", n: 0, s: "medium" },
+                c4: { q: "wide leg trousers fashion", o: "square", n: 0, s: "medium" },
+                c5: { q: "handbag tote fashion", o: "square", n: 0, s: "medium" },
+                c6: { q: "gold jewelry necklace", o: "square", n: 0, s: "medium" },
+                p1: { q: "linen shirt fashion", o: "portrait", n: 1, s: "large" },
+                p2: { q: "pleated midi skirt fashion", o: "portrait", n: 0, s: "large" },
+                p3: { q: "wrap dress fashion", o: "portrait", n: 0, s: "large" },
+                p4: { q: "wide leg trousers fashion", o: "portrait", n: 1, s: "large" },
+                p5: { q: "cardigan knitwear fashion", o: "portrait", n: 0, s: "large" },
+                p6: { q: "trench coat fashion", o: "portrait", n: 1, s: "large" },
+                p7: { q: "floral summer dress", o: "portrait", n: 0, s: "large" },
+                p8: { q: "handbag tote fashion", o: "portrait", n: 1, s: "large" },
+                spot: { q: "linen clothing summer", o: "portrait", n: 0, s: "large" },
+                about1: { q: "fashion designer studio fabric", o: "portrait", n: 0, s: "large" },
+                about2: { q: "boutique clothing rack", o: "square", n: 0, s: "medium" },
+                l1: { q: "fashion lifestyle outfit", o: "portrait", n: 0, s: "large" },
+                l2: { q: "fashion lifestyle outfit", o: "portrait", n: 1, s: "large" },
+                l3: { q: "fashion lifestyle outfit", o: "portrait", n: 2, s: "large" },
+                l4: { q: "fashion lifestyle outfit", o: "portrait", n: 3, s: "large" },
+                l5: { q: "fashion lifestyle outfit", o: "portrait", n: 4, s: "large" },
+                cta: { q: "woman boutique shopping fashion", o: "square", n: 0, s: "large" }
+            };
+
+            var imgUrl = {};
+            function paint(el) { var u = imgUrl[el.getAttribute('data-img')]; if (u) el.style.backgroundImage = 'url("' + u + '")'; }
+            function setImage(key, url) {
+                var im = new Image();
+                im.onload = function () {
+                    imgUrl[key] = url;
+                    document.querySelectorAll('[data-img="' + key + '"]').forEach(paint);
+                    renderCart();
+                };
+                im.src = url;   // if it fails to load, the soft placeholder stays
+            }
+
+            function getPhotos(q, o) {
+                var ck = 'aurelle_' + o + '_' + q, cached = null;
+                try { cached = JSON.parse(localStorage.getItem(ck) || 'null'); } catch (e) { }
+                if (cached && cached.list && cached.list.length && (Date.now() - cached.t) < 864e5) return Promise.resolve(cached.list);
+                var api = 'https://api.pexels.com/v1/search?per_page=12&orientation=' + o + '&query=' + encodeURIComponent(q);
+                return fetch(api, { headers: { Authorization: PEXELS_KEY } })
+                    .then(function (r) { if (!r.ok) throw new Error('Pexels ' + r.status); return r.json(); })
+                    .then(function (d) {
+                        var list = ((d && d.photos) || []).map(function (p) { return { large2x: p.src.large2x, large: p.src.large, medium: p.src.medium }; });
+                        try { localStorage.setItem(ck, JSON.stringify({ list: list, t: Date.now() })); } catch (e) { }
+                        return list;
+                    });
+            }
+
+            // group slots by search, run 4 searches at a time
+            var groups = {}, queue = [], active = 0;
+            Object.keys(SLOTS).forEach(function (k) {
+                if (IMAGES[k]) { setImage(k, IMAGES[k]); return; }
+                if (!PEXELS_KEY) return;
+                var c = SLOTS[k], gk = c.o + '|' + c.q;
+                if (!groups[gk]) { groups[gk] = []; queue.push(gk); }
+                groups[gk].push(k);
+            });
+            function pump() {
+                while (active < 4 && queue.length) {
+                    (function (gk) {
+                        active++;
+                        var first = SLOTS[groups[gk][0]];
+                        getPhotos(first.q, first.o).then(function (list) {
+                            if (!list.length) return;
+                            groups[gk].forEach(function (k) {
+                                var c = SLOTS[k], p = list[Math.min(c.n, list.length - 1)];
+                                setImage(k, p[c.s] || p.large);
+                            });
+                        }).catch(function (err) { console.warn('Images not loaded for "' + first.q + '":', err.message); })
+                            .then(function () { active--; pump(); });
+                    })(queue.shift());
+                }
+            }
+
+            /* ---------- Products ---------- */
+            var PRODUCTS = [
+                { id: 1, name: "Linen Button Shirt", cat: "Tops", price: 4490, tag: "New", colors: [["#efe6d6", "Sand"], ["#ffffff", "White"], ["#b9c7b0", "Sage"]] },
+                { id: 2, name: "Pleated Midi Skirt", cat: "Bottoms", price: 5290, colors: [["#e8c9bf", "Blush"], ["#2f2a27", "Black"], ["#d8cdb9", "Oat"]] },
+                { id: 3, name: "Cotton Wrap Dress", cat: "Dresses", price: 6990, tag: "Best Seller", colors: [["#d8a898", "Terracotta"], ["#b9c7b0", "Sage"], ["#e9e2d6", "Ivory"]] },
+                { id: 4, name: "Wide-Leg Trousers", cat: "Bottoms", price: 5990, colors: [["#d8cdb9", "Oat"], ["#2f2a27", "Black"], ["#a5b3b8", "Stone Blue"]] },
+                { id: 5, name: "Soft Knit Cardigan", cat: "Tops", price: 8490, old: 10490, tag: "Sale", colors: [["#e8c9bf", "Blush"], ["#d8cdb9", "Oat"], ["#9aa890", "Moss"]] },
+                { id: 6, name: "Relaxed Trench Coat", cat: "Outerwear", price: 12990, tag: "New", colors: [["#cdb79a", "Camel"], ["#2f2a27", "Black"]] },
+                { id: 7, name: "Floral Summer Dress", cat: "Dresses", price: 6490, colors: [["#f2d2c8", "Rose"], ["#d9e3d3", "Mint"]] },
+                { id: 8, name: "Everyday Canvas Tote", cat: "Accessories", price: 3490, colors: [["#efe6d6", "Natural"], ["#2f2a27", "Black"], ["#d8a898", "Clay"]] }
+            ];
+            var state = { cat: 'All', sort: 'featured', term: '' };
+            var picked = {};   // chosen colour index per product
+            var wish = {};
+            try { wish = JSON.parse(localStorage.getItem('aurelle_wish') || '{}') || {}; } catch (e) { }
+            function money(n) { return 'Rs. ' + Number(n).toLocaleString('en-US'); }
+
+            function renderProducts() {
+                var list = PRODUCTS.filter(function (p) {
+                    return (state.cat === 'All' || p.cat === state.cat) && p.name.toLowerCase().indexOf(state.term) > -1;
+                });
+                if (state.sort === 'low') list.sort(function (a, b) { return a.price - b.price; });
+                if (state.sort === 'high') list.sort(function (a, b) { return b.price - a.price; });
+                var grid = document.getElementById('grid');
+                grid.innerHTML = list.map(function (p) {
+                    var sel = picked[p.id] || 0;
+                    return '<article class="p" data-pid="' + p.id + '">' +
+                        '<div class="p-img"><div class="pic ph" data-img="p' + p.id + '"></div>' +
+                        (p.tag ? '<span class="tag' + (p.tag === 'Sale' ? ' sale' : '') + '">' + p.tag + '</span>' : '') +
+                        '<button class="heart' + (wish[p.id] ? ' on' : '') + '" data-heart="' + p.id + '" aria-label="Save to wishlist"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg></button></div>' +
+                        '<div class="p-info"><div class="cat-name">' + p.cat + '</div><h3>' + p.name + '</h3>' +
+                        '<div class="p-row"><span class="price">' + money(p.price) + (p.old ? '<s>' + money(p.old) + '</s>' : '') + '</span>' +
+                        '<div class="sw">' + p.colors.map(function (c, i) {
+                            return '<button class="' + (i === sel ? 'on' : '') + '" style="background:' + c[0] + '" data-sw="' + i + '" aria-label="' + c[1] + '" title="' + c[1] + '"></button>';
+                        }).join('') + '</div></div>' +
+                        '<button class="add" data-add="' + p.id + '">Add to bag</button></div></article>';
+                }).join('');
+                grid.querySelectorAll('[data-img]').forEach(paint);
+                document.getElementById('empty').style.display = list.length ? 'none' : 'block';
+            }
+
+            function setCat(c) {
+                state.cat = c;
+                document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-cat') === c); });
+                renderProducts();
+            }
+            document.getElementById('tabs').addEventListener('click', function (e) {
+                var b = e.target.closest('.tab'); if (b) setCat(b.getAttribute('data-cat'));
+            });
+            document.getElementById('search').addEventListener('input', function (e) { state.term = e.target.value.trim().toLowerCase(); renderProducts(); });
+            document.getElementById('sort').addEventListener('change', function (e) { state.sort = e.target.value; renderProducts(); });
+            document.querySelectorAll('.circ[data-filter]').forEach(function (a) {
+                a.addEventListener('click', function () { setCat(a.getAttribute('data-filter')); });
+            });
+
+            /* ---------- Cart ---------- */
+            var FREE_SHIP = 5000, SHIP_FEE = 250;
+            var cart = [];   // [{id,name,price,qty,key}]
+            try { cart = JSON.parse(localStorage.getItem('aurelle_cart') || '[]') || []; } catch (e) { }
+            function saveCart() { try { localStorage.setItem('aurelle_cart', JSON.stringify(cart)); } catch (e) { } }
+
+            var toastT;
+            function toast(msg) {
+                var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+                clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2400);
+            }
+            function addItem(item) {
+                var f = cart.filter(function (c) { return c.id === item.id; })[0];
+                if (f) f.qty++; else { item.qty = 1; cart.push(item); }
+                saveCart(); renderCart(); toast('Added to bag: ' + item.name);
+            }
+            function renderCart() {
+                var n = 0, sub = 0;
+                cart.forEach(function (c) { n += c.qty; sub += c.qty * c.price; });
+                document.getElementById('bagCount').textContent = n;
+                document.getElementById('cartN').textContent = n;
+                var list = document.getElementById('cartList');
+                if (!cart.length) {
+                    list.innerHTML = '<div class="cart-empty">Your bag is empty.<br>Find something you love in the shop.</div>';
+                } else {
+                    list.innerHTML = cart.map(function (c) {
+                        var img = c.key && imgUrl[c.key] ? ' style="background-image:url(\'' + imgUrl[c.key] + '\')"' : '';
+                        return '<div class="ci"><div class="th ph"' + img + '></div>' +
+                            '<div><h4>' + c.name + '</h4><div class="pr">' + money(c.price) + '</div>' +
+                            '<div class="qty"><button data-q="-1" data-id="' + c.id + '" aria-label="Decrease">&minus;</button><span>' + c.qty + '</span><button data-q="1" data-id="' + c.id + '" aria-label="Increase">+</button></div></div>' +
+                            '<button class="rm" data-rm="' + c.id + '">Remove</button></div>';
+                    }).join('');
+                }
+                var ship = (sub === 0 || sub >= FREE_SHIP) ? 0 : SHIP_FEE;
+                document.getElementById('sub').textContent = money(sub);
+                document.getElementById('shipCost').textContent = ship ? money(ship) : (sub ? 'Free' : 'Rs. 0');
+                document.getElementById('total').textContent = money(sub + ship);
+                document.getElementById('shipBar').style.width = Math.min(100, sub / FREE_SHIP * 100) + '%';
+                document.getElementById('shipTxt').textContent = sub >= FREE_SHIP
+                    ? 'You have unlocked free shipping!'
+                    : 'Add ' + money(FREE_SHIP - sub) + ' more for free shipping';
+            }
+
+            document.getElementById('grid').addEventListener('click', function (e) {
+                var sw = e.target.closest('[data-sw]'), ht = e.target.closest('[data-heart]'), ad = e.target.closest('[data-add]');
+                if (sw) {
+                    var card = sw.closest('.p'), pid = +card.getAttribute('data-pid');
+                    picked[pid] = +sw.getAttribute('data-sw');
+                    card.querySelectorAll('.sw button').forEach(function (b) { b.classList.toggle('on', b === sw); });
+                }
+                if (ht) {
+                    var id = ht.getAttribute('data-heart');
+                    wish[id] = !wish[id]; ht.classList.toggle('on', wish[id]);
+                    try { localStorage.setItem('aurelle_wish', JSON.stringify(wish)); } catch (err) { }
+                    toast(wish[id] ? 'Saved to your wishlist' : 'Removed from wishlist');
+                }
+                if (ad) {
+                    var p = PRODUCTS.filter(function (x) { return x.id === +ad.getAttribute('data-add'); })[0];
+                    var ci = picked[p.id] || 0;
+                    addItem({ id: p.id + '-' + ci, name: p.name + ' (' + p.colors[ci][1] + ')', price: p.price, key: 'p' + p.id });
+                }
+            });
+            document.getElementById('cartList').addEventListener('click', function (e) {
+                var q = e.target.closest('[data-q]'), r = e.target.closest('[data-rm]');
+                if (q) {
+                    var it = cart.filter(function (c) { return String(c.id) === q.getAttribute('data-id'); })[0];
+                    it.qty += +q.getAttribute('data-q');
+                    if (it.qty < 1) cart = cart.filter(function (c) { return c !== it; });
+                }
+                if (r) cart = cart.filter(function (c) { return String(c.id) !== r.getAttribute('data-rm'); });
+                saveCart(); renderCart();
+            });
+
+            var cartEl = document.getElementById('cart'), shade = document.getElementById('shade');
+            function cartOpen(o) {
+                cartEl.classList.toggle('open', o); shade.classList.toggle('show', o);
+                cartEl.setAttribute('aria-hidden', !o); document.body.style.overflow = o ? 'hidden' : '';
+            }
+            document.getElementById('bagBtn').addEventListener('click', function () { cartOpen(true); });
+            document.getElementById('cartClose').addEventListener('click', function () { cartOpen(false); });
+            shade.addEventListener('click', function () { cartOpen(false); });
+            document.getElementById('checkout').addEventListener('click', function () {
+                toast(cart.length ? 'Demo store: connect a payment system to take real orders.' : 'Your bag is empty.');
+            });
+
+            /* ---------- Plans toggle ---------- */
+            var amts = document.querySelectorAll('.amt'), notes = document.querySelectorAll('[data-note]');
+            document.getElementById('toggle').addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                var yearly = b.getAttribute('data-mode') === 'y';
+                this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+                amts.forEach(function (a) {
+                    var m = +a.getAttribute('data-m'), v = yearly ? Math.round(m * 0.8) : m;
+                    a.innerHTML = money(v) + '<small>/month</small>';
+                });
+                notes.forEach(function (n) { n.textContent = yearly ? 'Billed yearly, you save 20%' : 'Billed monthly, cancel anytime'; });
+            });
+
+            /* ---------- Header / menu ---------- */
+            var header = document.getElementById('header'), burger = document.getElementById('burger'), mmenu = document.getElementById('mmenu');
+            function menu(o) {
+                mmenu.classList.toggle('open', o); burger.classList.toggle('open', o); burger.setAttribute('aria-expanded', o);
+            }
+            burger.addEventListener('click', function () { menu(!mmenu.classList.contains('open')); });
+            mmenu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu(false); }); });
+            document.addEventListener('click', function (e) { if (!e.target.closest('.pill')) menu(false); });
+            window.addEventListener('resize', function () { if (window.innerWidth > 960) menu(false); });
+            window.addEventListener('keydown', function (e) { if (e.key === 'Escape') { menu(false); cartOpen(false); } });
+
+            var toTop = document.getElementById('toTop');
+            function onScroll() {
+                header.classList.toggle('scrolled', window.scrollY > 40);
+                toTop.classList.toggle('show', window.scrollY > 800);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+            toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            /* ---------- Scroll spy, reveal, counters ---------- */
+            var navLinks = document.querySelectorAll('a.link');
+            if ('IntersectionObserver' in window) {
+                var spy = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var id = '#' + e.target.id;
+                        navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === id); });
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                ['home', 'collections', 'shop', 'about', 'plans', 'lookbook', 'contact'].forEach(function (id) {
+                    var s = document.getElementById(id); if (s) spy.observe(s);
+                });
+                var rev = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target); } });
+                }, { threshold: .1 });
+                document.querySelectorAll('.reveal').forEach(function (el, i) { el.style.transitionDelay = ((i % 3) * 90) + 'ms'; rev.observe(el); });
+                var cnt = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var el = e.target, end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+                        (function tick(t) {
+                            if (!t0) t0 = t;
+                            var p = Math.min((t - t0) / 1500, 1);
+                            el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3))) + suf;
+                            if (p < 1) requestAnimationFrame(tick);
+                        })(performance.now());
+                        cnt.unobserve(el);
+                    });
+                }, { threshold: .6 });
+                document.querySelectorAll('[data-count]').forEach(function (el) { cnt.observe(el); });
+            } else {
+                document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+                document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
+            }
+
+            /* ---------- Forms (front-end only) ---------- */
+            document.getElementById('nlForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                document.getElementById('nlMsg').textContent = 'Welcome to the Circle! Use code AURELLE10 for 10% off.';
+                e.target.reset();
+            });
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var m = document.getElementById('formMsg'), name = document.getElementById('cname').value.trim(), phone = document.getElementById('cphone').value.trim();
+                m.style.display = 'block';
+                if (!name || !phone) { m.style.background = '#fbe3df'; m.style.color = '#a03a2a'; m.textContent = 'Please enter your name and phone number.'; return; }
+                m.style.background = 'var(--sage)'; m.style.color = '#3d4a37'; m.textContent = 'Thank you, ' + name + '! We have your message and will reply soon.';
+                e.target.reset();
+            });
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            renderProducts();
+            renderCart();
+            pump();
+        })();
+    </script>
+</body>
+
+</html>

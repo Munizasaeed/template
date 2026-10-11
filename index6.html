@@ -1,0 +1,4288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lumira Beauty | Makeup Studio &amp; Cosmetics</title>
+    <meta name="description"
+        content="Lumira Beauty: luxury makeup, bridal and party glam, and a cosmetics line made to make you glow.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===== Brand tokens ===== */
+        :root {
+            --plum: #1c0a21;
+            --plum-2: #2c1234;
+            --wine: #4b1746;
+            --rose: #ff5c9a;
+            --rose-d: #e23a7d;
+            --peach: #ffb59e;
+            --gold: #e9b98f;
+            --cream: #fff6f2;
+            --blush: #ffe4ea;
+            --lilac: #f3e3f6;
+            --ink: #2a1530;
+            --muted: #85707f;
+            --shade: #e8527f;
+            /* live lipstick shade (changed by JS) */
+            --line: rgba(42, 21, 48, .12);
+            --shadow: 0 20px 60px rgba(75, 23, 70, .18);
+            --serif: 'Bodoni Moda', Georgia, serif;
+            --sans: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            --ease: cubic-bezier(.2, .9, .2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            color: var(--ink);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        body.lock {
+            overflow: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        ul {
+            list-style: none
+        }
+
+        button {
+            font-family: inherit
+        }
+
+        section {
+            scroll-margin-top: 80px
+        }
+
+        .container {
+            width: min(1200px, 92%);
+            margin-inline: auto
+        }
+
+        .section {
+            padding: 110px 0;
+            position: relative
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--serif);
+            font-weight: 500;
+            line-height: 1.05;
+            letter-spacing: -.5px
+        }
+
+        em {
+            font-style: italic;
+            color: var(--rose-d)
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .76rem;
+            font-weight: 600;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--rose-d);
+            margin-bottom: 16px
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rose), var(--peach));
+            border-radius: 2px
+        }
+
+        .title {
+            font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+            margin-bottom: 16px
+        }
+
+        .sub {
+            color: var(--muted);
+            max-width: 540px
+        }
+
+        .head {
+            margin-bottom: 56px
+        }
+
+        .head.center {
+            text-align: center
+        }
+
+        .head.center .sub {
+            margin-inline: auto
+        }
+
+        .head.center .eyebrow {
+            justify-content: center
+        }
+
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 34px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: .6px;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            overflow: hidden;
+            transition: color .4s, box-shadow .4s, border-color .4s, transform .25s;
+            isolation: isolate;
+            background: transparent;
+            color: var(--ink)
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--ink);
+            transform: translateY(101%);
+            border-radius: inherit;
+            transition: transform .45s var(--ease);
+            z-index: -1
+        }
+
+        .btn:hover::before {
+            transform: none
+        }
+
+        .btn-rose {
+            background: linear-gradient(120deg, var(--rose), var(--rose-d));
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(226, 58, 125, .35)
+        }
+
+        .btn-rose::before {
+            background: var(--plum)
+        }
+
+        .btn-rose:hover {
+            box-shadow: 0 16px 38px rgba(226, 58, 125, .5)
+        }
+
+        .btn-line {
+            border-color: currentColor
+        }
+
+        .btn-line:hover {
+            color: #fff;
+            border-color: var(--ink)
+        }
+
+        .btn-line.light {
+            color: #fff
+        }
+
+        .btn-line.light::before {
+            background: #fff
+        }
+
+        .btn-line.light:hover {
+            color: var(--plum);
+            border-color: #fff
+        }
+
+        .mag {
+            will-change: transform
+        }
+
+        .ph {
+            background-color: #f6d7dc;
+            background-image: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .7), transparent 55%), linear-gradient(145deg, #f9dfe3, #e8c3cf);
+            background-size: cover;
+            background-position: center
+        }
+
+        /* ===== Loader ===== */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: var(--plum);
+            display: grid;
+            place-content: center;
+            justify-items: center;
+            gap: 22px;
+            transition: transform 1s cubic-bezier(.76, 0, .24, 1);
+            color: #fff
+        }
+
+        .loader.done {
+            transform: translateY(-101%)
+        }
+
+        .lw {
+            font-family: var(--serif);
+            font-size: clamp(2.6rem, 9vw, 5.5rem);
+            letter-spacing: 10px;
+            display: flex
+        }
+
+        .lw span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: lin .8s var(--ease) forwards;
+            animation-delay: calc(var(--i)*90ms)
+        }
+
+        @keyframes lin {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .lbar {
+            width: min(260px, 60vw);
+            height: 3px;
+            background: rgba(255, 255, 255, .15);
+            border-radius: 3px;
+            overflow: hidden
+        }
+
+        .lbar i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--rose), var(--peach));
+            transition: width .1s linear
+        }
+
+        .loader small {
+            letter-spacing: 4px;
+            font-size: .72rem;
+            color: var(--peach)
+        }
+
+        /* ===== Global effects ===== */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--rose), var(--peach), #b66bff);
+            z-index: 300
+        }
+
+        .cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 420px;
+            height: 420px;
+            margin: -210px 0 0 -210px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 92, 154, .22), transparent 65%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity .4s;
+            mix-blend-mode: screen
+        }
+
+        .cursor-glow.on {
+            opacity: 1
+        }
+
+        /* Letter split animation */
+        .split .w {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            padding: 0 .07em .16em;
+            margin: 0 -.07em -.16em
+        }
+
+        .split .c {
+            display: inline-block;
+            transform: translateY(118%) rotate(9deg);
+            opacity: 0
+        }
+
+        .split.go .c {
+            animation: rise .95s var(--ease) forwards;
+            animation-delay: calc(var(--i)*32ms + var(--d, 0ms))
+        }
+
+        @keyframes rise {
+            to {
+                transform: none;
+                opacity: 1
+            }
+        }
+
+        /* Scroll reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(44px);
+            transition: opacity .9s var(--ease), transform .9s var(--ease)
+        }
+
+        .reveal.left {
+            transform: translateX(-60px)
+        }
+
+        .reveal.right {
+            transform: translateX(60px)
+        }
+
+        .reveal.zoom {
+            transform: scale(.88)
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .wipe {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1.3s cubic-bezier(.7, 0, .2, 1)
+        }
+
+        .wipe.in {
+            clip-path: inset(0 0 0 0)
+        }
+
+        /* ===== Header ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 18px 0;
+            transition: .4s;
+            color: #fff
+        }
+
+        header.scrolled {
+            background: rgba(28, 10, 33, .82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 10px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .25)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            letter-spacing: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600
+        }
+
+        .logo i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--rose);
+            box-shadow: 0 0 14px var(--rose);
+            animation: pulse 2.4s infinite
+        }
+
+        @keyframes pulse {
+            50% {
+                transform: scale(1.5);
+                opacity: .6
+            }
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 30px
+        }
+
+        .nav ul a {
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 6px 0;
+            opacity: .85;
+            transition: .3s
+        }
+
+        .nav ul a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rose), var(--peach));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .45s var(--ease)
+        }
+
+        .nav ul a:hover,
+        .nav ul a.active {
+            opacity: 1
+        }
+
+        .nav ul a:hover::after,
+        .nav ul a.active::after {
+            transform: scaleX(1);
+            transform-origin: left
+        }
+
+        .tools-r {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .bag-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 20px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255, 255, 255, .4);
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            font-weight: 600;
+            font-size: .8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .bag-btn:hover {
+            background: #fff;
+            color: var(--plum)
+        }
+
+        .bag-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .bag-btn b {
+            background: var(--rose);
+            color: #fff;
+            min-width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: .72rem
+        }
+
+        .bag-btn.bump {
+            animation: bump .5s
+        }
+
+        @keyframes bump {
+            30% {
+                transform: scale(1.18) rotate(-4deg)
+            }
+
+            60% {
+                transform: scale(.95) rotate(3deg)
+            }
+        }
+
+        .burger {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, .4);
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            z-index: 260
+        }
+
+        .burger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            margin: 5px auto;
+            border-radius: 2px;
+            transition: .35s
+        }
+
+        .burger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+
+        .burger.open span:nth-child(2) {
+            opacity: 0
+        }
+
+        .burger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+
+        .mnav {
+            position: fixed;
+            inset: 0;
+            z-index: 250;
+            background: radial-gradient(circle at 80% 10%, var(--wine), var(--plum) 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 9% 40px;
+            clip-path: circle(0 at calc(100% - 44px) 44px);
+            transition: clip-path .8s cubic-bezier(.7, 0, .2, 1);
+            pointer-events: none
+        }
+
+        .mnav.open {
+            clip-path: circle(150% at calc(100% - 44px) 44px);
+            pointer-events: auto
+        }
+
+        .mnav a {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 11vw, 4rem);
+            color: #fff;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .6s, transform .6s var(--ease), color .3s
+        }
+
+        .mnav.open a {
+            opacity: 1;
+            transform: none;
+            transition-delay: calc(.25s + var(--i)*70ms)
+        }
+
+        .mnav a:hover,
+        .mnav a.active {
+            color: var(--rose);
+            font-style: italic
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100svh;
+            background: var(--plum);
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 130px 0 90px
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .55;
+            animation: drift 16s ease-in-out infinite;
+            pointer-events: none
+        }
+
+        .blob.b1 {
+            width: 520px;
+            height: 520px;
+            background: var(--shade);
+            top: -140px;
+            left: -120px;
+            transition: background 1s
+        }
+
+        .blob.b2 {
+            width: 460px;
+            height: 460px;
+            background: #7a2cff;
+            bottom: -160px;
+            right: 12%;
+            animation-delay: -5s;
+            opacity: .4
+        }
+
+        .blob.b3 {
+            width: 360px;
+            height: 360px;
+            background: var(--peach);
+            top: 30%;
+            right: -120px;
+            animation-delay: -9s;
+            opacity: .35
+        }
+
+        @keyframes drift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1)
+            }
+
+            33% {
+                transform: translate(60px, 40px) scale(1.12)
+            }
+
+            66% {
+                transform: translate(-40px, 70px) scale(.92)
+            }
+        }
+
+        #sparkles {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 3;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 40px;
+            align-items: center
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .2);
+            backdrop-filter: blur(8px);
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 26px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: .9s var(--ease) .2s
+        }
+
+        .chip i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--shade);
+            box-shadow: 0 0 12px var(--shade);
+            transition: .6s
+        }
+
+        body.loaded .chip {
+            opacity: 1;
+            transform: none
+        }
+
+        .hero h1 {
+            font-size: clamp(3.2rem, 8.4vw, 7.2rem);
+            margin-bottom: 24px;
+            letter-spacing: -2px
+        }
+
+        .hero h1 em {
+            color: var(--shade);
+            transition: color .8s;
+            text-shadow: 0 0 40px rgba(255, 255, 255, .12)
+        }
+
+        .hero p.lead {
+            max-width: 500px;
+            color: #dccbd8;
+            font-size: 1.08rem;
+            margin-bottom: 34px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: 1s var(--ease) 1s
+        }
+
+        .hero .btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 46px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: 1s var(--ease) 1.2s
+        }
+
+        body.loaded .hero p.lead,
+        body.loaded .hero .btns,
+        body.loaded .trust {
+            opacity: 1;
+            transform: none
+        }
+
+        .trust {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: 1s var(--ease) 1.4s
+        }
+
+        .trust div {
+            font-size: .8rem;
+            color: #c9b3c4;
+            letter-spacing: .5px
+        }
+
+        .trust strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 2rem;
+            color: #fff;
+            line-height: 1
+        }
+
+        .stage {
+            position: relative;
+            height: 620px;
+            display: grid;
+            place-items: center
+        }
+
+        .halo {
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 62%);
+            border: 1px solid rgba(255, 255, 255, .14);
+            animation: breathe 5s ease-in-out infinite
+        }
+
+        .halo.h2 {
+            width: 560px;
+            height: 560px;
+            opacity: .5;
+            animation-delay: -2.4s
+        }
+
+        @keyframes breathe {
+            50% {
+                transform: scale(1.07)
+            }
+        }
+
+        .lipstick {
+            position: relative;
+            width: min(240px, 50vw);
+            filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .5));
+            transform: rotate(14deg);
+            animation: floaty 6s ease-in-out infinite;
+            z-index: 2
+        }
+
+        @keyframes floaty {
+            50% {
+                transform: rotate(10deg) translateY(-22px)
+            }
+        }
+
+        .lipstick .bullet {
+            transform: translateY(90px);
+            transition: transform 1.6s cubic-bezier(.3, 1.4, .4, 1) 1.4s
+        }
+
+        body.loaded .lipstick .bullet {
+            transform: none
+        }
+
+        .lipstick .bfill {
+            fill: var(--shade);
+            transition: fill .8s
+        }
+
+        .badge-rot {
+            position: absolute;
+            right: 2%;
+            bottom: 12%;
+            width: 130px;
+            height: 130px;
+            z-index: 3
+        }
+
+        .badge-rot svg {
+            width: 100%;
+            height: 100%;
+            animation: spin 18s linear infinite
+        }
+
+        .badge-rot text {
+            font-family: var(--sans);
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 3.4px;
+            fill: #fff;
+            text-transform: uppercase
+        }
+
+        .badge-rot .core {
+            position: absolute;
+            inset: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose), var(--peach));
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 30px rgba(255, 92, 154, .6)
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .deco {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+            will-change: transform
+        }
+
+        .deco svg {
+            display: block;
+            animation: floaty2 7s ease-in-out infinite;
+            filter: drop-shadow(0 8px 20px rgba(255, 92, 154, .5))
+        }
+
+        @keyframes floaty2 {
+            50% {
+                transform: translateY(-16px) rotate(8deg)
+            }
+        }
+
+        .deco.d1 {
+            left: 4%;
+            top: 16%
+        }
+
+        .deco.d1 svg {
+            width: 46px;
+            animation-delay: -1s
+        }
+
+        .deco.d2 {
+            right: 6%;
+            top: 6%
+        }
+
+        .deco.d2 svg {
+            width: 34px;
+            animation-delay: -3s
+        }
+
+        .deco.d3 {
+            left: 10%;
+            bottom: 14%
+        }
+
+        .deco.d3 svg {
+            width: 38px;
+            animation-delay: -5s
+        }
+
+        .shades {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: rgba(255, 255, 255, .1);
+            backdrop-filter: blur(14px);
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            z-index: 4;
+            white-space: nowrap
+        }
+
+        .shades span {
+            font-size: .72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e9d7e6;
+            font-weight: 600;
+            min-width: 92px;
+            text-align: right
+        }
+
+        .sw-b {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, .7);
+            cursor: pointer;
+            transition: transform .35s cubic-bezier(.3, 1.6, .5, 1), box-shadow .3s;
+            padding: 0
+        }
+
+        .sw-b:hover {
+            transform: scale(1.25)
+        }
+
+        .sw-b.on {
+            transform: scale(1.3);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .35), 0 0 20px currentColor;
+            border-color: #fff
+        }
+
+        .scroll-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 22px;
+            transform: translateX(-50%);
+            z-index: 3;
+            font-size: .7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #cdb4c8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px
+        }
+
+        .scroll-hint i {
+            width: 1.5px;
+            height: 38px;
+            background: linear-gradient(var(--rose), transparent);
+            animation: drip 1.8s infinite
+        }
+
+        @keyframes drip {
+            0% {
+                transform: scaleY(0);
+                transform-origin: top
+            }
+
+            50% {
+                transform: scaleY(1);
+                transform-origin: top
+            }
+
+            51% {
+                transform-origin: bottom
+            }
+
+            100% {
+                transform: scaleY(0);
+                transform-origin: bottom
+            }
+        }
+
+        /* ===== Marquee ===== */
+        .marq {
+            background: var(--cream);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .marq .track {
+            display: inline-flex;
+            width: max-content;
+            animation: slide 32s linear infinite
+        }
+
+        .marq.rev .track {
+            animation-direction: reverse;
+            animation-duration: 40s
+        }
+
+        .marq .grp {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0
+        }
+
+        .marq span {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            padding: 0 30px;
+            font-style: italic
+        }
+
+        .marq span.o {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--rose-d);
+            font-style: normal
+        }
+
+        .marq b {
+            color: var(--rose);
+            font-size: 1.6rem
+        }
+
+        @keyframes slide {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ===== About ===== */
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center
+        }
+
+        .collage {
+            position: relative;
+            height: 620px
+        }
+
+        .collage .im {
+            position: absolute;
+            overflow: hidden;
+            box-shadow: var(--shadow)
+        }
+
+        .collage .im .in-img {
+            position: absolute;
+            inset: -12% 0;
+            background-size: cover;
+            background-position: center;
+            will-change: transform
+        }
+
+        .collage .a {
+            left: 0;
+            top: 0;
+            width: 68%;
+            height: 80%;
+            border-radius: 220px 220px 30px 30px
+        }
+
+        .collage .b {
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 46%;
+            border-radius: 30px;
+            border: 10px solid var(--cream)
+        }
+
+        .collage .spark {
+            position: absolute;
+            right: 10%;
+            top: 6%;
+            width: 70px;
+            z-index: 3;
+            animation: spin 10s linear infinite;
+            filter: drop-shadow(0 6px 14px rgba(255, 92, 154, .5))
+        }
+
+        .collage .stamp {
+            position: absolute;
+            left: 52%;
+            top: 62%;
+            z-index: 4;
+            background: #fff;
+            border-radius: 22px;
+            padding: 14px 20px;
+            box-shadow: var(--shadow);
+            font-size: .82rem;
+            line-height: 1.35
+        }
+
+        .collage .stamp b {
+            display: block;
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--rose-d);
+            line-height: 1
+        }
+
+        .about p {
+            color: var(--muted);
+            margin-bottom: 16px
+        }
+
+        .ticks {
+            margin: 26px 0 30px;
+            display: grid;
+            gap: 12px
+        }
+
+        .ticks li {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            font-weight: 600
+        }
+
+        .ticks svg {
+            width: 28px;
+            height: 28px;
+            flex: none;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            background: linear-gradient(135deg, var(--rose), var(--peach));
+            border-radius: 50%;
+            padding: 6px
+        }
+
+        .ticks path {
+            stroke-dasharray: 24;
+            stroke-dashoffset: 24;
+            transition: stroke-dashoffset .8s var(--ease) .4s
+        }
+
+        .ticks.in path {
+            stroke-dashoffset: 0
+        }
+
+        .stats {
+            display: flex;
+            gap: 34px;
+            flex-wrap: wrap;
+            margin-bottom: 32px
+        }
+
+        .stats strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 3rem;
+            color: var(--rose-d);
+            line-height: 1
+        }
+
+        .stats span {
+            font-size: .76rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--muted)
+        }
+
+        /* ===== Services ===== */
+        .services {
+            background: linear-gradient(180deg, var(--blush), var(--lilac))
+        }
+
+        .svc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px
+        }
+
+        .svc {
+            perspective: 900px
+        }
+
+        .tilt {
+            transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+            transition: transform .3s ease, box-shadow .4s;
+            transform-style: preserve-3d;
+            will-change: transform
+        }
+
+        .tilt.moving {
+            transition: transform .08s linear, box-shadow .4s
+        }
+
+        .svc-in {
+            background: #fff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(75, 23, 70, .08);
+            position: relative;
+            height: 100%
+        }
+
+        .svc-in:hover {
+            box-shadow: var(--shadow)
+        }
+
+        .svc-in::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, .55), transparent 55%);
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none
+        }
+
+        .svc-in:hover::after {
+            opacity: 1
+        }
+
+        .svc .thumb {
+            height: 210px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .svc .thumb .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform 1s var(--ease)
+        }
+
+        .svc-in:hover .thumb .pic {
+            transform: scale(1.12) rotate(1.5deg)
+        }
+
+        .svc .body {
+            padding: 26px 24px 30px;
+            position: relative
+        }
+
+        .svc .ico {
+            position: absolute;
+            top: -28px;
+            right: 22px;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--rose), var(--peach));
+            display: grid;
+            place-items: center;
+            box-shadow: 0 10px 24px rgba(255, 92, 154, .45);
+            transition: transform .6s var(--ease)
+        }
+
+        .svc-in:hover .ico {
+            transform: rotate(360deg) scale(1.08)
+        }
+
+        .svc .ico svg {
+            width: 26px;
+            height: 26px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .svc h3 {
+            font-size: 1.55rem;
+            margin-bottom: 8px
+        }
+
+        .svc p {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-bottom: 16px
+        }
+
+        .svc .from {
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: 1px;
+            color: var(--rose-d)
+        }
+
+        .svc .from::after {
+            content: " \2192";
+            display: inline-block;
+            transition: transform .35s
+        }
+
+        .svc-in:hover .from::after {
+            transform: translateX(6px)
+        }
+
+        /* ===== Shop ===== */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 46px
+        }
+
+        .tab {
+            padding: 11px 26px;
+            border-radius: 40px;
+            border: 1.5px solid var(--line);
+            background: #fff;
+            font-weight: 600;
+            font-size: .82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .tab:hover {
+            border-color: var(--rose)
+        }
+
+        .tab.on {
+            background: linear-gradient(120deg, var(--rose), var(--rose-d));
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(226, 58, 125, .35);
+            transform: translateY(-2px)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px 22px
+        }
+
+        .p {
+            perspective: 900px;
+            animation: pop .6s var(--ease) both;
+            animation-delay: calc(var(--i)*70ms)
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.95)
+            }
+        }
+
+        .p-in {
+            background: #fff;
+            border-radius: 26px;
+            padding: 12px 12px 20px;
+            box-shadow: 0 10px 30px rgba(75, 23, 70, .07)
+        }
+
+        .p-in:hover {
+            box-shadow: var(--shadow)
+        }
+
+        .p-img {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden
+        }
+
+        .p-img .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform .9s var(--ease)
+        }
+
+        .p-in:hover .p-img .pic {
+            transform: scale(1.1)
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 2;
+            background: rgba(255, 255, 255, .92);
+            border-radius: 30px;
+            padding: 4px 13px;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase
+        }
+
+        .tag.sale {
+            background: var(--rose-d);
+            color: #fff
+        }
+
+        .p-info {
+            padding: 16px 8px 0
+        }
+
+        .p-cat {
+            font-size: .72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .p-info h3 {
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 1.02rem;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin: 2px 0 8px
+        }
+
+        .p-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 8px
+        }
+
+        .price {
+            font-weight: 700
+        }
+
+        .price s {
+            color: var(--muted);
+            font-weight: 400;
+            font-size: .85rem;
+            margin-left: 6px
+        }
+
+        .sws {
+            display: flex;
+            gap: 6px
+        }
+
+        .sws button {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 1px var(--line);
+            cursor: pointer;
+            padding: 0;
+            transition: transform .3s cubic-bezier(.3, 1.6, .5, 1)
+        }
+
+        .sws button:hover {
+            transform: scale(1.25)
+        }
+
+        .sws button.on {
+            box-shadow: 0 0 0 2px var(--rose-d);
+            transform: scale(1.15)
+        }
+
+        .add {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 13px;
+            border-radius: 40px;
+            border: 1.5px solid var(--ink);
+            background: transparent;
+            font-weight: 700;
+            font-size: .8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color .4s;
+            isolation: isolate
+        }
+
+        .add::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, var(--rose), var(--rose-d));
+            transform: translateX(-101%);
+            transition: transform .5s var(--ease);
+            z-index: -1
+        }
+
+        .add:hover {
+            color: #fff;
+            border-color: transparent
+        }
+
+        .add:hover::before {
+            transform: none
+        }
+
+        .fly {
+            position: fixed;
+            width: 22px;
+            height: 22px;
+            margin: -11px 0 0 -11px;
+            border-radius: 50%;
+            background: var(--rose);
+            box-shadow: 0 0 22px var(--rose);
+            z-index: 500;
+            pointer-events: none
+        }
+
+        /* ===== Shade finder ===== */
+        .finder {
+            background: radial-gradient(circle at 15% 20%, var(--wine), var(--plum) 60%);
+            color: #fff;
+            overflow: hidden
+        }
+
+        .finder .blob {
+            opacity: .3
+        }
+
+        .finder .title {
+            color: #fff
+        }
+
+        .finder .sub {
+            color: #d3bfce
+        }
+
+        .finder .eyebrow {
+            color: var(--peach)
+        }
+
+        .fgrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2
+        }
+
+        .q {
+            margin-bottom: 34px
+        }
+
+        .q h4 {
+            font-size: .78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--peach);
+            margin-bottom: 14px
+        }
+
+        .tones {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .tone {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: transform .4s cubic-bezier(.3, 1.6, .5, 1), box-shadow .3s;
+            padding: 0;
+            position: relative
+        }
+
+        .tone:hover {
+            transform: translateY(-6px) scale(1.08)
+        }
+
+        .tone.on {
+            box-shadow: 0 0 0 3px var(--plum), 0 0 0 6px var(--rose);
+            transform: scale(1.12)
+        }
+
+        .unders {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .under {
+            padding: 12px 26px;
+            border-radius: 40px;
+            border: 1.5px solid rgba(255, 255, 255, .3);
+            background: transparent;
+            color: #fff;
+            font-weight: 600;
+            font-size: .84rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .under:hover {
+            border-color: var(--rose)
+        }
+
+        .under.on {
+            background: linear-gradient(120deg, var(--rose), var(--rose-d));
+            border-color: transparent;
+            box-shadow: 0 10px 24px rgba(226, 58, 125, .4)
+        }
+
+        .result {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .18);
+            backdrop-filter: blur(16px);
+            border-radius: 34px;
+            padding: 44px 38px;
+            text-align: center;
+            position: relative
+        }
+
+        .result .orb {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            margin: 0 auto 26px;
+            background: var(--tone, #e0b48f);
+            box-shadow: 0 0 0 12px rgba(255, 255, 255, .08), 0 0 80px var(--tone, #e0b48f);
+            transition: background .6s, box-shadow .6s;
+            position: relative;
+            animation: breathe 4s ease-in-out infinite
+        }
+
+        .result .orb::after {
+            content: "";
+            position: absolute;
+            inset: 14% 18% 56% 22%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .35);
+            filter: blur(10px)
+        }
+
+        .result small {
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: .72rem;
+            color: var(--peach);
+            font-weight: 700
+        }
+
+        .result h3 {
+            font-size: 2.3rem;
+            margin: 6px 0 8px;
+            animation: swap .6s var(--ease)
+        }
+
+        .result p {
+            color: #d3bfce;
+            font-size: .95rem;
+            margin-bottom: 20px
+        }
+
+        .lips {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 26px;
+            min-height: 38px
+        }
+
+        .lips span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .1);
+            border-radius: 30px;
+            padding: 6px 14px 6px 8px;
+            font-size: .82rem;
+            font-weight: 600;
+            animation: swap .6s var(--ease) both
+        }
+
+        .lips span i {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: block
+        }
+
+        @keyframes swap {
+            from {
+                opacity: 0;
+                transform: translateY(14px)
+            }
+        }
+
+        /* ===== Before / After ===== */
+        .ba-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center
+        }
+
+        .ba {
+            --pos: 50%;
+            position: relative;
+            aspect-ratio: 4/5;
+            max-height: 620px;
+            width: 100%;
+            border-radius: 36px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: ew-resize;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none
+        }
+
+        .ba .layer {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center
+        }
+
+        .ba .after {
+            filter: saturate(1.35) contrast(1.06) brightness(1.02)
+        }
+
+        .ba .after::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(255, 92, 154, .22), transparent 65%)
+        }
+
+        .ba .before {
+            filter: grayscale(.6) brightness(1.1) contrast(.78) saturate(.5);
+            clip-path: inset(0 calc(100% - var(--pos)) 0 0)
+        }
+
+        .ba .line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: var(--pos);
+            width: 3px;
+            margin-left: -1.5px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+            z-index: 3
+        }
+
+        .ba .knob {
+            position: absolute;
+            top: 50%;
+            left: var(--pos);
+            width: 58px;
+            height: 58px;
+            margin: -29px 0 0 -29px;
+            border-radius: 50%;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            z-index: 4;
+            box-shadow: 0 8px 26px rgba(0, 0, 0, .35);
+            color: var(--rose-d);
+            font-weight: 700;
+            letter-spacing: -2px
+        }
+
+        .ba .lab {
+            position: absolute;
+            bottom: 20px;
+            z-index: 3;
+            background: rgba(28, 10, 33, .7);
+            color: #fff;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: .74rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            backdrop-filter: blur(6px)
+        }
+
+        .ba .lab.l {
+            left: 20px
+        }
+
+        .ba .lab.r {
+            right: 20px;
+            background: linear-gradient(120deg, var(--rose), var(--rose-d))
+        }
+
+        .steps {
+            display: grid;
+            gap: 16px;
+            margin: 28px 0 32px
+        }
+
+        .stp {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start
+        }
+
+        .stp .n {
+            flex: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose), var(--peach));
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-family: var(--serif);
+            font-size: 1.3rem
+        }
+
+        .stp h3 {
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            margin-bottom: 2px
+        }
+
+        .stp p {
+            color: var(--muted);
+            font-size: .92rem
+        }
+
+        .note-ba {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-top: 14px
+        }
+
+        /* ===== Pricing ===== */
+        .pricing {
+            background: var(--lilac)
+        }
+
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: stretch
+        }
+
+        @property --ang {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false
+        }
+
+        .plan {
+            background: #fff;
+            border-radius: 34px;
+            padding: 44px 34px;
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 34px rgba(75, 23, 70, .08);
+            transition: transform .5s var(--ease), box-shadow .5s
+        }
+
+        .plan:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow)
+        }
+
+        .plan.feat {
+            background: var(--plum);
+            color: #fff
+        }
+
+        .plan.feat::before {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 37px;
+            background: conic-gradient(from var(--ang), var(--rose), var(--peach), #b66bff, var(--rose));
+            z-index: -2;
+            animation: rot 4s linear infinite
+        }
+
+        .plan.feat::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 34px;
+            background: var(--plum);
+            z-index: -1
+        }
+
+        @keyframes rot {
+            to {
+                --ang: 360deg
+            }
+        }
+
+        .plan .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(120deg, var(--rose), var(--peach));
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 7px 18px;
+            border-radius: 30px;
+            white-space: nowrap
+        }
+
+        .plan h3 {
+            font-size: 2rem;
+            margin-bottom: 6px
+        }
+
+        .plan .desc {
+            color: var(--muted);
+            font-size: .93rem;
+            margin-bottom: 22px;
+            min-height: 46px
+        }
+
+        .plan.feat .desc {
+            color: #cdb4c8
+        }
+
+        .amt {
+            font-family: var(--serif);
+            font-size: 3.4rem;
+            line-height: 1;
+            margin-bottom: 4px
+        }
+
+        .amt small {
+            font-family: var(--sans);
+            font-size: .85rem;
+            color: var(--muted);
+            margin-left: 4px
+        }
+
+        .plan.feat .amt small {
+            color: #cdb4c8
+        }
+
+        .plan ul {
+            flex: 1;
+            margin: 22px 0 28px
+        }
+
+        .plan li {
+            display: flex;
+            gap: 12px;
+            padding: 11px 0;
+            border-top: 1px solid var(--line);
+            font-size: .94rem
+        }
+
+        .plan.feat li {
+            border-color: rgba(255, 255, 255, .14)
+        }
+
+        .plan li::before {
+            content: "\2726";
+            color: var(--rose)
+        }
+
+        .plan .btn {
+            width: 100%
+        }
+
+        /* ===== Gallery ===== */
+        .gal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 250px;
+            gap: 16px;
+            grid-template-areas: "a b c" "a d c" "e e f"
+        }
+
+        .g {
+            position: relative;
+            border-radius: 26px;
+            overflow: hidden;
+            cursor: zoom-in
+        }
+
+        .g .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform 1.1s var(--ease)
+        }
+
+        .g:hover .pic {
+            transform: scale(1.12)
+        }
+
+        .g::after {
+            content: attr(data-cap);
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 60px 20px 18px;
+            background: linear-gradient(transparent, rgba(28, 10, 33, .85));
+            color: #fff;
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-style: italic;
+            transform: translateY(100%);
+            transition: transform .5s var(--ease)
+        }
+
+        .g:hover::after {
+            transform: none
+        }
+
+        .g.a {
+            grid-area: a
+        }
+
+        .g.b {
+            grid-area: b
+        }
+
+        .g.c {
+            grid-area: c
+        }
+
+        .g.d {
+            grid-area: d
+        }
+
+        .g.e {
+            grid-area: e
+        }
+
+        .g.f {
+            grid-area: f
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 6, 24, .94);
+            z-index: 400;
+            display: grid;
+            place-items: center;
+            padding: 30px;
+            cursor: zoom-out;
+            opacity: 0;
+            visibility: hidden;
+            transition: .4s
+        }
+
+        .lightbox.show {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .lightbox img {
+            max-height: 88vh;
+            border-radius: 20px;
+            transform: scale(.9);
+            transition: transform .5s var(--ease);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .6)
+        }
+
+        .lightbox.show img {
+            transform: none
+        }
+
+        /* ===== Testimonials ===== */
+        .reviews {
+            background: linear-gradient(135deg, var(--wine), var(--plum));
+            color: #fff;
+            text-align: center;
+            overflow: hidden
+        }
+
+        .reviews .blob {
+            opacity: .28
+        }
+
+        .reviews .title {
+            color: #fff
+        }
+
+        .reviews .eyebrow {
+            color: var(--peach)
+        }
+
+        .slider {
+            position: relative;
+            max-width: 800px;
+            margin-inline: auto;
+            min-height: 300px;
+            z-index: 2
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(60px) scale(.96);
+            transition: .9s var(--ease)
+        }
+
+        .slide.on {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            position: relative
+        }
+
+        .slide.out {
+            transform: translateX(-60px) scale(.96)
+        }
+
+        .slide .st {
+            color: var(--peach);
+            letter-spacing: 6px;
+            margin-bottom: 18px;
+            font-size: 1.1rem
+        }
+
+        .slide .q2 {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(1.4rem, 3vw, 2.1rem);
+            line-height: 1.45;
+            margin-bottom: 28px
+        }
+
+        .slide .av {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            background: linear-gradient(135deg, var(--rose), var(--peach));
+            display: grid;
+            place-items: center;
+            font-family: var(--serif);
+            font-size: 1.5rem
+        }
+
+        .slide .by {
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: .8rem
+        }
+
+        .slide .by span {
+            display: block;
+            color: #cdb4c8;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: none;
+            margin-top: 2px
+        }
+
+        .dots {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 36px;
+            position: relative;
+            z-index: 2
+        }
+
+        .dots button {
+            width: 11px;
+            height: 11px;
+            border-radius: 12px;
+            border: 0;
+            background: rgba(255, 255, 255, .25);
+            cursor: pointer;
+            transition: .4s var(--ease)
+        }
+
+        .dots button.on {
+            width: 34px;
+            background: linear-gradient(90deg, var(--rose), var(--peach))
+        }
+
+        /* ===== CTA ===== */
+        .cta {
+            background: linear-gradient(120deg, var(--rose-d), var(--rose) 45%, var(--peach));
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            padding: 120px 0;
+            position: relative
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, .18), transparent 30%);
+            animation: spin 14s linear infinite
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 2
+        }
+
+        .cta h2 {
+            font-size: clamp(2.6rem, 7vw, 5.8rem);
+            margin-bottom: 18px;
+            letter-spacing: -1.5px
+        }
+
+        .cta h2 em {
+            color: #fff;
+            text-shadow: 0 6px 30px rgba(120, 20, 70, .35)
+        }
+
+        .cta p {
+            max-width: 520px;
+            margin: 0 auto 34px;
+            font-size: 1.08rem;
+            color: #fff2f5
+        }
+
+        .cta .btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .cta .deco svg {
+            filter: drop-shadow(0 6px 16px rgba(120, 20, 70, .4))
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--rose-d)
+        }
+
+        .btn-white::before {
+            background: var(--plum)
+        }
+
+        .btn-white:hover {
+            color: #fff
+        }
+
+        /* ===== Contact ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 70px;
+            align-items: start
+        }
+
+        .info {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 24px;
+            align-items: center
+        }
+
+        .info .ic {
+            flex: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blush), var(--lilac));
+            display: grid;
+            place-items: center;
+            transition: .5s var(--ease)
+        }
+
+        .info:hover .ic {
+            transform: rotate(360deg) scale(1.1);
+            background: linear-gradient(135deg, var(--rose), var(--peach))
+        }
+
+        .info:hover .ic svg {
+            stroke: #fff
+        }
+
+        .info .ic svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--rose-d);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: .3s
+        }
+
+        .info small {
+            display: block;
+            color: var(--muted);
+            font-size: .72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            font-weight: 600
+        }
+
+        .info span {
+            font-weight: 600
+        }
+
+        .hours {
+            margin-top: 34px;
+            background: #fff;
+            border-radius: 26px;
+            padding: 26px 28px;
+            box-shadow: 0 10px 30px rgba(75, 23, 70, .07)
+        }
+
+        .hours h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px
+        }
+
+        .hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px dashed var(--line);
+            font-size: .94rem
+        }
+
+        .hours li:last-child {
+            border: 0
+        }
+
+        form.box {
+            background: #fff;
+            border-radius: 36px;
+            padding: 44px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden
+        }
+
+        form.box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--rose), var(--peach), #b66bff, var(--rose));
+            background-size: 200% 100%;
+            animation: shine 4s linear infinite
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% 0
+            }
+        }
+
+        form.box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 22px
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .field {
+            margin-bottom: 16px;
+            position: relative
+        }
+
+        .field label {
+            display: block;
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid var(--line);
+            border-radius: 16px;
+            background: var(--cream);
+            font: 500 .95rem var(--sans);
+            color: var(--ink);
+            transition: .3s
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: var(--rose);
+            box-shadow: 0 0 0 5px rgba(255, 92, 154, .15);
+            background: #fff;
+            transform: translateY(-2px)
+        }
+
+        form textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .form-msg {
+            display: none;
+            margin-top: 14px;
+            padding: 13px 18px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: .9rem
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--plum);
+            color: #c9b3c4;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .fgrid2 {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+            gap: 44px;
+            padding-bottom: 50px;
+            position: relative;
+            z-index: 2
+        }
+
+        footer .logo {
+            color: #fff;
+            margin-bottom: 16px
+        }
+
+        footer h4 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 16px
+        }
+
+        footer li {
+            margin-bottom: 10px;
+            font-size: .94rem
+        }
+
+        footer li a:hover {
+            color: var(--rose);
+            padding-left: 6px
+        }
+
+        footer li a {
+            transition: .3s;
+            display: inline-block
+        }
+
+        .nl {
+            display: flex;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 50px;
+            padding: 5px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            margin-top: 14px
+        }
+
+        .nl input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            padding: 11px 18px;
+            font: 500 .92rem var(--sans)
+        }
+
+        .nl input:focus {
+            outline: none
+        }
+
+        .nl button {
+            border: 0;
+            border-radius: 50px;
+            padding: 0 24px;
+            background: linear-gradient(120deg, var(--rose), var(--rose-d));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .nl button:hover {
+            transform: scale(1.05)
+        }
+
+        .soc {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px
+        }
+
+        .soc a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .2);
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: .78rem;
+            font-weight: 700;
+            transition: .4s var(--ease)
+        }
+
+        .soc a:hover {
+            background: var(--rose);
+            border-color: var(--rose);
+            transform: translateY(-6px) rotate(8deg)
+        }
+
+        .giant {
+            font-family: var(--serif);
+            font-size: clamp(4.4rem, 20vw, 17rem);
+            line-height: .82;
+            text-align: center;
+            letter-spacing: 8px;
+            white-space: nowrap;
+            background: linear-gradient(100deg, var(--rose), var(--peach), #b66bff, var(--rose));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: flow 8s linear infinite;
+            opacity: .9;
+            user-select: none
+        }
+
+        @keyframes flow {
+            to {
+                background-position: 300% 0
+            }
+        }
+
+        .copy {
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding: 22px 0;
+            font-size: .85rem;
+            position: relative;
+            z-index: 2
+        }
+
+        .copy .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        /* ===== Cart ===== */
+        .shade2 {
+            position: fixed;
+            inset: 0;
+            background: rgba(28, 10, 33, .55);
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .4s;
+            z-index: 350
+        }
+
+        .shade2.show {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .cart {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            bottom: 12px;
+            width: min(430px, calc(100% - 24px));
+            background: var(--cream);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            z-index: 360;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(115%);
+            transition: transform .6s cubic-bezier(.7, 0, .2, 1);
+            overflow: hidden
+        }
+
+        .cart.open {
+            transform: none
+        }
+
+        .cart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 26px 14px
+        }
+
+        .cart-head h3 {
+            font-size: 2rem
+        }
+
+        .x {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 0;
+            background: var(--blush);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: .4s var(--ease)
+        }
+
+        .x:hover {
+            transform: rotate(180deg);
+            background: var(--rose);
+            color: #fff
+        }
+
+        .cart-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 4px 26px
+        }
+
+        .ci {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+            align-items: center;
+            animation: pop .5s var(--ease)
+        }
+
+        .ci .th {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center
+        }
+
+        .ci h4 {
+            font-weight: 700;
+            font-size: .93rem;
+            line-height: 1.3
+        }
+
+        .ci small {
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .78rem
+        }
+
+        .ci small i {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block
+        }
+
+        .ci .pr {
+            font-weight: 700;
+            font-size: .9rem;
+            margin-top: 2px
+        }
+
+        .qty {
+            display: inline-flex;
+            align-items: center;
+            background: var(--blush);
+            border-radius: 30px;
+            margin-top: 6px
+        }
+
+        .qty button {
+            width: 28px;
+            height: 28px;
+            border: 0;
+            background: transparent;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 50%
+        }
+
+        .qty button:hover {
+            background: var(--rose);
+            color: #fff
+        }
+
+        .qty span {
+            min-width: 24px;
+            text-align: center;
+            font-weight: 700;
+            font-size: .85rem
+        }
+
+        .rm {
+            border: 0;
+            background: transparent;
+            font-size: .76rem;
+            text-decoration: underline;
+            cursor: pointer;
+            color: var(--muted);
+            align-self: start
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 70px 10px;
+            color: var(--muted)
+        }
+
+        .cart-foot {
+            padding: 20px 26px 26px;
+            background: #fff;
+            border-top: 1px solid var(--line)
+        }
+
+        .sum {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            margin-bottom: 14px
+        }
+
+        .cart-foot .btn {
+            width: 100%
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 26px;
+            transform: translate(-50%, 40px);
+            background: var(--plum);
+            color: #fff;
+            padding: 14px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: .86rem;
+            z-index: 600;
+            opacity: 0;
+            visibility: hidden;
+            transition: .45s var(--ease);
+            max-width: 92vw;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 92, 154, .5)
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0)
+        }
+
+        .totop {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 0;
+            background: linear-gradient(135deg, var(--rose), var(--rose-d));
+            color: #fff;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(.5);
+            transition: .4s var(--ease);
+            z-index: 150;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 26px rgba(226, 58, 125, .45)
+        }
+
+        .totop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: none
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width:1100px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .svc-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .nav ul {
+                gap: 20px
+            }
+        }
+
+        @media (max-width:960px) {
+            .nav ul {
+                display: none
+            }
+
+            .burger {
+                display: block
+            }
+
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center
+            }
+
+            .hero p.lead {
+                margin-inline: auto
+            }
+
+            .hero .btns,
+            .trust {
+                justify-content: center
+            }
+
+            .stage {
+                height: 560px;
+                margin-top: 10px
+            }
+
+            .about .container,
+            .fgrid,
+            .ba-wrap,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 56px
+            }
+
+            .collage {
+                max-width: 520px;
+                margin-inline: auto;
+                width: 100%;
+                height: 540px
+            }
+
+            .ba {
+                max-width: 520px;
+                margin-inline: auto
+            }
+
+            .plans {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-inline: auto
+            }
+
+            .gal {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: "a b" "a c" "d c" "e e" "f f";
+                grid-auto-rows: 220px
+            }
+
+            .fgrid2 {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .section {
+                padding: 84px 0
+            }
+        }
+
+        @media (max-width:640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 12px
+            }
+
+            .svc-grid {
+                grid-template-columns: 1fr
+            }
+
+            .p-in {
+                padding: 8px 8px 16px;
+                border-radius: 20px
+            }
+
+            .p-row {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            .hero {
+                padding: 110px 0 80px
+            }
+
+            .hero .btns .btn {
+                width: 100%
+            }
+
+            .stage {
+                height: 500px
+            }
+
+            .halo {
+                width: 320px;
+                height: 320px
+            }
+
+            .halo.h2 {
+                width: 420px;
+                height: 420px
+            }
+
+            .badge-rot {
+                width: 96px;
+                height: 96px;
+                right: 0
+            }
+
+            .badge-rot .core {
+                inset: 26px;
+                font-size: 1.1rem
+            }
+
+            .shades {
+                padding: 10px 12px;
+                gap: 8px
+            }
+
+            .shades span {
+                display: none
+            }
+
+            .sw-b {
+                width: 26px;
+                height: 26px
+            }
+
+            .scroll-hint {
+                display: none
+            }
+
+            .collage {
+                height: 440px
+            }
+
+            .collage .stamp {
+                left: 40%;
+                top: 60%;
+                padding: 10px 14px
+            }
+
+            .row {
+                grid-template-columns: 1fr
+            }
+
+            form.box {
+                padding: 26px
+            }
+
+            .tone {
+                width: 50px;
+                height: 50px
+            }
+
+            .result {
+                padding: 34px 22px
+            }
+
+            .gal {
+                grid-template-columns: 1fr;
+                grid-template-areas: "a" "b" "c" "d" "e" "f";
+                grid-auto-rows: 280px
+            }
+
+            .fgrid2 {
+                grid-template-columns: 1fr;
+                gap: 34px
+            }
+
+            .copy .container {
+                justify-content: center;
+                text-align: center
+            }
+
+            .bag-btn .t {
+                display: none
+            }
+
+            .bag-btn {
+                padding: 11px 14px
+            }
+
+            .cart {
+                top: 8px;
+                right: 8px;
+                bottom: 8px;
+                width: calc(100% - 16px)
+            }
+        }
+
+        @media (hover:none) {
+            .cursor-glow {
+                display: none
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important
+            }
+
+            .reveal,
+            .wipe {
+                opacity: 1;
+                transform: none;
+                clip-path: none
+            }
+
+            .split .c {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body id="top" class="lock">
+
+    <!-- ================= LOADER ================= -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="lw"><span style="--i:0">L</span><span style="--i:1">U</span><span style="--i:2">M</span><span
+                style="--i:3">I</span><span style="--i:4">R</span><span style="--i:5">A</span></div>
+        <div class="lbar"><i id="lfill"></i></div>
+        <small id="lpct">0%</small>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="cursor-glow" id="glow"></div>
+
+    <!-- ================= HEADER ================= -->
+    <header id="header">
+        <div class="container nav">
+            <a href="#top" class="logo" aria-label="Lumira Beauty home">LUMIRA<i></i></a>
+            <ul>
+                <li><a class="link active" href="#home">Home</a></li>
+                <li><a class="link" href="#about">About</a></li>
+                <li><a class="link" href="#services">Services</a></li>
+                <li><a class="link" href="#shop">Shop</a></li>
+                <li><a class="link" href="#pricing">Pricing</a></li>
+                <li><a class="link" href="#gallery">Gallery</a></li>
+                <li><a class="link" href="#contact">Contact</a></li>
+            </ul>
+            <div class="tools-r">
+                <button class="bag-btn" id="bagBtn" aria-label="Open bag">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 8h12l-1 12H7zM9 8V6a3 3 0 016 0v2" />
+                    </svg>
+                    <span class="t">Bag</span> <b id="bagCount">0</b>
+                </button>
+                <button class="burger" id="burger" aria-label="Open menu"
+                    aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="mnav" id="mnav" aria-label="Mobile navigation">
+        <a class="link" style="--i:0" href="#home">Home</a>
+        <a class="link" style="--i:1" href="#about">About</a>
+        <a class="link" style="--i:2" href="#services">Services</a>
+        <a class="link" style="--i:3" href="#shop">Shop</a>
+        <a class="link" style="--i:4" href="#pricing">Pricing</a>
+        <a class="link" style="--i:5" href="#gallery">Gallery</a>
+        <a class="link" style="--i:6" href="#contact">Contact</a>
+    </nav>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="blob b1"></div>
+            <div class="blob b2"></div>
+            <div class="blob b3"></div>
+            <canvas id="sparkles" aria-hidden="true"></canvas>
+            <div class="container">
+                <div>
+                    <span class="chip"><i></i> New Collection &bull; Spring Glow 2026</span>
+                    <h1 class="split" id="heroTitle">Glow like <em>you mean</em> it.</h1>
+                    <p class="lead">Luxury makeup and a studio made for unforgettable moments. Bridal, party and
+                        everyday glam, crafted by artists who love what they do.</p>
+                    <div class="btns">
+                        <a href="#shop" class="btn btn-rose mag">Shop the Collection</a>
+                        <a href="#contact" class="btn btn-line light mag">Book a Makeover</a>
+                    </div>
+                    <div class="trust">
+                        <div><strong data-count="12" data-suffix="K+">0</strong>Happy clients</div>
+                        <div><strong data-count="150" data-suffix="+">0</strong>Shades</div>
+                        <div><strong>100%</strong>Cruelty-free</div>
+                    </div>
+                </div>
+
+                <div class="stage" id="stage">
+                    <div class="halo"></div>
+                    <div class="halo h2"></div>
+                    <div class="deco d1" data-depth="26"><svg viewBox="0 0 40 40">
+                            <path fill="#ffb59e" d="M20 2l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" />
+                        </svg></div>
+                    <div class="deco d2" data-depth="-18"><svg viewBox="0 0 40 40">
+                            <path fill="#ff5c9a" d="M20 35S4 25 4 14a8 8 0 0116-3 8 8 0 0116 3c0 11-16 21-16 21z" />
+                        </svg></div>
+                    <div class="deco d3" data-depth="34"><svg viewBox="0 0 40 40">
+                            <path fill="#fff" d="M20 2l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" opacity=".9" />
+                        </svg></div>
+
+                    <svg class="lipstick" viewBox="0 0 200 400" aria-label="Lipstick">
+                        <defs>
+                            <linearGradient id="gold" x1="0" x2="1">
+                                <stop offset="0" stop-color="#b98a5e" />
+                                <stop offset=".35" stop-color="#f3d6ad" />
+                                <stop offset=".7" stop-color="#d1a374" />
+                                <stop offset="1" stop-color="#9a6e45" />
+                            </linearGradient>
+                            <linearGradient id="silver" x1="0" x2="1">
+                                <stop offset="0" stop-color="#9a9a9f" />
+                                <stop offset=".4" stop-color="#f4f4f6" />
+                                <stop offset="1" stop-color="#8a8a90" />
+                            </linearGradient>
+                            <linearGradient id="gloss" x1="0" x2="1">
+                                <stop offset="0" stop-color="#fff" stop-opacity="0" />
+                                <stop offset=".3" stop-color="#fff" stop-opacity=".55" />
+                                <stop offset=".5" stop-color="#fff" stop-opacity="0" />
+                            </linearGradient>
+                            <clipPath id="holder">
+                                <rect x="66" y="40" width="68" height="190" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#holder)">
+                            <g class="bullet">
+                                <path class="bfill" d="M72 230V96Q72 86 80 81L120 56Q128 52 128 62V230Z" />
+                                <path d="M72 230V96Q72 86 80 81L120 56Q128 52 128 62V230Z" fill="url(#gloss)" />
+                            </g>
+                        </g>
+                        <rect x="66" y="196" width="68" height="40" rx="4" fill="url(#silver)" />
+                        <rect x="56" y="230" width="88" height="36" rx="7" fill="url(#gold)" />
+                        <rect x="60" y="262" width="80" height="128" rx="12" fill="url(#gold)" />
+                        <rect x="74" y="262" width="10" height="128" fill="#fff" opacity=".28" />
+                        <rect x="60" y="316" width="80" height="2" fill="#7a5532" opacity=".35" />
+                    </svg>
+
+                    <div class="badge-rot">
+                        <svg viewBox="0 0 120 120">
+                            <defs>
+                                <path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0" />
+                            </defs><text>
+                                <textPath href="#circ">&bull; Glow &bull; Shine &bull; Sparkle &bull; Slay</textPath>
+                            </text>
+                        </svg>
+                        <div class="core">&#9825;</div>
+                    </div>
+
+                    <div class="shades" id="shades">
+                        <span id="shadeName">Rose Petal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint">Scroll<i></i></div>
+        </section>
+
+        <!-- ================= MARQUEE ================= -->
+        <div class="marq" aria-hidden="true">
+            <div class="track">
+                <div class="grp"><span>Lips</span><b>&#10022;</b><span
+                        class="o">Eyes</span><b>&#10022;</b><span>Skin</span><b>&#10022;</b><span
+                        class="o">Glow</span><b>&#10022;</b><span>Bridal</span><b>&#10022;</b><span
+                        class="o">Glam</span><b>&#10022;</b></div>
+                <div class="grp"><span>Lips</span><b>&#10022;</b><span
+                        class="o">Eyes</span><b>&#10022;</b><span>Skin</span><b>&#10022;</b><span
+                        class="o">Glow</span><b>&#10022;</b><span>Bridal</span><b>&#10022;</b><span
+                        class="o">Glam</span><b>&#10022;</b></div>
+            </div>
+        </div>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="section about" id="about">
+            <div class="container">
+                <div class="collage">
+                    <div class="im a wipe reveal left">
+                        <div class="in-img ph" data-img="about1" data-speed="0.06"></div>
+                    </div>
+                    <div class="im b wipe reveal right">
+                        <div class="in-img ph" data-img="about2" data-speed="-0.05"></div>
+                    </div>
+                    <svg class="spark" viewBox="0 0 40 40">
+                        <path fill="#ff5c9a" d="M20 2l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" />
+                    </svg>
+                    <div class="stamp reveal zoom"><b>2014</b>Our first studio opened its doors</div>
+                </div>
+                <div class="reveal right">
+                    <span class="eyebrow">Our Story</span>
+                    <h2 class="title split" data-scroll>Beauty that feels <em>like you</em></h2>
+                    <p>Lumira began as a tiny makeup studio with one big belief: makeup should celebrate your face,
+                        never hide it. Today we pair a clean, vibrant cosmetics line with a team of artists who make
+                        every client feel like the best version of themselves.</p>
+                    <ul class="ticks" id="ticks">
+                        <li><svg viewBox="0 0 24 24">
+                                <path d="M5 12l5 5 9-10" />
+                            </svg>Skin-loving, cruelty-free formulas</li>
+                        <li><svg viewBox="0 0 24 24">
+                                <path d="M5 12l5 5 9-10" />
+                            </svg>150+ inclusive shades for every tone</li>
+                        <li><svg viewBox="0 0 24 24">
+                                <path d="M5 12l5 5 9-10" />
+                            </svg>Certified artists with 8+ years experience</li>
+                    </ul>
+                    <div class="stats">
+                        <div><strong data-count="10" data-suffix="+">0</strong><span>Years glowing</span></div>
+                        <div><strong data-count="3000" data-suffix="+">0</strong><span>Brides styled</span></div>
+                        <div><strong data-count="98" data-suffix="%">0</strong><span>Love it rate</span></div>
+                    </div>
+                    <a href="#services" class="btn btn-rose mag">Explore Our Studio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section class="section services" id="services">
+            <div class="container">
+                <div class="head center">
+                    <span class="eyebrow">Makeup Studio</span>
+                    <h2 class="title split" data-scroll>Looks made <em>just for you</em></h2>
+                    <p class="sub reveal">From wedding mornings to red-carpet nights, our artists create a look that
+                        lasts all day.</p>
+                </div>
+                <div class="svc-grid">
+                    <div class="svc reveal">
+                        <div class="svc-in tilt">
+                            <div class="thumb">
+                                <div class="pic ph" data-img="s1"></div>
+                            </div>
+                            <div class="body">
+                                <div class="ico"><svg viewBox="0 0 24 24">
+                                        <path d="M12 3l2.4 5.4L20 9l-4.2 3.8L17 18.5l-5-3-5 3 1.2-5.7L4 9l5.6-.6z" />
+                                    </svg></div>
+                                <h3>Bridal Glam</h3>
+                                <p>Flawless, camera-ready makeup with a trial session and touch-up kit.</p><span
+                                    class="from">From Rs. 25,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="svc reveal">
+                        <div class="svc-in tilt">
+                            <div class="thumb">
+                                <div class="pic ph" data-img="s2"></div>
+                            </div>
+                            <div class="body">
+                                <div class="ico"><svg viewBox="0 0 24 24">
+                                        <path d="M8 3h8l-1 7a3 3 0 01-6 0zM12 13v8M8 21h8" />
+                                    </svg></div>
+                                <h3>Party &amp; Events</h3>
+                                <p>Soft glam to full drama for dinners, engagements and celebrations.</p><span
+                                    class="from">From Rs. 8,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="svc reveal">
+                        <div class="svc-in tilt">
+                            <div class="thumb">
+                                <div class="pic ph" data-img="s3"></div>
+                            </div>
+                            <div class="body">
+                                <div class="ico"><svg viewBox="0 0 24 24">
+                                        <rect x="3" y="6" width="18" height="13" rx="2" />
+                                        <circle cx="12" cy="12.5" r="3.5" />
+                                        <path d="M8 6l1.5-2h5L16 6" />
+                                    </svg></div>
+                                <h3>Editorial &amp; Shoots</h3>
+                                <p>Photoshoot-ready looks that stay perfect under lights and lenses.</p><span
+                                    class="from">From Rs. 12,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="svc reveal">
+                        <div class="svc-in tilt">
+                            <div class="thumb">
+                                <div class="pic ph" data-img="s4"></div>
+                            </div>
+                            <div class="body">
+                                <div class="ico"><svg viewBox="0 0 24 24">
+                                        <path d="M4 20l9-9M13 11l3-3 4 4-3 3zM5 15l4 4" />
+                                    </svg></div>
+                                <h3>Masterclass</h3>
+                                <p>Learn to do your own glam in a relaxed, hands-on 2-hour session.</p><span
+                                    class="from">From Rs. 6,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SHOP ================= -->
+        <section class="section" id="shop">
+            <div class="container">
+                <div class="head center">
+                    <span class="eyebrow">The Collection</span>
+                    <h2 class="title split" data-scroll>Shop the <em>glow</em></h2>
+                    <p class="sub reveal">Pick a shade, tap add, and watch it fly to your bag.</p>
+                </div>
+                <div class="tabs reveal" id="tabs">
+                    <button class="tab on" data-cat="All">All</button>
+                    <button class="tab" data-cat="Lips">Lips</button>
+                    <button class="tab" data-cat="Face">Face</button>
+                    <button class="tab" data-cat="Eyes">Eyes</button>
+                    <button class="tab" data-cat="Tools">Tools</button>
+                </div>
+                <div class="grid" id="grid"></div>
+            </div>
+        </section>
+
+        <!-- ================= SHADE FINDER ================= -->
+        <section class="section finder" id="finder">
+            <div class="blob b1" style="top:auto;bottom:-200px;left:-100px;background:var(--rose)"></div>
+            <div class="blob b2" style="right:-100px;bottom:auto;top:-160px"></div>
+            <div class="container fgrid">
+                <div>
+                    <span class="eyebrow">Shade Finder</span>
+                    <h2 class="title split" data-scroll>Find your <em>perfect match</em></h2>
+                    <p class="sub reveal" style="margin-bottom:34px">Two quick taps and we will suggest your foundation
+                        shade plus the lip colours that love your skin.</p>
+                    <div class="q reveal">
+                        <h4>1. Pick your skin tone</h4>
+                        <div class="tones" id="tones"></div>
+                    </div>
+                    <div class="q reveal">
+                        <h4>2. Choose your undertone</h4>
+                        <div class="unders" id="unders">
+                            <button class="under" data-u="Cool">Cool</button>
+                            <button class="under on" data-u="Neutral">Neutral</button>
+                            <button class="under" data-u="Warm">Warm</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="result reveal zoom" id="result">
+                    <div class="orb" id="orb"></div>
+                    <small>Your match</small>
+                    <h3 id="rName">Honey Neutral</h3>
+                    <p id="rCode">Glow Skin Foundation &bull; Shade N40</p>
+                    <div class="lips" id="rLips"></div>
+                    <a href="#shop" class="btn btn-rose mag">Shop My Shades</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= BEFORE / AFTER ================= -->
+        <section class="section" id="results">
+            <div class="container ba-wrap">
+                <div class="reveal left">
+                    <div class="ba" id="ba">
+                        <div class="layer after ph" data-img="ba"></div>
+                        <div class="layer before ph" data-img="ba"></div>
+                        <span class="lab l">Natural</span><span class="lab r">Glam</span>
+                        <div class="line"></div>
+                        <div class="knob">&lsaquo;&rsaquo;</div>
+                    </div>
+                    <p class="note-ba">Drag the slider to compare. Illustrative image.</p>
+                </div>
+                <div class="reveal right">
+                    <span class="eyebrow">The Transformation</span>
+                    <h2 class="title split" data-scroll>From fresh face to <em>full glow</em></h2>
+                    <p class="sub">Our artists enhance what you already have, with a process that is gentle, personal
+                        and beautifully simple.</p>
+                    <div class="steps">
+                        <div class="stp">
+                            <div class="n">1</div>
+                            <div>
+                                <h3>Skin prep</h3>
+                                <p>Hydrating prep so makeup melts in and lasts all day.</p>
+                            </div>
+                        </div>
+                        <div class="stp">
+                            <div class="n">2</div>
+                            <div>
+                                <h3>Colour &amp; contour</h3>
+                                <p>Shades chosen for your tone, undertone and the occasion.</p>
+                            </div>
+                        </div>
+                        <div class="stp">
+                            <div class="n">3</div>
+                            <div>
+                                <h3>Set &amp; shine</h3>
+                                <p>A finishing mist locks your look in for up to 12 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-rose mag">Book Your Glow-Up</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRICING ================= -->
+        <section class="section pricing" id="pricing">
+            <div class="container">
+                <div class="head center">
+                    <span class="eyebrow">Studio Packages</span>
+                    <h2 class="title split" data-scroll>Pick your <em>glow level</em></h2>
+                    <p class="sub reveal">Simple, transparent prices. Every package includes premium products and
+                        hygiene-first tools.</p>
+                </div>
+                <div class="plans">
+                    <div class="plan reveal">
+                        <h3>Glow</h3>
+                        <p class="desc">A fresh, radiant everyday look.</p>
+                        <div class="amt" data-to="7500">Rs. 0</div>
+                        <ul>
+                            <li>Natural makeup application</li>
+                            <li>Skin prep &amp; primer</li>
+                            <li>Lashes included</li>
+                            <li>45 minute session</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-line mag">Book Glow</a>
+                    </div>
+
+                    <div class="plan feat reveal">
+                        <span class="badge">Most Booked</span>
+                        <h3>Glam</h3>
+                        <p class="desc">Party-ready, camera-perfect makeup.</p>
+                        <div class="amt" data-to="15000">Rs. 0</div>
+                        <ul>
+                            <li>Full glam with contour &amp; highlight</li>
+                            <li>Premium lashes &amp; eye design</li>
+                            <li>Hair styling add-on</li>
+                            <li>Touch-up kit to take home</li>
+                            <li>12-hour setting finish</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-rose mag">Book Glam</a>
+                    </div>
+
+                    <div class="plan reveal">
+                        <h3>Bridal Luxe</h3>
+                        <p class="desc">The complete wedding experience.</p>
+                        <div class="amt" data-to="45000">Rs. 0</div>
+                        <ul>
+                            <li>Trial session before the big day</li>
+                            <li>HD airbrush bridal makeup</li>
+                            <li>Hair &amp; dupatta styling</li>
+                            <li>On-location service</li>
+                            <li>Artist stays for touch-ups</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-line mag">Book Bridal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= GALLERY ================= -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="head center">
+                    <span class="eyebrow">Gallery</span>
+                    <h2 class="title split" data-scroll>Looks we <em>love</em></h2>
+                    <p class="sub reveal">A little inspiration from our studio. Tap any look to view it larger.</p>
+                </div>
+                <div class="gal">
+                    <div class="g a reveal zoom" data-cap="Bridal Radiance">
+                        <div class="pic ph" data-img="g1"></div>
+                    </div>
+                    <div class="g b reveal zoom" data-cap="Soft Rose">
+                        <div class="pic ph" data-img="g2"></div>
+                    </div>
+                    <div class="g c reveal zoom" data-cap="Golden Hour">
+                        <div class="pic ph" data-img="g3"></div>
+                    </div>
+                    <div class="g d reveal zoom" data-cap="Berry Bold">
+                        <div class="pic ph" data-img="g4"></div>
+                    </div>
+                    <div class="g e reveal zoom" data-cap="Glitter Night">
+                        <div class="pic ph" data-img="g5"></div>
+                    </div>
+                    <div class="g f reveal zoom" data-cap="Dewy Skin">
+                        <div class="pic ph" data-img="g6"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS ================= -->
+        <section class="section reviews" id="reviews">
+            <div class="blob b1" style="opacity:.25"></div>
+            <div class="blob b2" style="opacity:.2"></div>
+            <div class="container">
+                <div class="head center">
+                    <span class="eyebrow">Kind Words</span>
+                    <h2 class="title split" data-scroll>Loved by <em>our clients</em></h2>
+                </div>
+                <div class="slider reveal" id="slider">
+                    <div class="slide on">
+                        <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="q2">"My bridal makeup lasted from morning till midnight and I have never felt more
+                            beautiful. The team made me feel so calm."</p>
+                        <div class="av">S</div>
+                        <div class="by">Sana M.<span>Bride, 2026</span></div>
+                    </div>
+                    <div class="slide">
+                        <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="q2">"Their foundation matched my skin on the first try, which has never happened
+                            before. I am officially obsessed."</p>
+                        <div class="av">A</div>
+                        <div class="by">Areeba K.<span>Verified buyer</span></div>
+                    </div>
+                    <div class="slide">
+                        <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="q2">"The masterclass was such fun. I finally know how to do my own glam and I use the
+                            tips every single day."</p>
+                        <div class="av">H</div>
+                        <div class="by">Hina R.<span>Masterclass guest</span></div>
+                    </div>
+                </div>
+                <div class="dots" id="dots"></div>
+            </div>
+        </section>
+
+        <!-- ================= CTA ================= -->
+        <section class="cta" id="cta">
+            <div class="deco" style="left:8%;top:22%" data-depth="30"><svg width="54" viewBox="0 0 40 40">
+                    <path fill="#fff" d="M20 2l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" />
+                </svg></div>
+            <div class="deco" style="right:10%;top:16%" data-depth="-24"><svg width="40" viewBox="0 0 40 40">
+                    <path fill="#fff" d="M20 35S4 25 4 14a8 8 0 0116-3 8 8 0 0116 3c0 11-16 21-16 21z" opacity=".9" />
+                </svg></div>
+            <div class="deco" style="right:18%;bottom:16%" data-depth="22"><svg width="34" viewBox="0 0 40 40">
+                    <path fill="#fff" d="M20 2l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" opacity=".8" />
+                </svg></div>
+            <div class="container">
+                <h2 class="split" data-scroll>Your glow-up <em>starts here</em></h2>
+                <p class="reveal">Book a makeover this week and get a free skin-prep mini kit. Spots fill up fast, so
+                    reserve yours today.</p>
+                <div class="btns reveal">
+                    <a href="#contact" class="btn btn-white mag">Book Appointment</a>
+                    <a href="tel:+920000000000" class="btn btn-line light mag">&#9742; +92 000 0000000</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="section" id="contact">
+            <div class="container contact-grid">
+                <div class="reveal left">
+                    <span class="eyebrow">Visit Us</span>
+                    <h2 class="title split" data-scroll>Let's make you <em>shine</em></h2>
+                    <p class="sub" style="margin-bottom:34px">Tell us about your day and we will build the perfect look.
+                        We reply within a few hours.</p>
+                    <div class="info">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg></div>
+                        <div><small>Studio</small><span>Your Studio Address, City</span></div>
+                    </div>
+                    <div class="info">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" />
+                            </svg></div>
+                        <div><small>Phone / WhatsApp</small><span>+92 000 0000000</span></div>
+                    </div>
+                    <div class="info">
+                        <div class="ic"><svg viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <path d="M3 7l9 6 9-6" />
+                            </svg></div>
+                        <div><small>Email</small><span>hello@lumirabeauty.com</span></div>
+                    </div>
+                    <div class="hours">
+                        <h3>Opening Hours</h3>
+                        <ul>
+                            <li><span>Monday - Friday</span><span>10:00 AM - 8:00 PM</span></li>
+                            <li><span>Saturday</span><span>10:00 AM - 10:00 PM</span></li>
+                            <li><span>Sunday</span><span>By appointment</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form class="box reveal right" id="contactForm" novalidate>
+                    <h3>Book an appointment</h3>
+                    <div class="row">
+                        <div class="field"><label for="cname">Full name</label><input id="cname" type="text"
+                                placeholder="Your name" required></div>
+                        <div class="field"><label for="cphone">Phone</label><input id="cphone" type="tel"
+                                placeholder="+92 300 0000000" required></div>
+                    </div>
+                    <div class="row">
+                        <div class="field"><label for="cdate">Preferred date</label><input id="cdate" type="date"></div>
+                        <div class="field"><label for="cservice">Service</label>
+                            <select id="cservice">
+                                <option>Bridal Glam</option>
+                                <option>Party &amp; Events</option>
+                                <option>Editorial &amp; Shoots</option>
+                                <option>Masterclass</option>
+                                <option>Product advice</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field"><label for="cmsg">Anything we should know?</label><textarea id="cmsg"
+                            placeholder="Event date, skin type, inspiration pictures..."></textarea></div>
+                    <button type="submit" class="btn btn-rose mag" style="width:100%">Request Booking</button>
+                    <div class="form-msg" id="formMsg"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container fgrid2">
+            <div>
+                <a href="#top" class="logo">LUMIRA<i></i></a>
+                <p style="max-width:300px;font-size:.94rem">Luxury makeup and studio artistry for every skin tone, every
+                    story, every sparkle.</p>
+                <div class="soc">
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="TikTok">tt</a>
+                    <a href="#" aria-label="WhatsApp">wa</a>
+                </div>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#services">Studio</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Visit</h4>
+                <ul>
+                    <li>Your Studio Address, City</li>
+                    <li><a href="tel:+920000000000">+92 000 0000000</a></li>
+                    <li><a href="mailto:hello@lumirabeauty.com">hello@lumirabeauty.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Glow Club</h4>
+                <p style="font-size:.94rem">Beauty tips, new launches and private offers. No spam.</p>
+                <form class="nl" id="nlForm">
+                    <input type="email" placeholder="Your email" aria-label="Email address" required>
+                    <button type="submit">Join</button>
+                </form>
+                <p id="nlMsg" style="font-size:.85rem;color:var(--peach);margin-top:10px;min-height:1.2em"></p>
+            </div>
+        </div>
+        <div class="giant" aria-hidden="true">LUMIRA</div>
+        <div class="copy">
+            <div class="container">
+                <span>&copy; <span id="year"></span> Lumira Beauty. All rights reserved.</span>
+                <span>Made with glitter &amp; love.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= CART ================= -->
+    <div class="shade2" id="shade2"></div>
+    <aside class="cart" id="cart" aria-label="Shopping bag" aria-hidden="true">
+        <div class="cart-head">
+            <h3>Your Bag (<span id="cartN">0</span>)</h3><button class="x" id="cartClose"
+                aria-label="Close bag">&times;</button>
+        </div>
+        <div class="cart-list" id="cartList"></div>
+        <div class="cart-foot">
+            <div class="sum"><span>Total</span><span id="total">Rs. 0</span></div>
+            <button class="btn btn-rose" id="checkout">Checkout</button>
+        </div>
+    </aside>
+    <div class="lightbox" id="lightbox" aria-hidden="true"><img id="lbImg" alt="Gallery look"></div>
+    <div class="toast" id="toast" role="status"></div>
+    <button class="totop" id="toTop" aria-label="Back to top">&uarr;</button>
+
+    <script>
+        (function () {
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var $ = function (id) { return document.getElementById(id); };
+
+            /* ============================================================
+               IMAGES via Pexels API (loaded in the browser).
+               NOTE: the key below is visible in page source. Fine for testing;
+               before going live regenerate it or put fixed links in IMAGES.
+               IMAGES example: { about1: "https://images.pexels.com/photos/..." }
+               ============================================================ */
+            var PEXELS_KEY = "No0ZDUM8swzzOnaDFSORYzNs31YWO7SDBUNqjVsWupaXoq175SHtjL0u";
+            var IMAGES = {};
+
+            var SLOTS = {
+                about1: { q: "makeup artist applying makeup", o: "portrait", n: 0, s: "large" },
+                about2: { q: "beauty makeup close up", o: "portrait", n: 0, s: "large" },
+                s1: { q: "bridal makeup", o: "landscape", n: 0, s: "large" },
+                s2: { q: "party glam makeup", o: "landscape", n: 0, s: "large" },
+                s3: { q: "editorial fashion makeup", o: "landscape", n: 0, s: "large" },
+                s4: { q: "makeup class workshop", o: "landscape", n: 0, s: "large" },
+                p1: { q: "red lipstick", o: "square", n: 0, s: "large" },
+                p2: { q: "foundation makeup bottle", o: "square", n: 0, s: "large" },
+                p3: { q: "eyeshadow palette", o: "square", n: 0, s: "large" },
+                p4: { q: "mascara makeup", o: "square", n: 0, s: "large" },
+                p5: { q: "blush makeup powder", o: "square", n: 0, s: "large" },
+                p6: { q: "highlighter makeup", o: "square", n: 0, s: "large" },
+                p7: { q: "lip gloss", o: "square", n: 0, s: "large" },
+                p8: { q: "makeup brushes set", o: "square", n: 0, s: "large" },
+                ba: { q: "glam makeup woman face", o: "portrait", n: 0, s: "large2x" },
+                g1: { q: "glam makeup look", o: "portrait", n: 0, s: "large" },
+                g2: { q: "glam makeup look", o: "portrait", n: 1, s: "large" },
+                g3: { q: "glam makeup look", o: "portrait", n: 2, s: "large" },
+                g4: { q: "glam makeup look", o: "portrait", n: 3, s: "large" },
+                g5: { q: "glam makeup look", o: "portrait", n: 4, s: "large" },
+                g6: { q: "glam makeup look", o: "portrait", n: 5, s: "large" }
+            };
+
+            var imgUrl = {};
+            function paint(el) { var u = imgUrl[el.getAttribute('data-img')]; if (u) el.style.backgroundImage = 'url("' + u + '")'; var g = el.closest('.g'); if (g && u) g.dataset.full = u; }
+            function setImage(key, url) {
+                var im = new Image();
+                im.onload = function () {
+                    imgUrl[key] = url;
+                    document.querySelectorAll('[data-img="' + key + '"]').forEach(paint);
+                    renderCart();
+                };
+                im.src = url;   // if it fails to load, the pink placeholder stays
+            }
+            function getPhotos(q, o) {
+                var ck = 'lumira_' + o + '_' + q, cached = null;
+                try { cached = JSON.parse(localStorage.getItem(ck) || 'null'); } catch (e) { }
+                if (cached && cached.list && cached.list.length && (Date.now() - cached.t) < 864e5) return Promise.resolve(cached.list);
+                var api = 'https://api.pexels.com/v1/search?per_page=12&orientation=' + o + '&query=' + encodeURIComponent(q);
+                return fetch(api, { headers: { Authorization: PEXELS_KEY } })
+                    .then(function (r) { if (!r.ok) throw new Error('Pexels ' + r.status); return r.json(); })
+                    .then(function (d) {
+                        var list = ((d && d.photos) || []).map(function (p) { return { large2x: p.src.large2x, large: p.src.large, medium: p.src.medium }; });
+                        try { localStorage.setItem(ck, JSON.stringify({ list: list, t: Date.now() })); } catch (e) { }
+                        return list;
+                    });
+            }
+            var groups = {}, queue = [], active = 0;
+            Object.keys(SLOTS).forEach(function (k) {
+                if (IMAGES[k]) { setImage(k, IMAGES[k]); return; }
+                if (!PEXELS_KEY) return;
+                var c = SLOTS[k], gk = c.o + '|' + c.q;
+                if (!groups[gk]) { groups[gk] = []; queue.push(gk); }
+                groups[gk].push(k);
+            });
+            function pump() {
+                while (active < 4 && queue.length) {
+                    (function (gk) {
+                        active++;
+                        var first = SLOTS[groups[gk][0]];
+                        getPhotos(first.q, first.o).then(function (list) {
+                            if (!list.length) return;
+                            groups[gk].forEach(function (k) {
+                                var c = SLOTS[k], p = list[Math.min(c.n, list.length - 1)];
+                                setImage(k, p[c.s] || p.large);
+                            });
+                        }).catch(function (err) { console.warn('Images not loaded for "' + first.q + '":', err.message); })
+                            .then(function () { active--; pump(); });
+                    })(queue.shift());
+                }
+            }
+
+            /* ---------- Letter-by-letter text splitting ---------- */
+            function splitText(root) {
+                var idx = 0;
+                (function walk(node) {
+                    Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                        if (n.nodeType === 3) {
+                            var frag = document.createDocumentFragment();
+                            n.textContent.split(/(\s+)/).forEach(function (part) {
+                                if (!part) return;
+                                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                                var w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+                                part.split('').forEach(function (ch) {
+                                    var c = document.createElement('span'); c.className = 'c'; c.textContent = ch; c.style.setProperty('--i', idx++); w.appendChild(c);
+                                });
+                                frag.appendChild(w);
+                            });
+                            node.replaceChild(frag, n);
+                        } else if (n.nodeType === 1) { walk(n); }
+                    });
+                })(root);
+            }
+            document.querySelectorAll('.split').forEach(function (el) {
+                el.setAttribute('aria-label', el.textContent.trim());
+                splitText(el);
+            });
+
+            /* ---------- Loader ---------- */
+            var loaded = false;
+            function finishLoad() {
+                if (loaded) return; loaded = true;
+                $('loader').classList.add('done');
+                document.body.classList.remove('lock');
+                setTimeout(function () {
+                    document.body.classList.add('loaded');
+                    $('heroTitle').classList.add('go');
+                }, 500);
+            }
+            (function () {
+                var p = 0, t0 = performance.now(), dur = reduce ? 10 : 1700;
+                (function tick(t) {
+                    p = Math.min((t - t0) / dur, 1);
+                    var v = Math.round(p * 100);
+                    $('lfill').style.width = v + '%'; $('lpct').textContent = v + '%';
+                    if (p < 1) requestAnimationFrame(tick); else setTimeout(finishLoad, 250);
+                })(t0);
+                setTimeout(finishLoad, 4000);   // failsafe
+            })();
+
+            /* ---------- Lipstick shade picker ---------- */
+            var SHADES = [
+                { n: "Rose Petal", c: "#e8527f" }, { n: "Ruby Kiss", c: "#c4163d" }, { n: "Nude Silk", c: "#c98876" },
+                { n: "Berry Bliss", c: "#8c2a63" }, { n: "Coral Pop", c: "#ff6f59" }, { n: "Plum Noir", c: "#5b1a46" }
+            ];
+            var shadeBox = $('shades'), shadeIdx = 0, shadeAuto = true, shadeTimer;
+            SHADES.forEach(function (s, i) {
+                var b = document.createElement('button'); b.className = 'sw-b' + (i === 0 ? ' on' : '');
+                b.style.background = s.c; b.style.color = s.c; b.setAttribute('aria-label', s.n); b.title = s.n;
+                b.addEventListener('click', function () { shadeAuto = false; setShade(i); });
+                shadeBox.insertBefore(b, $('shadeName'));
+            });
+            function setShade(i) {
+                shadeIdx = i;
+                document.documentElement.style.setProperty('--shade', SHADES[i].c);
+                $('shadeName').textContent = SHADES[i].n;
+                shadeBox.querySelectorAll('.sw-b').forEach(function (b, k) { b.classList.toggle('on', k === i); });
+            }
+            setShade(0);
+            shadeTimer = setInterval(function () { if (shadeAuto && loaded) setShade((shadeIdx + 1) % SHADES.length); }, 3800);
+
+            /* ---------- Sparkles canvas ---------- */
+            (function () {
+                var cv = $('sparkles'), ctx = cv.getContext('2d'), W, H, parts = [], running = true;
+                function size() { var r = cv.getBoundingClientRect(); W = cv.width = r.width; H = cv.height = r.height; }
+                size(); window.addEventListener('resize', size);
+                var COLS = ['255,92,154', '255,181,158', '255,255,255', '190,120,255'];
+                function mk(init) {
+                    return {
+                        x: Math.random() * W, y: init ? Math.random() * H : H + 20, r: Math.random() * 5 + 2, vy: Math.random() * .5 + .15,
+                        vx: (Math.random() - .5) * .3, ph: Math.random() * 6.28, sp: Math.random() * .03 + .01, col: COLS[(Math.random() * COLS.length) | 0]
+                    };
+                }
+                var N = window.innerWidth < 700 ? 22 : 46;
+                for (var i = 0; i < N; i++) parts.push(mk(true));
+                function star(x, y, r) {
+                    ctx.beginPath();
+                    for (var i = 0; i < 8; i++) { var a = i * Math.PI / 4, rr = i % 2 ? r * .28 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); }
+                    ctx.closePath(); ctx.fill();
+                }
+                function frame() {
+                    if (running) {
+                        ctx.clearRect(0, 0, W, H);
+                        parts.forEach(function (p, i) {
+                            p.y -= p.vy; p.x += p.vx + Math.sin(p.ph) * .2; p.ph += p.sp;
+                            var a = (Math.sin(p.ph * 3) + 1) / 2 * .8 + .15;
+                            ctx.fillStyle = 'rgba(' + p.col + ',' + a + ')'; ctx.shadowColor = 'rgba(' + p.col + ',.9)'; ctx.shadowBlur = 12;
+                            star(p.x, p.y, p.r);
+                            if (p.y < -20) parts[i] = mk(false);
+                        });
+                    }
+                    requestAnimationFrame(frame);
+                }
+                if (!reduce) frame();
+                if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { running = es[0].isIntersecting; }).observe(cv);
+            })();
+
+            /* ---------- Cursor glow, magnetic buttons, mouse parallax, tilt ---------- */
+            var fine = window.matchMedia('(pointer:fine)').matches && !reduce;
+            if (fine) {
+                var glow = $('glow'), gx = 0, gy = 0, tx = 0, ty = 0;
+                window.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; glow.classList.add('on'); });
+                (function loop() { gx += (tx - gx) * .12; gy += (ty - gy) * .12; glow.style.transform = 'translate(' + gx + 'px,' + gy + 'px)'; requestAnimationFrame(loop); })();
+
+                document.querySelectorAll('.mag').forEach(function (b) {
+                    b.addEventListener('mousemove', function (e) {
+                        var r = b.getBoundingClientRect();
+                        b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .25) + 'px,' + ((e.clientY - r.top - r.height / 2) * .35) + 'px)';
+                    });
+                    b.addEventListener('mouseleave', function () { b.style.transform = ''; });
+                });
+
+                var stage = $('stage');
+                document.querySelector('.hero').addEventListener('mousemove', function (e) {
+                    var cx = (e.clientX / window.innerWidth - .5), cy = (e.clientY / window.innerHeight - .5);
+                    stage.querySelectorAll('.deco').forEach(function (d) {
+                        var k = +d.getAttribute('data-depth'); d.style.transform = 'translate(' + (cx * k) + 'px,' + (cy * k) + 'px)';
+                    });
+                    var ls = stage.querySelector('.lipstick'); ls.style.translate = (cx * -18) + 'px ' + (cy * -14) + 'px';
+                });
+            }
+            function bindTilt(root) {
+                if (!fine) return;
+                root.querySelectorAll('.tilt:not([data-t])').forEach(function (el) {
+                    el.setAttribute('data-t', '1');
+                    el.addEventListener('mousemove', function (e) {
+                        var r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+                        el.classList.add('moving');
+                        el.style.setProperty('--ry', ((px - .5) * 14) + 'deg'); el.style.setProperty('--rx', ((.5 - py) * 14) + 'deg');
+                        el.style.setProperty('--mx', (px * 100) + '%'); el.style.setProperty('--my', (py * 100) + '%');
+                    });
+                    el.addEventListener('mouseleave', function () { el.classList.remove('moving'); el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+                });
+            }
+            bindTilt(document);
+
+            /* ---------- Products ---------- */
+            var PRODUCTS = [
+                { id: 1, name: "Velvet Matte Lipstick", cat: "Lips", price: 2490, tag: "Bestseller", sh: ["#e8527f", "#c4163d", "#c98876", "#8c2a63"] },
+                { id: 2, name: "Glow Skin Foundation", cat: "Face", price: 3990, sh: ["#f1cfb6", "#e0b48f", "#c68e63", "#a26a43"] },
+                { id: 3, name: "Dream Eyeshadow Palette", cat: "Eyes", price: 4990, tag: "New", sh: ["#d89a8c", "#9a6aa8", "#e9b98f"] },
+                { id: 4, name: "Lash Lift Mascara", cat: "Eyes", price: 1990, sh: ["#1c0a21", "#4b2a2a"] },
+                { id: 5, name: "Petal Blush", cat: "Face", price: 2290, old: 2790, tag: "Sale", sh: ["#ff9aa8", "#f2707c", "#d9857a"] },
+                { id: 6, name: "Liquid Highlighter", cat: "Face", price: 2590, sh: ["#ffe2c4", "#f6c9b5", "#e9b98f"] },
+                { id: 7, name: "Mirror Gloss", cat: "Lips", price: 1790, sh: ["#ff8fb0", "#ffb59e", "#d96a8a"] },
+                { id: 8, name: "Pro Brush Set (12 pc)", cat: "Tools", price: 5490, tag: "Gift", sh: ["#e9b98f", "#1c0a21"] }
+            ];
+            var cat = 'All', picked = {};
+            function money(n) { return 'Rs. ' + Number(n).toLocaleString('en-US'); }
+            function renderProducts() {
+                var list = PRODUCTS.filter(function (p) { return cat === 'All' || p.cat === cat; });
+                var grid = $('grid');
+                grid.innerHTML = list.map(function (p, i) {
+                    var sel = picked[p.id] || 0;
+                    return '<article class="p" style="--i:' + i + '" data-pid="' + p.id + '"><div class="p-in tilt">' +
+                        '<div class="p-img"><div class="pic ph" data-img="p' + p.id + '"></div>' +
+                        (p.tag ? '<span class="tag' + (p.tag === 'Sale' ? ' sale' : '') + '">' + p.tag + '</span>' : '') + '</div>' +
+                        '<div class="p-info"><div class="p-cat">' + p.cat + '</div><h3>' + p.name + '</h3>' +
+                        '<div class="p-row"><span class="price">' + money(p.price) + (p.old ? '<s>' + money(p.old) + '</s>' : '') + '</span>' +
+                        '<div class="sws">' + p.sh.map(function (c, k) { return '<button class="' + (k === sel ? 'on' : '') + '" style="background:' + c + '" data-sw="' + k + '" aria-label="Shade ' + (k + 1) + '"></button>'; }).join('') + '</div></div>' +
+                        '<button class="add" data-add="' + p.id + '">Add to bag</button></div></div></article>';
+                }).join('');
+                grid.querySelectorAll('[data-img]').forEach(paint);
+                bindTilt(grid);
+            }
+            $('tabs').addEventListener('click', function (e) {
+                var b = e.target.closest('.tab'); if (!b) return;
+                cat = b.getAttribute('data-cat');
+                document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x === b); });
+                renderProducts();
+            });
+
+            /* ---------- Cart ---------- */
+            var cart = [];
+            try { cart = JSON.parse(localStorage.getItem('lumira_cart') || '[]') || []; } catch (e) { }
+            function saveCart() { try { localStorage.setItem('lumira_cart', JSON.stringify(cart)); } catch (e) { } }
+            var toastT;
+            function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2400); }
+            function bump() { var b = $('bagBtn'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); }
+            function fly(from) {
+                if (reduce) { bump(); return; }
+                var a = from.getBoundingClientRect(), b = $('bagBtn').getBoundingClientRect();
+                var d = document.createElement('div'); d.className = 'fly';
+                d.style.left = (a.left + a.width / 2) + 'px'; d.style.top = (a.top + a.height / 2) + 'px';
+                document.body.appendChild(d);
+                var dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+                d.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: 'translate(' + (dx * .5) + 'px,' + (dy * .5 - 80) + 'px) scale(1.3)', opacity: 1, offset: .45 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)', opacity: .3 }],
+                    { duration: 800, easing: 'cubic-bezier(.5,0,.5,1)' }).onfinish = function () { d.remove(); bump(); };
+            }
+            function renderCart() {
+                var n = 0, total = 0;
+                cart.forEach(function (c) { n += c.qty; total += c.qty * c.price; });
+                $('bagCount').textContent = n; $('cartN').textContent = n; $('total').textContent = money(total);
+                var list = $('cartList');
+                if (!cart.length) { list.innerHTML = '<div class="cart-empty">Your bag is empty.<br>Find your perfect shade in the shop.</div>'; return; }
+                list.innerHTML = cart.map(function (c) {
+                    var img = c.key && imgUrl[c.key] ? ' style="background-image:url(\'' + imgUrl[c.key] + '\')"' : '';
+                    return '<div class="ci"><div class="th ph"' + img + '></div><div><h4>' + c.name + '</h4>' +
+                        '<small><i style="background:' + c.color + '"></i>Shade ' + c.shade + '</small><div class="pr">' + money(c.price) + '</div>' +
+                        '<div class="qty"><button data-q="-1" data-id="' + c.id + '" aria-label="Decrease">&minus;</button><span>' + c.qty + '</span><button data-q="1" data-id="' + c.id + '" aria-label="Increase">+</button></div></div>' +
+                        '<button class="rm" data-rm="' + c.id + '">Remove</button></div>';
+                }).join('');
+            }
+            $('grid').addEventListener('click', function (e) {
+                var sw = e.target.closest('[data-sw]'), ad = e.target.closest('[data-add]');
+                if (sw) {
+                    var card = sw.closest('.p'); picked[+card.getAttribute('data-pid')] = +sw.getAttribute('data-sw');
+                    card.querySelectorAll('.sws button').forEach(function (b) { b.classList.toggle('on', b === sw); });
+                }
+                if (ad) {
+                    var p = PRODUCTS.filter(function (x) { return x.id === +ad.getAttribute('data-add'); })[0], k = picked[p.id] || 0, id = p.id + '-' + k;
+                    var f = cart.filter(function (c) { return c.id === id; })[0];
+                    if (f) f.qty++; else cart.push({ id: id, name: p.name, price: p.price, qty: 1, shade: k + 1, color: p.sh[k], key: 'p' + p.id });
+                    saveCart(); renderCart(); fly(ad); toast('Added: ' + p.name);
+                }
+            });
+            $('cartList').addEventListener('click', function (e) {
+                var q = e.target.closest('[data-q]'), r = e.target.closest('[data-rm]');
+                if (q) {
+                    var it = cart.filter(function (c) { return c.id === q.getAttribute('data-id'); })[0];
+                    it.qty += +q.getAttribute('data-q'); if (it.qty < 1) cart = cart.filter(function (c) { return c !== it; });
+                }
+                if (r) cart = cart.filter(function (c) { return c.id !== r.getAttribute('data-rm'); });
+                saveCart(); renderCart();
+            });
+            function cartOpen(o) {
+                $('cart').classList.toggle('open', o); $('shade2').classList.toggle('show', o);
+                $('cart').setAttribute('aria-hidden', !o); document.body.classList.toggle('lock', o);
+            }
+            $('bagBtn').addEventListener('click', function () { cartOpen(true); });
+            $('cartClose').addEventListener('click', function () { cartOpen(false); });
+            $('shade2').addEventListener('click', function () { cartOpen(false); });
+            $('checkout').addEventListener('click', function () { toast(cart.length ? 'Demo store: connect a payment system to take real orders.' : 'Your bag is empty.'); });
+
+            /* ---------- Shade finder ---------- */
+            var TONES = [
+                { n: "Porcelain", c: "#f7e0d4", lips: [1, 2] }, { n: "Ivory", c: "#f1cfb6", lips: [4, 0] }, { n: "Sand", c: "#e0b48f", lips: [2, 4] },
+                { n: "Honey", c: "#c68e63", lips: [1, 4] }, { n: "Caramel", c: "#a26a43", lips: [3, 1] }, { n: "Espresso", c: "#6b4129", lips: [5, 3] }
+            ];
+            var tone = 3, under = 'Neutral';
+            TONES.forEach(function (t, i) {
+                var b = document.createElement('button'); b.className = 'tone' + (i === tone ? ' on' : ''); b.style.background = t.c;
+                b.setAttribute('aria-label', t.n); b.title = t.n;
+                b.addEventListener('click', function () { tone = i; document.querySelectorAll('.tone').forEach(function (x, k) { x.classList.toggle('on', k === i); }); showMatch(); });
+                $('tones').appendChild(b);
+            });
+            $('unders').addEventListener('click', function (e) {
+                var b = e.target.closest('.under'); if (!b) return;
+                under = b.getAttribute('data-u');
+                document.querySelectorAll('.under').forEach(function (x) { x.classList.toggle('on', x === b); });
+                showMatch();
+            });
+            function showMatch() {
+                var t = TONES[tone], code = under.charAt(0) + (tone + 1) + '0';
+                $('orb').style.setProperty('--tone', t.c);
+                var h = $('rName'); h.textContent = t.n + ' ' + under; h.style.animation = 'none'; void h.offsetWidth; h.style.animation = '';
+                $('rCode').innerHTML = 'Glow Skin Foundation &bull; Shade ' + code;
+                $('rLips').innerHTML = t.lips.map(function (i, k) {
+                    return '<span style="animation-delay:' + (k * 120) + 'ms"><i style="background:' + SHADES[i].c + '"></i>' + SHADES[i].n + '</span>';
+                }).join('');
+            }
+            showMatch();
+
+            /* ---------- Before / after slider ---------- */
+            (function () {
+                var ba = $('ba'), dragging = false, touched = false, demoDone = false;
+                function setPos(p) { ba.style.setProperty('--pos', Math.max(2, Math.min(98, p)) + '%'); }
+                function fromEvent(e) { var r = ba.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width * 100); }
+                ba.addEventListener('pointerdown', function (e) { dragging = touched = true; ba.setPointerCapture(e.pointerId); fromEvent(e); });
+                ba.addEventListener('pointermove', function (e) { if (dragging) fromEvent(e); });
+                ba.addEventListener('pointerup', function () { dragging = false; });
+                ba.addEventListener('pointercancel', function () { dragging = false; });
+                function demo() {
+                    if (demoDone || reduce) return; demoDone = true;
+                    var t0 = performance.now();
+                    (function tick(t) {
+                        if (touched) return;
+                        var k = (t - t0) / 3600; if (k >= 1) { setPos(50); return; }
+                        setPos(50 + Math.sin(k * Math.PI * 2) * 34 * (1 - k * .3));
+                        requestAnimationFrame(tick);
+                    })(t0);
+                }
+                if ('IntersectionObserver' in window) new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { demo(); o.disconnect(); } }, { threshold: .5 }).observe(ba);
+            })();
+
+            /* ---------- Testimonial slider ---------- */
+            var slides = document.querySelectorAll('.slide'), cur = 0, sTimer;
+            slides.forEach(function (_, i) {
+                var b = document.createElement('button'); b.setAttribute('aria-label', 'Show review ' + (i + 1));
+                b.addEventListener('click', function () { goSlide(i); restart(); }); $('dots').appendChild(b);
+            });
+            function goSlide(i) {
+                var next = (i + slides.length) % slides.length;
+                slides[cur].classList.remove('on'); slides[cur].classList.add('out');
+                (function (old) { setTimeout(function () { old.classList.remove('out'); }, 900); })(slides[cur]);
+                cur = next; slides[cur].classList.add('on');
+                $('dots').querySelectorAll('button').forEach(function (b, k) { b.classList.toggle('on', k === cur); });
+            }
+            function restart() { clearInterval(sTimer); sTimer = setInterval(function () { goSlide(cur + 1); }, 5500); }
+            $('dots').querySelectorAll('button')[0].classList.add('on'); restart();
+
+            /* ---------- Lightbox ---------- */
+            var lb = $('lightbox');
+            document.querySelectorAll('.g').forEach(function (g) {
+                g.addEventListener('click', function () { if (!g.dataset.full) return; $('lbImg').src = g.dataset.full; lb.classList.add('show'); lb.setAttribute('aria-hidden', 'false'); });
+            });
+            function closeLb() { lb.classList.remove('show'); lb.setAttribute('aria-hidden', 'true'); }
+            lb.addEventListener('click', closeLb);
+
+            /* ---------- Menu, header, progress, parallax ---------- */
+            var burger = $('burger'), mnav = $('mnav');
+            function menu(o) { mnav.classList.toggle('open', o); burger.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); document.body.classList.toggle('lock', o); }
+            burger.addEventListener('click', function () { menu(!mnav.classList.contains('open')); });
+            mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu(false); }); });
+            window.addEventListener('resize', function () { if (window.innerWidth > 960) menu(false); });
+            window.addEventListener('keydown', function (e) { if (e.key === 'Escape') { menu(false); cartOpen(false); closeLb(); } });
+
+            var header = $('header'), toTop = $('toTop'), prog = $('progress'), pars = document.querySelectorAll('[data-speed]'), ticking = false;
+            function onScroll() {
+                var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+                header.classList.toggle('scrolled', y > 50);
+                toTop.classList.toggle('show', y > 900);
+                prog.style.width = (h > 0 ? y / h * 100 : 0) + '%';
+                if (!reduce) pars.forEach(function (el) {
+                    var r = el.parentElement.getBoundingClientRect();
+                    if (r.bottom < -100 || r.top > window.innerHeight + 100) return;
+                    el.style.transform = 'translateY(' + ((r.top + r.height / 2 - window.innerHeight / 2) * +el.getAttribute('data-speed')) + 'px)';
+                });
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+            onScroll();
+            toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            /* ---------- Scroll spy, reveals, counters ---------- */
+            function countUp(el) {
+                var end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+                (function tick(t) {
+                    if (!t0) t0 = t;
+                    var p = Math.min((t - t0) / 1800, 1);
+                    el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3))).toLocaleString('en-US') + suf;
+                    if (p < 1) requestAnimationFrame(tick);
+                })(performance.now());
+            }
+            function priceUp(el) {
+                var end = +el.dataset.to, t0 = null;
+                (function tick(t) {
+                    if (!t0) t0 = t;
+                    var p = Math.min((t - t0) / 1600, 1);
+                    el.textContent = money(Math.floor(end * (1 - Math.pow(1 - p, 3))));
+                    if (p < 1) requestAnimationFrame(tick);
+                })(performance.now());
+            }
+            var links = document.querySelectorAll('a.link');
+            if ('IntersectionObserver' in window) {
+                var spy = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var id = '#' + e.target.id;
+                        links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === id); });
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                ['home', 'about', 'services', 'shop', 'pricing', 'gallery', 'contact'].forEach(function (id) { var s = $(id); if (s) spy.observe(s); });
+
+                var rev = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var el = e.target; el.classList.add('in'); rev.unobserve(el);
+                    });
+                }, { threshold: .12 });
+                document.querySelectorAll('.reveal,.wipe').forEach(function (el, i) { el.style.transitionDelay = ((i % 4) * 100) + 'ms'; rev.observe(el); });
+                document.querySelectorAll('.ticks').forEach(function (el) { rev.observe(el); });
+
+                var sp = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('go'); sp.unobserve(e.target); } });
+                }, { threshold: .4 });
+                document.querySelectorAll('.split[data-scroll]').forEach(function (el) { sp.observe(el); });
+
+                var cn = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        if (e.target.dataset.count) countUp(e.target); else priceUp(e.target);
+                        cn.unobserve(e.target);
+                    });
+                }, { threshold: .6 });
+                document.querySelectorAll('[data-count],[data-to]').forEach(function (el) { cn.observe(el); });
+            } else {
+                document.querySelectorAll('.reveal,.wipe,.ticks').forEach(function (el) { el.classList.add('in'); });
+                document.querySelectorAll('.split').forEach(function (el) { el.classList.add('go'); });
+                document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
+                document.querySelectorAll('[data-to]').forEach(function (el) { el.textContent = money(el.dataset.to); });
+            }
+
+            /* ---------- Forms (front-end only) ---------- */
+            $('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var m = $('formMsg'), name = $('cname').value.trim(), phone = $('cphone').value.trim();
+                m.style.display = 'block';
+                if (!name || !phone) { m.style.background = '#ffe3e0'; m.style.color = '#a03a2a'; m.textContent = 'Please enter your name and phone number.'; return; }
+                m.style.background = '#e4f5e6'; m.style.color = '#256b34';
+                m.textContent = 'Thank you, ' + name + '! Your booking request has been received. We will confirm shortly.';
+                e.target.reset();
+            });
+            $('nlForm').addEventListener('submit', function (e) { e.preventDefault(); $('nlMsg').textContent = 'Welcome to the Glow Club!'; e.target.reset(); });
+            var d = $('cdate'), today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset()); d.min = today.toISOString().slice(0, 10);
+            $('year').textContent = new Date().getFullYear();
+
+            renderProducts();
+            renderCart();
+            pump();
+        })();
+    </script>
+</body>
+
+</html>
