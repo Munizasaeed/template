@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aloe &amp; Dew | Skincare Clinic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1F3B2D;--g2:#2F5A44;--aloe:#DCE8CF;--peach:#F7C9B6;--pk:#EE9C86;--mist:#F5F8EF;--ink:#17261E;--mu:#5F6F63}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'Figtree',system-ui,sans-serif;background:var(--mist);color:var(--ink);line-height:1.65}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.05}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--pk);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--g);color:#fff;padding:15px 30px;border-radius:99px;border:0;font:600 1rem 'Figtree';cursor:pointer;transition:.25s}
+.btn:hover{background:var(--g2);transform:translateY(-2px)}
+.btn.pk{background:var(--peach);color:var(--g)}
+.btn.pk:hover{background:#fff}
+.btn.ol{background:transparent;color:var(--g);box-shadow:inset 0 0 0 2px var(--g)}
+.btn.ol:hover{background:var(--g);color:#fff}
+/* photo slots: gradient shows if API fails */
+.ph{background:linear-gradient(160deg,var(--aloe),var(--peach));background-size:cover;background-position:center}
+.arch{border-radius:999px 999px 24px 24px}
+/* header */
+header{position:fixed;top:14px;left:0;right:0;z-index:50}
+.nav{display:flex;justify-content:space-between;align-items:center;background:rgba(245,248,239,.92);backdrop-filter:blur(10px);border-radius:99px;padding:10px 12px 10px 26px;box-shadow:0 6px 24px rgba(31,59,45,.12)}
+.logo{font:1.6rem 'DM Serif Display';color:var(--g)}
+.logo em{color:var(--pk)}
+nav ul{display:flex;gap:6px;list-style:none;align-items:center}
+nav a{padding:9px 18px;border-radius:99px;font-weight:500;font-size:.95rem}
+nav a:hover,nav a.on{background:var(--aloe)}
+nav .btn{padding:11px 22px;color:#fff}
+nav .btn:hover{background:var(--g2)}
+.burger{display:none;background:var(--g);color:#fff;border:0;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer}
+/* hero */
+.hero{padding:130px 0 70px;background:radial-gradient(circle at 85% 20%,var(--peach) 0,transparent 38%),var(--mist);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(3.2rem,7.5vw,6rem);color:var(--g)}
+.hero h1 em{color:var(--pk)}
+.hero p{margin:22px 0 32px;max-width:440px;color:var(--mu);font-size:1.1rem}
+.acts{display:flex;gap:12px;flex-wrap:wrap}
+.trio{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:14px;align-items:end;position:relative}
+.trio .ph{width:100%}
+.trio .a{height:300px}.trio .b{height:440px}.trio .c{height:340px}
+.badge{position:absolute;left:-26px;bottom:30px;width:112px;height:112px;border-radius:50%;background:var(--g);color:var(--aloe);display:grid;place-items:center;text-align:center;font:.78rem/1.2 'Figtree';font-weight:600;padding:14px;animation:spin 18s linear infinite alternate}
+@keyframes spin{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+.hero h1,.hero p,.hero .acts,.trio>.ph{animation:in .9s cubic-bezier(.2,.8,.3,1) both}
+.hero p{animation-delay:.1s}.hero .acts{animation-delay:.2s}.trio>.a{animation-delay:.2s}.trio>.b{animation-delay:.35s}.trio>.c{animation-delay:.5s}
+@keyframes in{from{opacity:0;transform:translateY(30px)}}
+.marq{background:var(--g);color:var(--aloe);overflow:hidden;white-space:nowrap;padding:16px 0;font:1.4rem 'DM Serif Display'}
+.marq div{display:inline-block;animation:m 28s linear infinite}
+.marq span{margin:0 26px}.marq span:nth-child(even){color:var(--pk)}
+@keyframes m{to{transform:translateX(-50%)}}
+section{padding:100px 0}
+h2{font-size:clamp(2.4rem,5vw,3.8rem);color:var(--g)}
+.lead{color:var(--mu);max-width:520px;margin-top:14px}
+/* about */
+.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.ab{position:relative}
+.ab .ph.big{height:520px}
+.ab .ph.sm{position:absolute;right:-30px;bottom:-30px;width:170px;height:170px;border-radius:50%;border:8px solid var(--mist)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}
+.chips span{background:var(--aloe);color:var(--g);padding:8px 18px;border-radius:99px;font-weight:600;font-size:.9rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.facts div{background:#fff;border-radius:22px;padding:18px}
+.facts b{display:block;font:2.2rem 'DM Serif Display';color:var(--pk);line-height:1}
+.facts small{color:var(--mu)}
+/* services */
+.services{background:var(--aloe)}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px}
+.sc{background:var(--mist);border-radius:32px;padding:14px 14px 26px;transition:.3s}
+.sc:nth-child(3n+2){margin-top:46px}
+.sc:hover{transform:translateY(-8px);background:#fff}
+.sc .ph{height:230px;margin-bottom:20px}
+.sc h3{font-size:1.7rem;color:var(--g);padding:0 12px}
+.sc p{padding:6px 12px 0;color:var(--mu);font-size:.95rem}
+.sc small{display:inline-block;margin:14px 12px 0;background:var(--peach);color:var(--g);padding:4px 14px;border-radius:99px;font-weight:600;font-size:.82rem}
+/* price */
+.tog{display:inline-flex;background:var(--aloe);border-radius:99px;padding:5px;margin:30px 0 44px}
+.tog button{border:0;background:none;padding:10px 26px;border-radius:99px;font:600 .95rem 'Figtree';cursor:pointer;color:var(--g)}
+.tog button.on{background:var(--g);color:#fff}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:end}
+.pc{background:#fff;border-radius:200px 200px 32px 32px;padding:70px 32px 36px;text-align:center;box-shadow:0 10px 30px rgba(31,59,45,.07)}
+.pc.hot{background:var(--g);color:#fff;padding-top:100px;padding-bottom:44px}
+.pc h3{font-size:2rem}
+.pc .pr{font:3rem 'DM Serif Display';margin:10px 0;color:var(--pk)}
+.pc .pr small{font:500 .9rem 'Figtree';color:inherit;opacity:.7}
+.pc ul{list-style:none;margin:16px 0 28px;display:grid;gap:10px;font-size:.95rem}
+.pc li{padding-bottom:10px;border-bottom:1px solid rgba(95,111,99,.25)}
+.pc.hot li{border-color:rgba(255,255,255,.2)}
+.pc.hot .btn{background:var(--peach);color:var(--g)}
+.note{margin-top:22px;color:var(--mu);font-size:.85rem;text-align:center}
+/* cta */
+.cta{padding:40px 0 110px}
+.panel{background:var(--g);border-radius:48px;color:#fff;display:grid;grid-template-columns:.8fr 1.2fr;overflow:hidden}
+.side{position:relative;padding:28px 0 28px 28px;display:flex}.panel .ph{flex:1;min-height:620px;border-radius:999px 999px 24px 24px}.rate{position:absolute;right:-28px;bottom:70px;background:var(--peach);color:var(--g);border-radius:24px;padding:16px 20px;max-width:190px;display:grid;gap:2px;box-shadow:0 10px 24px rgba(0,0,0,.2);z-index:2}.rate b{font:2.6rem 'DM Serif Display';line-height:1}.rate span{font-size:.82rem;font-weight:600;line-height:1.3}.steps{list-style:none;counter-reset:s;display:grid;gap:14px;margin:0 0 30px}.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-items:center}.steps li::before{content:counter(s);grid-row:span 2;width:44px;height:44px;border-radius:50%;background:var(--peach);color:var(--g);display:grid;place-items:center;font:1.3rem 'DM Serif Display'}.steps b{font-weight:600}.steps span{color:var(--aloe);font-size:.92rem}
+.panel .in{padding:72px 56px}
+.panel h2{color:#fff}
+.panel p{color:var(--aloe);margin:14px 0 26px;max-width:440px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+form input,form select{padding:15px 20px;border-radius:99px;border:2px solid transparent;font:1rem 'Figtree';width:100%;background:var(--mist)}
+form input:focus,form select:focus{border-color:var(--pk);outline:0}
+form .btn{grid-column:1/-1}
+#msg{grid-column:1/-1;color:var(--peach);font-weight:600;min-height:1.5em}
+/* footer */
+footer{background:var(--ink);color:#b8c6bb;padding:70px 0 26px;border-radius:48px 48px 0 0}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+footer .logo{color:#fff}
+footer h3{font:1.3rem 'DM Serif Display';color:var(--peach);margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px;font-size:.95rem}
+footer a:hover{color:var(--peach)}
+.fb{margin-top:46px;padding-top:20px;border-top:1px solid #34443a;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:900px){
+.burger{display:block}
+nav ul{position:absolute;top:70px;left:0;right:0;background:var(--mist);border-radius:28px;flex-direction:column;padding:14px;display:none;box-shadow:0 12px 30px rgba(31,59,45,.18);align-items:stretch}
+nav ul.open{display:flex}
+nav li a{display:block;text-align:center}
+.hero .wrap,.about .wrap,.panel{grid-template-columns:1fr}
+.badge{left:0}
+.trio .a{height:200px}.trio .b{height:300px}.trio .c{height:230px}
+.ab .ph.sm{right:0}
+.sg,.pg{grid-template-columns:1fr}
+.sc:nth-child(3n+2){margin-top:0}
+.side{padding:20px 20px 0}.panel .ph{min-height:340px}.rate{right:30px;bottom:20px}
+.panel .in{padding:36px 26px}
+form{grid-template-columns:1fr}
+.fg{grid-template-columns:1fr 1fr}
+section{padding:70px 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="nav">
+ <a href="#home" class="logo">Aloe<em>&amp;</em>Dew</a>
+ <nav aria-label="Main">
+  <button class="burger" id="bg" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <ul id="menu">
+   <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#price">Price</a></li>
+   <li><a href="#contact" class="btn">Book a visit</a></li>
+  </ul>
+ </nav>
+</div></div></header>
+
+<main>
+<section class="hero" id="home">
+ <div class="wrap">
+  <div>
+   <h1>Skin that <em>glows</em> from within.</h1>
+   <p>Facials, acne care and brightening treatments, all guided by a dermatologist. We study your skin first, then build the routine that suits it.</p>
+   <div class="acts"><a href="#contact" class="btn">Free skin consult</a><a href="#services" class="btn ol">Explore treatments</a></div>
+  </div>
+  <div class="trio">
+   <div class="ph arch a"></div><div class="ph arch b"></div><div class="ph arch c"></div>
+   <div class="badge">Dermatologist-safe ingredients</div>
+  </div>
+ </div>
+</section>
+<div class="marq" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="about" id="about">
+ <div class="wrap">
+  <div class="ab"><div class="ph arch big"></div><div class="ph sm"></div></div>
+  <div>
+   <h2>Understand your skin, then treat it</h2>
+   <p class="lead">Aloe &amp; Dew has been caring for skin since 2015. Every plan is built around your skin type and your goals, never a one-size-fits-all package.</p>
+   <div class="chips"><span>Aloe vera</span><span>Vitamin C</span><span>Niacinamide</span><span>Hyaluronic acid</span><span>SPF 50</span></div>
+   <div class="facts"><div><b data-n="9">0</b><small>years of experience</small></div><div><b data-n="6000">0</b><small>happy clients</small></div><div><b data-n="12">0</b><small>trained therapists</small></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="services" id="services">
+ <div class="wrap">
+  <h2>Our services</h2>
+  <p class="lead">Every treatment starts with a free skin analysis.</p>
+  <div class="sg">
+   <article class="sc"><div class="ph arch"></div><h3>Hydra Facial</h3><p>Deep cleansing and hydration that revives dull skin.</p><small>60 min</small></article>
+   <article class="sc"><div class="ph arch"></div><h3>Acne Care</h3><p>Medical-grade care for breakouts, marks and oily skin.</p><small>45 min</small></article>
+   <article class="sc"><div class="ph arch"></div><h3>Brightening</h3><p>A vitamin C peel for an even, radiant tone.</p><small>50 min</small></article>
+   <article class="sc"><div class="ph arch"></div><h3>Anti-Aging</h3><p>Lifting treatment for fine lines and loss of firmness.</p><small>75 min</small></article>
+   <article class="sc"><div class="ph arch"></div><h3>Skin Consultation</h3><p>A dermatologist check-up and a plan for your home routine.</p><small>30 min</small></article>
+   <article class="sc"><div class="ph arch"></div><h3>Bridal Glow</h3><p>A complete 3-month package before the big day.</p><small>Package</small></article>
+  </div>
+ </div>
+</section>
+
+<section id="price">
+ <div class="wrap" style="text-align:center">
+  <h2>Simple pricing</h2>
+  <p class="lead" style="margin-inline:auto">Save more when you book a pack.</p>
+  <div class="tog" role="group" aria-label="Plan"><button class="on" data-m="1">Single visit</button><button data-m="0.8">Monthly pack (20% off)</button></div>
+  <div class="pg">
+   <div class="pc"><h3>Fresh</h3><div class="pr">Rs <span data-b="3500">3,500</span><small> /visit</small></div><ul><li>Deep cleansing facial</li><li>Skin analysis</li><li>Home care tips</li></ul><a href="#contact" class="btn ol">Book now</a></div>
+   <div class="pc hot"><h3>Glow</h3><div class="pr">Rs <span data-b="7500">7,500</span><small> /visit</small></div><ul><li>Hydra facial</li><li>Vitamin C peel</li><li>Dermatologist check</li><li>Free serum sample</li></ul><a href="#contact" class="btn">Book now</a></div>
+   <div class="pc"><h3>Renew</h3><div class="pr">Rs <span data-b="12000">12,000</span><small> /visit</small></div><ul><li>Anti-aging lifting</li><li>Acne scar treatment</li><li>Personal routine plan</li></ul><a href="#contact" class="btn ol">Book now</a></div>
+  </div>
+  <p class="note">Sample prices. Replace with your own rates.</p>
+ </div>
+</section>
+
+<section class="cta" id="contact">
+ <div class="wrap"><div class="panel">
+  <div class="side">
+   <div class="ph"></div>
+   <div class="rate"><b>4.9</b><span>average rating from 6,000+ clients</span></div>
+  </div>
+  <div class="in">
+   <h2>Your skin journey starts with one visit</h2>
+   <p>Tell us a little about your skin. Our team will call you within 24 hours to confirm a free consultation.</p>
+   <ol class="steps">
+    <li><b>Book your slot</b><span>Pick a treatment and a day that suits you.</span></li>
+    <li><b>Get a skin analysis</b><span>A dermatologist reviews your skin type and concerns.</span></li>
+    <li><b>Receive your plan</b><span>Treatments and a home routine made just for you.</span></li>
+   </ol>
+   <form id="f">
+    <input name="n" placeholder="Your name" required aria-label="Name">
+    <input name="p" type="tel" placeholder="Phone number" required aria-label="Phone">
+    <select name="t" aria-label="Treatment"><option>Hydra Facial</option><option>Acne Care</option><option>Brightening</option><option>Anti-Aging</option><option>Skin Consultation</option></select>
+    <input name="d" type="date" aria-label="Preferred date">
+    <button class="btn pk" type="submit">Book appointment</button>
+    <div id="msg" role="status"></div>
+   </form>
+  </div>
+ </div></div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fg">
+   <div><a href="#home" class="logo">Aloe<em>&amp;</em>Dew</a><p style="margin-top:14px;max-width:290px">Natural ingredients, medical supervision, real results.</p></div>
+   <div><h3>Pages</h3><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#price">Price</a></li></ul></div>
+   <div><h3>Treatments</h3><ul><li>Hydra Facial</li><li>Acne Care</li><li>Anti-Aging</li><li>Bridal Glow</li></ul></div>
+   <div><h3>Contact</h3><ul><li>Main Boulevard, Okara</li><li>0300 0000000</li><li>hello@aloedew.pk</li><li>Daily 10am to 8pm</li></ul></div>
+  </div>
+  <div class="fb"><span>&copy; <span id="y"></span> Aloe &amp; Dew. Photos by <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a></span><a href="#home">Back to top</a></div>
+ </div>
+</footer>
+
+<script>
+const PEXELS_KEY='No0ZDUM8swzzOnaDFSORYzNs31YWO7SDBUNqjVsWupaXoq175SHtjL0u';
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+// Pexels images: one pool, one photo per .ph slot
+(async()=>{
+ const qs=['skincare facial woman','face serum skincare','spa facial treatment','natural skincare cream'];
+ try{
+  const rs=await Promise.all(qs.map(q=>fetch('https://api.pexels.com/v1/search?per_page=10&orientation=portrait&query='+encodeURIComponent(q),{headers:{Authorization:PEXELS_KEY}}).then(r=>r.json())));
+  const seen=new Set(),pool=[];
+  rs.forEach(r=>(r.photos||[]).forEach(p=>{if(!seen.has(p.id)){seen.add(p.id);pool.push(p.src.large)}}));
+  $$('.ph').forEach((el,i)=>{if(pool[i])el.style.backgroundImage='url('+pool[i]+')'});
+ }catch(e){console.warn('Pexels failed to load, using gradient fallback',e)}
+})();
+// marquee
+$('#mq').innerHTML=Array(2).fill(['Hydration','Glow','Barrier repair','SPF daily','Gentle care','Clear skin'].map(t=>'<span>'+t+'</span>').join('')).join('');
+// menu
+const bg=$('#bg'),menu=$('#menu');
+bg.onclick=()=>{const o=menu.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+$$('#menu a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
+// active link
+const links=$$('nav a[href^="#"]:not(.btn)');
+['home','about','services','price'].forEach(id=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+id))}),{rootMargin:'-45% 0px -50% 0px'}).observe(document.getElementById(id)));
+// counters
+$$('[data-n]').forEach(el=>new IntersectionObserver((es,o)=>es.forEach(e=>{if(!e.isIntersecting)return;o.disconnect();const t=+el.dataset.n,s=Math.ceil(t/50);let c=0;const i=setInterval(()=>{c=Math.min(t,c+s);el.textContent=c.toLocaleString('en-US')+'+';if(c>=t)clearInterval(i)},30)}),{threshold:.6}).observe(el));
+// price toggle
+$$('.tog button').forEach(b=>b.onclick=()=>{$$('.tog button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('[data-b]').forEach(s=>s.textContent=(Math.round(s.dataset.b*b.dataset.m/50)*50).toLocaleString('en-US'))});
+// form
+$('#f').onsubmit=e=>{e.preventDefault();$('#msg').textContent='Thank you, '+e.target.n.value+'! We will call you within 24 hours.';e.target.reset()};
+$('#y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Saffron &amp; Smoke | Fine Dining Restaurant</title>
+    <meta name="description"
+        content="Saffron & Smoke: wood-fired cooking, slow-simmered flavours and a table made for memories.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===== Brand tokens ===== */
+        :root {
+            --ink: #1b1310;
+            --ink-2: #2a1e19;
+            --cream: #fbf6ec;
+            --paper: #f3eadb;
+            --gold: #c9993f;
+            --gold-soft: #e3c27d;
+            --wine: #7b1e2b;
+            --wine-dark: #5d141f;
+            --muted: #7a6c63;
+            --line: rgba(201, 153, 63, .35);
+            --radius: 18px;
+            --shadow: 0 18px 50px rgba(27, 19, 16, .18);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            color: var(--ink);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        ul {
+            list-style: none
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        section {
+            scroll-margin-top: 70px
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin-inline: auto
+        }
+
+        .section {
+            padding: 110px 0
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--serif);
+            font-weight: 600;
+            line-height: 1.15
+        }
+
+        em {
+            font-style: italic;
+            color: var(--gold)
+        }
+
+        .kicker {
+            display: inline-block;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px
+        }
+
+        .title {
+            font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+            margin-bottom: 16px
+        }
+
+        .lead {
+            color: var(--muted);
+            max-width: 560px
+        }
+
+        .head {
+            margin-bottom: 56px
+        }
+
+        .head.center {
+            text-align: center
+        }
+
+        .head.center .lead {
+            margin-inline: auto
+        }
+
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--gold);
+            margin: 6px 0 4px
+        }
+
+        .ornament::before,
+        .ornament::after {
+            content: "";
+            width: 54px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: .92rem;
+            letter-spacing: .5px;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: .3s;
+            font-family: var(--sans)
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--ink)
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-soft);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 26px rgba(201, 153, 63, .4)
+        }
+
+        .btn-wine {
+            background: var(--wine);
+            color: #fff
+        }
+
+        .btn-wine:hover {
+            background: var(--wine-dark);
+            transform: translateY(-3px)
+        }
+
+        .btn-ghost {
+            border-color: rgba(255, 255, 255, .6);
+            color: #fff
+        }
+
+        .btn-ghost:hover {
+            background: #fff;
+            color: var(--ink)
+        }
+
+        /* Image slots */
+        .ph {
+            background-color: var(--ink-2);
+            background-image: radial-gradient(circle at 30% 20%, rgba(201, 153, 63, .28), transparent 55%), linear-gradient(135deg, #3b2a22, #1b1310);
+            background-size: cover;
+            background-position: center
+        }
+
+        /* ===== Header ===== */
+        header {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            transition: .35s;
+            padding: 12px 0
+        }
+
+        header.scrolled {
+            background: rgba(27, 19, 16, .94);
+            backdrop-filter: blur(10px);
+            padding: 2px 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .25)
+        }
+
+        .nav {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            height: 76px
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 34px;
+            align-items: center
+        }
+
+        .nav .right {
+            justify-self: end
+        }
+
+        .nav a.link {
+            color: #f4ebdc;
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 6px 0
+        }
+
+        .nav a.link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -3px;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: .3s;
+            transform: translateX(-50%)
+        }
+
+        .nav a.link:hover::after,
+        .nav a.link.active::after {
+            width: 100%
+        }
+
+        .nav a.link.active {
+            color: var(--gold-soft)
+        }
+
+        .logo {
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1
+        }
+
+        .logo b {
+            font-family: var(--serif);
+            font-size: 1.75rem;
+            letter-spacing: 1px
+        }
+
+        .logo b i {
+            color: var(--gold);
+            font-weight: 500
+        }
+
+        .logo small {
+            font-size: .6rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+            margin-top: 6px
+        }
+
+        .nav .btn {
+            padding: 11px 24px;
+            font-size: .78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase
+        }
+
+        .burger {
+            display: none;
+            justify-self: end;
+            width: 46px;
+            height: 46px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            z-index: 130
+        }
+
+        .burger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: #fff;
+            margin: 6px auto;
+            transition: .3s
+        }
+
+        .burger.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg)
+        }
+
+        .burger.open span:nth-child(2) {
+            opacity: 0
+        }
+
+        .burger.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg)
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(340px, 86%);
+            height: 100vh;
+            background: var(--ink);
+            z-index: 120;
+            padding: 100px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: right .4s ease;
+            box-shadow: -12px 0 40px rgba(0, 0, 0, .4)
+        }
+
+        .drawer.open {
+            right: 0
+        }
+
+        .drawer a.link {
+            color: #f4ebdc;
+            font-family: var(--serif);
+            font-size: 1.45rem;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .drawer a.link.active {
+            color: var(--gold)
+        }
+
+        .drawer .btn {
+            margin-top: 22px
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 110
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            padding: 150px 0 170px
+        }
+
+        .hero .bg {
+            position: absolute;
+            inset: 0;
+            transform: scale(1.06);
+            animation: zoom 18s ease-out forwards
+        }
+
+        @keyframes zoom {
+            to {
+                transform: scale(1)
+            }
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(20, 13, 10, .55), rgba(20, 13, 10, .88) 85%)
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            max-width: 860px
+        }
+
+        .hero .kicker {
+            color: var(--gold-soft)
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 7.5vw, 5.6rem);
+            margin-bottom: 22px;
+            letter-spacing: -.5px
+        }
+
+        .hero p {
+            color: #e6dccd;
+            max-width: 560px;
+            margin: 0 auto 36px;
+            font-size: 1.06rem
+        }
+
+        .hero .btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 26px;
+            height: 44px;
+            border: 2px solid rgba(255, 255, 255, .5);
+            border-radius: 20px
+        }
+
+        .scroll-cue::after {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            width: 4px;
+            height: 8px;
+            margin-left: -2px;
+            border-radius: 2px;
+            background: var(--gold);
+            animation: cue 1.8s infinite
+        }
+
+        @keyframes cue {
+            0% {
+                opacity: 1;
+                transform: translateY(0)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(16px)
+            }
+        }
+
+        /* ===== Reservation bar ===== */
+        .reserve {
+            position: relative;
+            z-index: 5;
+            margin-top: -72px
+        }
+
+        .reserve-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 26px 30px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr 1fr 1fr auto;
+            gap: 18px;
+            align-items: end;
+            border: 1px solid var(--line)
+        }
+
+        .reserve-card label {
+            display: block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        .reserve-card input,
+        .reserve-card select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1.5px solid #e2d6c1;
+            border-radius: 12px;
+            font: inherit;
+            background: #fff;
+            color: var(--ink)
+        }
+
+        .reserve-card input:focus,
+        .reserve-card select:focus,
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(201, 153, 63, .2)
+        }
+
+        .reserve-msg {
+            grid-column: 1/-1;
+            display: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: #eaf5ea;
+            color: #1f6a31;
+            font-weight: 600;
+            font-size: .92rem
+        }
+
+        /* ===== About ===== */
+        .about {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 80px;
+            align-items: center
+        }
+
+        .collage {
+            position: relative;
+            height: 580px
+        }
+
+        .collage .a {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 66%;
+            height: 78%;
+            border-radius: 200px 200px 18px 18px;
+            box-shadow: var(--shadow)
+        }
+
+        .collage .b {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 56%;
+            height: 52%;
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            border: 10px solid var(--cream)
+        }
+
+        .seal {
+            position: absolute;
+            left: 46%;
+            top: 60%;
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            background: var(--wine);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-family: var(--serif);
+            box-shadow: 0 10px 26px rgba(123, 30, 43, .45);
+            z-index: 3;
+            border: 3px dashed rgba(255, 255, 255, .45)
+        }
+
+        .seal strong {
+            display: block;
+            font-size: 2rem;
+            line-height: 1
+        }
+
+        .seal span {
+            font-family: var(--sans);
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .about p {
+            color: var(--muted);
+            margin-bottom: 18px
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 38px;
+            margin: 28px 0 34px;
+            flex-wrap: wrap
+        }
+
+        .about-stats strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 2.6rem;
+            color: var(--wine);
+            line-height: 1
+        }
+
+        .about-stats span {
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        .sign {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 6px
+        }
+
+        .sign .name {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.7rem;
+            color: var(--wine)
+        }
+
+        .sign small {
+            display: block;
+            font-size: .76rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        /* ===== Services ===== */
+        .services {
+            background: var(--paper)
+        }
+
+        .tiles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--cream)
+        }
+
+        .tile {
+            padding: 44px 30px;
+            border-right: 1px solid var(--line);
+            position: relative;
+            transition: .35s;
+            text-align: center
+        }
+
+        .tile:last-child {
+            border-right: 0
+        }
+
+        .tile:hover {
+            background: var(--ink);
+            color: #fff
+        }
+
+        .tile:hover p {
+            color: #cdbfae
+        }
+
+        .tile .no {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: var(--gold);
+            opacity: .7
+        }
+
+        .tile .ic {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            border: 1.5px solid var(--gold);
+            display: grid;
+            place-items: center;
+            transition: .35s
+        }
+
+        .tile:hover .ic {
+            background: var(--gold)
+        }
+
+        .tile .ic svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--gold);
+            transition: .35s
+        }
+
+        .tile:hover .ic svg {
+            stroke: var(--ink)
+        }
+
+        .tile h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px
+        }
+
+        .tile p {
+            color: var(--muted);
+            font-size: .93rem;
+            transition: .35s
+        }
+
+        /* ===== Menu ===== */
+        .menu {
+            background: var(--ink);
+            color: #f4ebdc;
+            position: relative
+        }
+
+        .menu .lead {
+            color: #b9a998
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 54px
+        }
+
+        .tab {
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(201, 153, 63, .45);
+            background: transparent;
+            color: #e9dcc6;
+            font: 600 .8rem var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .tab:hover {
+            border-color: var(--gold)
+        }
+
+        .tab.on {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--ink)
+        }
+
+        .panel {
+            display: none;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 56px;
+            align-items: center;
+            animation: fade .6s ease
+        }
+
+        .panel.on {
+            display: grid
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(16px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .panel .pic {
+            height: 520px;
+            border-radius: 300px 300px 18px 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+            border: 1px solid var(--line)
+        }
+
+        .dish {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .dish:first-child {
+            padding-top: 0
+        }
+
+        .dish .top {
+            display: flex;
+            align-items: baseline;
+            gap: 12px
+        }
+
+        .dish h4 {
+            font-size: 1.3rem;
+            white-space: nowrap
+        }
+
+        .dish .dots {
+            flex: 1;
+            border-bottom: 2px dotted rgba(201, 153, 63, .45);
+            transform: translateY(-5px)
+        }
+
+        .dish .pr {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--gold-soft);
+            white-space: nowrap
+        }
+
+        .dish p {
+            color: #b9a998;
+            font-size: .92rem;
+            margin-top: 4px
+        }
+
+        .dish .tag {
+            display: inline-block;
+            margin-left: 8px;
+            font: 700 .62rem var(--sans);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: var(--wine);
+            color: #fff;
+            padding: 3px 9px;
+            border-radius: 30px;
+            vertical-align: middle
+        }
+
+        /* ===== Signatures ===== */
+        .sigs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px
+        }
+
+        .sig {
+            position: relative;
+            height: 500px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            color: #fff;
+            display: flex;
+            align-items: flex-end;
+            box-shadow: var(--shadow)
+        }
+
+        .sig .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform .9s ease
+        }
+
+        .sig:hover .pic {
+            transform: scale(1.08)
+        }
+
+        .sig::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(20, 13, 10, .92) 8%, rgba(20, 13, 10, .1) 60%)
+        }
+
+        .sig .txt {
+            position: relative;
+            z-index: 2;
+            padding: 30px
+        }
+
+        .sig .chip {
+            display: inline-block;
+            font: 700 .66rem var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--gold);
+            color: var(--ink);
+            padding: 5px 12px;
+            border-radius: 30px;
+            margin-bottom: 12px
+        }
+
+        .sig h3 {
+            font-size: 1.6rem;
+            margin-bottom: 6px
+        }
+
+        .sig p {
+            color: #dccfbd;
+            font-size: .92rem;
+            margin-bottom: 10px
+        }
+
+        .sig .pr {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            color: var(--gold-soft)
+        }
+
+        /* ===== Pricing ===== */
+        .sets {
+            background: var(--paper)
+        }
+
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: stretch
+        }
+
+        .plan {
+            background: var(--cream);
+            border: 1px solid var(--line);
+            border-radius: 220px 220px var(--radius) var(--radius);
+            padding: 70px 34px 40px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: .35s
+        }
+
+        .plan:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow)
+        }
+
+        .plan.feat {
+            background: var(--wine);
+            color: #fff;
+            border-color: var(--wine)
+        }
+
+        .plan .badge {
+            position: absolute;
+            top: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            font: 700 .64rem var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--gold);
+            color: var(--ink);
+            padding: 5px 14px;
+            border-radius: 30px;
+            white-space: nowrap
+        }
+
+        .plan h3 {
+            font-size: 1.7rem;
+            margin-top: 14px
+        }
+
+        .plan .sub {
+            color: var(--muted);
+            font-size: .9rem;
+            margin-bottom: 18px
+        }
+
+        .plan.feat .sub {
+            color: #e8c9ce
+        }
+
+        .plan .price {
+            font-family: var(--serif);
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--wine)
+        }
+
+        .plan.feat .price {
+            color: var(--gold-soft)
+        }
+
+        .plan .per {
+            font-size: .8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 6px 0 24px
+        }
+
+        .plan.feat .per {
+            color: #e8c9ce
+        }
+
+        .plan ul {
+            margin-bottom: 30px;
+            flex: 1;
+            text-align: left
+        }
+
+        .plan li {
+            padding: 11px 0 11px 28px;
+            border-top: 1px solid var(--line);
+            position: relative;
+            font-size: .94rem
+        }
+
+        .plan li::before {
+            content: "\2726";
+            position: absolute;
+            left: 2px;
+            color: var(--gold)
+        }
+
+        .plan.feat li {
+            border-color: rgba(255, 255, 255, .18)
+        }
+
+        /* ===== Gallery ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 230px;
+            gap: 14px
+        }
+
+        .g {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: zoom-in
+        }
+
+        .g.tall {
+            grid-row: span 2
+        }
+
+        .g.wide {
+            grid-column: span 2
+        }
+
+        .g .pic {
+            position: absolute;
+            inset: 0;
+            transition: transform .8s ease
+        }
+
+        .g:hover .pic {
+            transform: scale(1.1)
+        }
+
+        .g::after {
+            content: "+";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-size: 2.6rem;
+            color: #fff;
+            background: rgba(123, 30, 43, .55);
+            opacity: 0;
+            transition: .35s
+        }
+
+        .g:hover::after {
+            opacity: 1
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 6, 4, .94);
+            z-index: 300;
+            display: none;
+            place-items: center;
+            padding: 30px;
+            cursor: zoom-out
+        }
+
+        .lightbox.show {
+            display: grid
+        }
+
+        .lightbox img {
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .6)
+        }
+
+        /* ===== Testimonials ===== */
+        .reviews {
+            background: var(--ink);
+            color: #f4ebdc;
+            text-align: center
+        }
+
+        .slider {
+            max-width: 780px;
+            margin-inline: auto;
+            position: relative;
+            min-height: 290px
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: .7s;
+            transform: translateY(14px)
+        }
+
+        .slide.on {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            position: relative
+        }
+
+        .slide .q {
+            font-family: var(--serif);
+            font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+            font-style: italic;
+            line-height: 1.55;
+            margin-bottom: 26px
+        }
+
+        .slide .stars {
+            color: var(--gold);
+            letter-spacing: 5px;
+            margin-bottom: 18px
+        }
+
+        .slide .by {
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: .8rem;
+            color: var(--gold-soft)
+        }
+
+        .slide .by span {
+            display: block;
+            color: #a99a8a;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: none;
+            margin-top: 2px
+        }
+
+        .dots-nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 34px
+        }
+
+        .dots-nav button {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            border: 0;
+            background: rgba(255, 255, 255, .25);
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .dots-nav button.on {
+            background: var(--gold);
+            width: 32px;
+            border-radius: 10px
+        }
+
+        /* ===== CTA ===== */
+        .cta {
+            position: relative;
+            text-align: center;
+            color: #fff;
+            overflow: hidden
+        }
+
+        .cta .bg {
+            position: absolute;
+            inset: 0;
+            background-attachment: fixed
+        }
+
+        .cta::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(60, 12, 20, .82), rgba(20, 13, 10, .88))
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 2;
+            padding: 120px 0
+        }
+
+        .cta h2 {
+            font-size: clamp(2.2rem, 5.4vw, 4rem);
+            max-width: 760px;
+            margin: 0 auto 16px
+        }
+
+        .cta p {
+            color: #e6d8c7;
+            max-width: 520px;
+            margin: 0 auto 34px
+        }
+
+        .cta .btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        /* ===== Contact ===== */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 64px
+        }
+
+        .info {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 26px
+        }
+
+        .info .ic {
+            flex: none;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 1.5px solid var(--gold);
+            display: grid;
+            place-items: center
+        }
+
+        .info .ic svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--gold)
+        }
+
+        .info h4 {
+            font-size: 1.15rem
+        }
+
+        .info p {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .hours {
+            margin-top: 30px;
+            background: var(--paper);
+            border-radius: var(--radius);
+            padding: 26px 28px;
+            border: 1px solid var(--line)
+        }
+
+        .hours h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px
+        }
+
+        .hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--line);
+            font-size: .94rem
+        }
+
+        .hours li:last-child {
+            border: 0
+        }
+
+        form.box {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--line)
+        }
+
+        form.box h3 {
+            font-size: 1.7rem;
+            margin-bottom: 20px
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .field {
+            margin-bottom: 16px
+        }
+
+        .field label {
+            display: block;
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1.5px solid #e2d6c1;
+            border-radius: 12px;
+            font: inherit;
+            background: #fffdf9;
+            transition: .2s
+        }
+
+        form textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .form-msg {
+            display: none;
+            margin-top: 14px;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: .92rem
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #120c09;
+            color: #a99a8a;
+            padding-top: 80px
+        }
+
+        .fgrid {
+            display: grid;
+            grid-template-columns: 1.4fr .8fr .8fr 1.3fr;
+            gap: 44px;
+            padding-bottom: 56px
+        }
+
+        footer .logo {
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 18px
+        }
+
+        footer h4 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px
+        }
+
+        footer li {
+            margin-bottom: 10px;
+            font-size: .94rem
+        }
+
+        footer li a:hover {
+            color: var(--gold)
+        }
+
+        .news {
+            display: flex;
+            margin-top: 14px;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 50px;
+            padding: 5px;
+            border: 1px solid rgba(255, 255, 255, .1)
+        }
+
+        .news input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: 0;
+            color: #fff;
+            padding: 10px 16px;
+            font: inherit
+        }
+
+        .news input:focus {
+            outline: none;
+            box-shadow: none
+        }
+
+        .news button {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 0;
+            background: var(--gold);
+            color: var(--ink);
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px
+        }
+
+        .social a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: .78rem;
+            font-weight: 700;
+            transition: .3s
+        }
+
+        .social a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--ink);
+            transform: translateY(-3px)
+        }
+
+        .copy {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding: 22px 0;
+            font-size: .85rem
+        }
+
+        .copy .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .totop {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 0;
+            background: var(--gold);
+            color: var(--ink);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: .3s;
+            z-index: 90
+        }
+
+        .totop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: none
+        }
+
+        .totop svg {
+            width: 20px;
+            height: 20px
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .8s ease, transform .8s ease
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width:1100px) {
+            .nav ul {
+                gap: 22px
+            }
+
+            .reserve-card {
+                grid-template-columns: 1fr 1fr 1fr
+            }
+
+            .reserve-card .btn {
+                grid-column: 1/-1
+            }
+
+            .tiles {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .tile:nth-child(2) {
+                border-right: 0
+            }
+
+            .tile:nth-child(-n+2) {
+                border-bottom: 1px solid var(--line)
+            }
+        }
+
+        @media (max-width:960px) {
+            .nav {
+                grid-template-columns: 1fr auto
+            }
+
+            .nav ul {
+                display: none
+            }
+
+            .logo {
+                align-items: flex-start;
+                text-align: left
+            }
+
+            .burger {
+                display: block
+            }
+
+            .about,
+            .contact {
+                grid-template-columns: 1fr;
+                gap: 56px
+            }
+
+            .collage {
+                height: 500px;
+                max-width: 560px;
+                margin-inline: auto;
+                width: 100%
+            }
+
+            .panel {
+                grid-template-columns: 1fr;
+                gap: 34px
+            }
+
+            .panel .pic {
+                height: 380px;
+                border-radius: 200px 200px 18px 18px
+            }
+
+            .sigs {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .sigs .sig:last-child {
+                grid-column: 1/-1;
+                height: 420px
+            }
+
+            .plans {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-inline: auto
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 200px
+            }
+
+            .fgrid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .section {
+                padding: 84px 0
+            }
+
+            .cta .bg {
+                background-attachment: scroll
+            }
+        }
+
+        @media (max-width:640px) {
+            .reserve-card {
+                grid-template-columns: 1fr 1fr;
+                padding: 22px
+            }
+
+            .reserve-card>div:first-child {
+                grid-column: 1/-1
+            }
+
+            .tiles {
+                grid-template-columns: 1fr
+            }
+
+            .tile {
+                border-right: 0 !important;
+                border-bottom: 1px solid var(--line)
+            }
+
+            .tile:last-child {
+                border-bottom: 0
+            }
+
+            .sigs {
+                grid-template-columns: 1fr
+            }
+
+            .sig {
+                height: 420px
+            }
+
+            .row {
+                grid-template-columns: 1fr
+            }
+
+            form.box {
+                padding: 26px
+            }
+
+            .fgrid {
+                grid-template-columns: 1fr;
+                gap: 34px
+            }
+
+            .hero {
+                padding: 130px 0 150px
+            }
+
+            .hero .btns .btn,
+            .cta .btns .btn {
+                width: 100%
+            }
+
+            .scroll-cue {
+                display: none
+            }
+
+            .collage {
+                height: 420px
+            }
+
+            .seal {
+                width: 96px;
+                height: 96px
+            }
+
+            .seal strong {
+                font-size: 1.6rem
+            }
+
+            .dish h4 {
+                font-size: 1.1rem;
+                white-space: normal
+            }
+
+            .dish .top {
+                align-items: flex-start
+            }
+
+            .dish .dots {
+                display: none
+            }
+
+            .dish .pr {
+                margin-left: auto
+            }
+
+            .gallery {
+                grid-auto-rows: 150px;
+                gap: 10px
+            }
+
+            .copy .container {
+                justify-content: center;
+                text-align: center
+            }
+
+            .slider {
+                min-height: 340px
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            .hero .bg {
+                animation: none;
+                transform: none
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- ================= HEADER ================= -->
+    <header id="header">
+        <div class="container nav">
+            <ul class="left">
+                <li><a class="link active" href="#home">Home</a></li>
+                <li><a class="link" href="#about">About</a></li>
+                <li><a class="link" href="#services">Services</a></li>
+                <li><a class="link" href="#menu">Menu</a></li>
+            </ul>
+
+            <a href="#top" class="logo" aria-label="Saffron and Smoke home">
+                <b>Saffron <i>&amp;</i> Smoke</b>
+                <small>Fine Dining</small>
+            </a>
+
+            <ul class="right">
+                <li><a class="link" href="#pricing">Set Menus</a></li>
+                <li><a class="link" href="#gallery">Gallery</a></li>
+                <li><a class="link" href="#contact">Contact</a></li>
+                <li><a class="btn btn-gold" href="#reserve">Book a Table</a></li>
+            </ul>
+
+            <button class="burger" id="burger" aria-label="Open menu"
+                aria-expanded="false"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <nav class="drawer" id="drawer" aria-label="Mobile navigation">
+        <a class="link" href="#home">Home</a>
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#services">Services</a>
+        <a class="link" href="#menu">Menu</a>
+        <a class="link" href="#pricing">Set Menus</a>
+        <a class="link" href="#gallery">Gallery</a>
+        <a class="link" href="#contact">Contact</a>
+        <a class="btn btn-gold" href="#reserve">Book a Table</a>
+    </nav>
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="bg ph" data-img="hero"></div>
+            <div class="container">
+                <span class="kicker">Est. 2012 &nbsp;&bull;&nbsp; Wood-Fired &amp; Slow-Cooked</span>
+                <h1>Where Every Dish <em>Tells a Story</em></h1>
+                <p>Seasonal ingredients, open-flame cooking and warm hospitality. Come hungry, leave with a memory.</p>
+                <div class="btns">
+                    <a href="#reserve" class="btn btn-gold">Reserve a Table</a>
+                    <a href="#menu" class="btn btn-ghost">Explore the Menu</a>
+                </div>
+            </div>
+            <div class="scroll-cue" aria-hidden="true"></div>
+        </section>
+
+        <!-- ================= RESERVATION BAR ================= -->
+        <section class="reserve" id="reserve">
+            <div class="container">
+                <form class="reserve-card" id="reserveForm" novalidate>
+                    <div>
+                        <label for="rdate">Date</label>
+                        <input type="date" id="rdate" required>
+                    </div>
+                    <div>
+                        <label for="rtime">Time</label>
+                        <select id="rtime">
+                            <option>12:30 PM</option>
+                            <option>1:30 PM</option>
+                            <option>2:30 PM</option>
+                            <option>7:00 PM</option>
+                            <option selected>8:00 PM</option>
+                            <option>9:00 PM</option>
+                            <option>10:00 PM</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="rguests">Guests</label>
+                        <select id="rguests">
+                            <option>1 Guest</option>
+                            <option selected>2 Guests</option>
+                            <option>3 Guests</option>
+                            <option>4 Guests</option>
+                            <option>5 Guests</option>
+                            <option>6 Guests</option>
+                            <option>7+ Guests</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="rname">Your Name</label>
+                        <input type="text" id="rname" placeholder="Full name" required>
+                    </div>
+                    <button type="submit" class="btn btn-wine">Book a Table</button>
+                    <div class="reserve-msg" id="reserveMsg"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="section" id="about">
+            <div class="container about">
+                <div class="collage reveal">
+                    <div class="a ph" data-img="about1"></div>
+                    <div class="b ph" data-img="about2"></div>
+                    <div class="seal">
+                        <div><strong>12</strong><span>Years of<br>Flavour</span></div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <span class="kicker">Our Story</span>
+                    <h2 class="title">Cooked With Fire, <em>Served With Heart</em></h2>
+                    <p>Saffron &amp; Smoke began as a small family kitchen with one big idea: honest food made slowly.
+                        Today we still light the wood fire every morning, bake our bread in-house and build every plate
+                        around what is freshest that day.</p>
+                    <p>Our chefs blend classic technique with bold spices, so each dish feels familiar and exciting at
+                        the same time. Whether it is a quiet dinner for two or a table full of family, we cook as if you
+                        were a guest in our home.</p>
+                    <div class="about-stats">
+                        <div><strong data-count="12" data-suffix="+">0</strong><span>Years</span></div>
+                        <div><strong data-count="45" data-suffix="+">0</strong><span>Signature Dishes</span></div>
+                        <div><strong data-count="25" data-suffix="K+">0</strong><span>Happy Guests</span></div>
+                    </div>
+                    <div class="sign"><span class="name">Chef Imran Qureshi</span><small>Head Chef &amp; Founder</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section class="section services" id="services">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="kicker">What We Offer</span>
+                    <h2 class="title">More Than a Meal</h2>
+                    <div class="ornament">&#10022;</div>
+                    <p class="lead">From intimate dinners to grand celebrations, we have a table ready for every
+                        occasion.</p>
+                </div>
+                <div class="tiles reveal">
+                    <div class="tile">
+                        <span class="no">01</span>
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M7 3v8a2 2 0 002 2v8M11 3v8a2 2 0 01-2 2M9 3v6M17 21V3c-2.5 1.5-3 5-3 8h3" />
+                            </svg></div>
+                        <h3>Fine Dining</h3>
+                        <p>An elegant indoor and garden setting with attentive, unhurried service.</p>
+                    </div>
+                    <div class="tile">
+                        <span class="no">02</span>
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M8 3h8l-1 7a3 3 0 01-6 0zM12 13v8M8 21h8" />
+                            </svg></div>
+                        <h3>Private Events</h3>
+                        <p>Birthdays, engagements and corporate dinners with custom menus and decor.</p>
+                    </div>
+                    <div class="tile">
+                        <span class="no">03</span>
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 18h18M5 18a7 7 0 0114 0M12 8V6M10 6h4" />
+                            </svg></div>
+                        <h3>Catering</h3>
+                        <p>Our signature dishes delivered fresh and beautifully presented to your venue.</p>
+                    </div>
+                    <div class="tile">
+                        <span class="no">04</span>
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="6" cy="17" r="3" />
+                                <circle cx="18" cy="17" r="3" />
+                                <path d="M6 17l4-8h5l3 8M9 9H7M13 9l-1-3h-2" />
+                            </svg></div>
+                        <h3>Home Delivery</h3>
+                        <p>Restaurant quality in insulated packaging, hot at your door in under 45 minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MENU ================= -->
+        <section class="section menu" id="menu">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="kicker">The Menu</span>
+                    <h2 class="title">Taste the <em>Season</em></h2>
+                    <p class="lead">Everything is made fresh to order. Please tell us about any allergies.</p>
+                </div>
+
+                <div class="tabs reveal" role="tablist">
+                    <button class="tab on" data-tab="starters" role="tab">Starters</button>
+                    <button class="tab" data-tab="mains" role="tab">Mains</button>
+                    <button class="tab" data-tab="desserts" role="tab">Desserts</button>
+                    <button class="tab" data-tab="drinks" role="tab">Drinks</button>
+                </div>
+
+                <div class="panel on" id="starters">
+                    <div class="pic ph" data-img="mStart"></div>
+                    <div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Burrata &amp; Heirloom Tomato</h4><span class="dots"></span><span class="pr">Rs.
+                                    1,450</span>
+                            </div>
+                            <p>Creamy burrata, basil oil, aged balsamic, grilled sourdough.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Crispy Calamari <span class="tag">Popular</span></h4><span class="dots"></span><span
+                                    class="pr">Rs. 1,350</span>
+                            </div>
+                            <p>Lightly spiced, served with lemon aioli and chilli jam.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Wild Mushroom Soup</h4><span class="dots"></span><span class="pr">Rs. 950</span>
+                            </div>
+                            <p>Slow-cooked porcini, cream, thyme and truffle oil.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Bruschetta Trio</h4><span class="dots"></span><span class="pr">Rs. 1,100</span>
+                            </div>
+                            <p>Tomato basil, whipped feta honey and roasted pepper.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Smoked Chicken Caesar</h4><span class="dots"></span><span class="pr">Rs.
+                                    1,250</span>
+                            </div>
+                            <p>Crisp romaine, parmesan, house croutons and creamy dressing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" id="mains">
+                    <div class="pic ph" data-img="mMain"></div>
+                    <div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Wood-Fired Ribeye <span class="tag">Chef's Pick</span></h4><span
+                                    class="dots"></span><span class="pr">Rs. 4,800</span>
+                            </div>
+                            <p>300g ribeye, smoked butter, roasted garlic, charred vegetables.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Herb-Crusted Salmon</h4><span class="dots"></span><span class="pr">Rs. 3,200</span>
+                            </div>
+                            <p>Pan-seared with lemon beurre blanc and buttered greens.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Truffle Mushroom Risotto</h4><span class="dots"></span><span class="pr">Rs.
+                                    2,400</span>
+                            </div>
+                            <p>Arborio rice, wild mushrooms, parmesan and black truffle.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Slow-Braised Lamb Shank</h4><span class="dots"></span><span class="pr">Rs.
+                                    3,900</span>
+                            </div>
+                            <p>Eight hours in red wine jus, creamy mash, rosemary.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Charcoal Chicken Supreme</h4><span class="dots"></span><span class="pr">Rs.
+                                    2,200</span>
+                            </div>
+                            <p>Saffron-marinated chicken, roasted potatoes, garlic yoghurt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" id="desserts">
+                    <div class="pic ph" data-img="mDessert"></div>
+                    <div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Molten Chocolate Fondant <span class="tag">Must Try</span></h4><span
+                                    class="dots"></span><span class="pr">Rs. 1,150</span>
+                            </div>
+                            <p>Warm dark chocolate centre with vanilla bean ice cream.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Classic Tiramisu</h4><span class="dots"></span><span class="pr">Rs. 1,050</span>
+                            </div>
+                            <p>Espresso-soaked savoiardi, mascarpone cream, cocoa.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Vanilla Panna Cotta</h4><span class="dots"></span><span class="pr">Rs. 950</span>
+                            </div>
+                            <p>Silky vanilla cream with seasonal berry compote.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Salted Caramel Cheesecake</h4><span class="dots"></span><span class="pr">Rs.
+                                    1,100</span>
+                            </div>
+                            <p>Baked cheesecake, buttery biscuit base, caramel drizzle.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Gelato Selection</h4><span class="dots"></span><span class="pr">Rs. 850</span>
+                            </div>
+                            <p>Three scoops of our daily house-made gelato flavours.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" id="drinks">
+                    <div class="pic ph" data-img="mDrink"></div>
+                    <div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Mint Lemon Cooler</h4><span class="dots"></span><span class="pr">Rs. 450</span>
+                            </div>
+                            <p>Fresh lemon, garden mint and a touch of sparkling soda.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Pomegranate Fizz <span class="tag">New</span></h4><span class="dots"></span><span
+                                    class="pr">Rs. 550</span>
+                            </div>
+                            <p>Pomegranate, rose syrup, lime and soda over crushed ice.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Cold Brew Coffee</h4><span class="dots"></span><span class="pr">Rs. 600</span>
+                            </div>
+                            <p>Slow-steeped for 18 hours, served over ice with cream.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Kashmiri Chai</h4><span class="dots"></span><span class="pr">Rs. 400</span>
+                            </div>
+                            <p>Pink tea, cardamom, crushed almonds and pistachios.</p>
+                        </div>
+                        <div class="dish">
+                            <div class="top">
+                                <h4>Virgin Mojito</h4><span class="dots"></span><span class="pr">Rs. 520</span>
+                            </div>
+                            <p>Mint, lime, cane sugar and soda. Refreshing and light.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SIGNATURES ================= -->
+        <section class="section" id="signatures">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="kicker">Chef's Signatures</span>
+                    <h2 class="title">Dishes People <em>Come Back For</em></h2>
+                    <div class="ornament">&#10022;</div>
+                </div>
+                <div class="sigs">
+                    <article class="sig reveal">
+                        <div class="pic ph" data-img="sig1"></div>
+                        <div class="txt"><span class="chip">House Favourite</span>
+                            <h3>Truffle Tagliatelle</h3>
+                            <p>Fresh pasta, wild mushrooms, parmesan cream.</p><span class="pr">Rs. 2,600</span>
+                        </div>
+                    </article>
+                    <article class="sig reveal">
+                        <div class="pic ph" data-img="sig2"></div>
+                        <div class="txt"><span class="chip">From the Grill</span>
+                            <h3>Smoked Salmon Plate</h3>
+                            <p>Cedar-smoked salmon, citrus glaze, seasonal greens.</p><span class="pr">Rs. 3,400</span>
+                        </div>
+                    </article>
+                    <article class="sig reveal">
+                        <div class="pic ph" data-img="sig3"></div>
+                        <div class="txt"><span class="chip">Wood-Fired</span>
+                            <h3>Margherita Pizza</h3>
+                            <p>Stone-baked, San Marzano tomato, fresh mozzarella.</p><span class="pr">Rs. 1,900</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRICING ================= -->
+        <section class="section sets" id="pricing">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="kicker">Set Menus &amp; Pricing</span>
+                    <h2 class="title">Curated for <em>Every Table</em></h2>
+                    <p class="lead">Prices are per person unless mentioned. Taxes extra.</p>
+                </div>
+                <div class="plans">
+                    <div class="plan reveal">
+                        <h3>Lunch Set</h3>
+                        <p class="sub">A quick, satisfying midday meal</p>
+                        <div class="price">Rs. 1,899</div>
+                        <div class="per">Per person</div>
+                        <ul>
+                            <li>Starter of the day</li>
+                            <li>Choice of main course</li>
+                            <li>House dessert</li>
+                            <li>Soft drink or fresh juice</li>
+                        </ul>
+                        <a href="#reserve" class="btn btn-wine">Book Lunch</a>
+                    </div>
+
+                    <div class="plan feat reveal">
+                        <span class="badge">Most Loved</span>
+                        <h3>Chef's Tasting</h3>
+                        <p class="sub">Five courses, one unforgettable evening</p>
+                        <div class="price">Rs. 4,999</div>
+                        <div class="per">Per person</div>
+                        <ul>
+                            <li>Five chef-selected courses</li>
+                            <li>Amuse-bouche &amp; fresh bread</li>
+                            <li>Signature main from the fire</li>
+                            <li>Dessert platter</li>
+                            <li>Mocktail pairing</li>
+                        </ul>
+                        <a href="#reserve" class="btn btn-gold">Book Tasting</a>
+                    </div>
+
+                    <div class="plan reveal">
+                        <h3>Family Feast</h3>
+                        <p class="sub">Shared platters for the whole table</p>
+                        <div class="price">Rs. 11,999</div>
+                        <div class="per">For 4 guests</div>
+                        <ul>
+                            <li>Two starters to share</li>
+                            <li>Three mains &amp; two sides</li>
+                            <li>Dessert board</li>
+                            <li>Jug of fresh drinks</li>
+                        </ul>
+                        <a href="#reserve" class="btn btn-wine">Book Feast</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= GALLERY ================= -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="kicker">Gallery</span>
+                    <h2 class="title">A Feast for the <em>Eyes</em></h2>
+                    <p class="lead">A peek at the plates, the fire and the moments we love serving.</p>
+                </div>
+                <div class="gallery reveal">
+                    <div class="g tall">
+                        <div class="pic ph" data-img="g1"></div>
+                    </div>
+                    <div class="g">
+                        <div class="pic ph" data-img="g2"></div>
+                    </div>
+                    <div class="g wide">
+                        <div class="pic ph" data-img="g3"></div>
+                    </div>
+                    <div class="g">
+                        <div class="pic ph" data-img="g4"></div>
+                    </div>
+                    <div class="g wide">
+                        <div class="pic ph" data-img="g5"></div>
+                    </div>
+                    <div class="g">
+                        <div class="pic ph" data-img="g6"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS ================= -->
+        <section class="section reviews" id="reviews">
+            <div class="container">
+                <div class="head center reveal">
+                    <span class="kicker">Guest Stories</span>
+                    <h2 class="title">Kind Words From <em>Our Guests</em></h2>
+                </div>
+                <div class="slider reveal" id="slider">
+                    <div class="slide on">
+                        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="q">"The ribeye was cooked perfectly and the staff made our anniversary feel truly
+                            special. We are already planning our next visit."</p>
+                        <div class="by">Hira &amp; Usman<span>Anniversary dinner</span></div>
+                    </div>
+                    <div class="slide">
+                        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="q">"They catered our 150-guest wedding reception and every single guest asked about
+                            the food. Flawless from start to finish."</p>
+                        <div class="by">Bilal Ahmed<span>Wedding catering</span></div>
+                    </div>
+                    <div class="slide">
+                        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="q">"Warm ambience, beautiful plating and that tiramisu is dangerous. Easily the best
+                            dinner we have had in a long time."</p>
+                        <div class="by">Zainab Khan<span>Family dinner</span></div>
+                    </div>
+                </div>
+                <div class="dots-nav" id="dotsNav"></div>
+            </div>
+        </section>
+
+        <!-- ================= CTA ================= -->
+        <section class="cta" id="cta">
+            <div class="bg ph" data-img="cta"></div>
+            <div class="container reveal">
+                <span class="kicker" style="color:var(--gold-soft)">Join Us Tonight</span>
+                <h2>Your Table Is <em>Waiting</em></h2>
+                <p>Reserve in seconds and let us take care of the rest. Walk-ins are welcome, but weekends fill up fast.
+                </p>
+                <div class="btns">
+                    <a href="#reserve" class="btn btn-gold">Reserve Now</a>
+                    <a href="tel:+920000000000" class="btn btn-ghost">&#9742; Call +92 000 0000000</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="section" id="contact">
+            <div class="container contact">
+                <div class="reveal">
+                    <span class="kicker">Visit Us</span>
+                    <h2 class="title">Find Your Way <em>to the Table</em></h2>
+                    <p class="lead" style="margin-bottom:34px">Questions about events, catering or special diets? Send
+                        us a message and we will reply the same day.</p>
+
+                    <div class="info">
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" />
+                                <circle cx="12" cy="10" r="2.5" />
+                            </svg></div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Your Restaurant Address, City</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" />
+                            </svg></div>
+                        <div>
+                            <h4>Reservations</h4>
+                            <p>+92 000 0000000</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <path d="M3 7l9 6 9-6" />
+                            </svg></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@saffronandsmoke.com</p>
+                        </div>
+                    </div>
+
+                    <div class="hours">
+                        <h4>Opening Hours</h4>
+                        <ul>
+                            <li><span>Monday - Thursday</span><span>12:00 PM - 11:00 PM</span></li>
+                            <li><span>Friday - Saturday</span><span>12:00 PM - 12:00 AM</span></li>
+                            <li><span>Sunday</span><span>1:00 PM - 11:00 PM</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form class="box reveal" id="contactForm" novalidate>
+                    <h3>Send Us a Message</h3>
+                    <div class="row">
+                        <div class="field"><label for="cname">Full Name</label><input id="cname" type="text"
+                                placeholder="Your name" required></div>
+                        <div class="field"><label for="cphone">Phone</label><input id="cphone" type="tel"
+                                placeholder="+92 300 0000000" required></div>
+                    </div>
+                    <div class="field"><label for="cemail">Email</label><input id="cemail" type="email"
+                            placeholder="you@example.com"></div>
+                    <div class="field">
+                        <label for="ctopic">I'm Interested In</label>
+                        <select id="ctopic">
+                            <option>Table Reservation</option>
+                            <option>Private Event</option>
+                            <option>Catering</option>
+                            <option>Feedback</option>
+                            <option>Something Else</option>
+                        </select>
+                    </div>
+                    <div class="field"><label for="cmsg">Message</label><textarea id="cmsg"
+                            placeholder="Tell us date, number of guests and any special requests"></textarea></div>
+                    <button type="submit" class="btn btn-wine" style="width:100%">Send Message</button>
+                    <div class="form-msg" id="formMsg"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container fgrid">
+            <div>
+                <a href="#top" class="logo"><b>Saffron <i>&amp;</i> Smoke</b><small>Fine Dining</small></a>
+                <p style="font-size:.94rem">Wood-fired cooking, slow-simmered flavour and a table made for memories.</p>
+                <div class="social">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="WhatsApp">wa</a>
+                    <a href="#" aria-label="TikTok">tt</a>
+                </div>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#pricing">Set Menus</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Visit</h4>
+                <ul>
+                    <li>Your Restaurant Address, City</li>
+                    <li><a href="tel:+920000000000">+92 000 0000000</a></li>
+                    <li><a href="mailto:hello@saffronandsmoke.com">hello@saffronandsmoke.com</a></li>
+                    <li>Open daily, 12 PM - 11 PM</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Newsletter</h4>
+                <p style="font-size:.94rem">Get seasonal menus and event invites in your inbox.</p>
+                <form class="news" id="newsForm">
+                    <input type="email" placeholder="Your email" aria-label="Email address" required>
+                    <button type="submit">Join</button>
+                </form>
+                <p id="newsMsg" style="font-size:.85rem;color:var(--gold-soft);margin-top:10px;min-height:1.2em"></p>
+            </div>
+        </div>
+        <div class="copy">
+            <div class="container">
+                <span>&copy; <span id="year"></span> Saffron &amp; Smoke. All rights reserved.</span>
+                <span>Made with love, fire &amp; saffron.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true"><img id="lbImg" alt="Gallery image"></div>
+    <button class="totop" id="toTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1b1310" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M6 15l6-6 6 6" />
+        </svg>
+    </button>
+
+    <script>
+        (function () {
+            /* ============================================================
+               IMAGES via Pexels API (loaded in the browser).
+               NOTE: the key below is visible in page source. Fine for testing;
+               before going live regenerate it or use fixed image links in IMAGES.
+               To force a specific image, paste its link in IMAGES (slot name: url).
+               ============================================================ */
+            var PEXELS_KEY = "No0ZDUM8swzzOnaDFSORYzNs31YWO7SDBUNqjVsWupaXoq175SHtjL0u";
+            var IMAGES = {};   // e.g. { hero: "https://images.pexels.com/photos/..." }
+
+            // q = search words, n = which result to use, s = image size
+            var SLOTS = {
+                hero: { q: "fine dining restaurant dish", n: 0, s: "large2x" },
+                about1: { q: "chef cooking kitchen flames", n: 0, s: "large" },
+                about2: { q: "restaurant interior elegant", n: 0, s: "large" },
+                mStart: { q: "starter appetizer plate", n: 0, s: "large" },
+                mMain: { q: "steak dinner plate", n: 0, s: "large" },
+                mDessert: { q: "chocolate dessert plated", n: 0, s: "large" },
+                mDrink: { q: "fresh mocktail drinks", n: 0, s: "large" },
+                sig1: { q: "pasta dish restaurant", n: 0, s: "large" },
+                sig2: { q: "grilled salmon plate", n: 0, s: "large" },
+                sig3: { q: "wood fired pizza", n: 0, s: "large" },
+                g1: { q: "restaurant food photography", n: 0, s: "large" },
+                g2: { q: "restaurant food photography", n: 1, s: "medium" },
+                g3: { q: "restaurant food photography", n: 2, s: "large" },
+                g4: { q: "restaurant food photography", n: 3, s: "medium" },
+                g5: { q: "restaurant food photography", n: 4, s: "large" },
+                g6: { q: "restaurant food photography", n: 5, s: "medium" },
+                cta: { q: "romantic restaurant dinner candles", n: 0, s: "large2x" }
+            };
+
+            function apply(el, url) {
+                var img = new Image();
+                img.onload = function () {
+                    el.style.backgroundImage = 'url("' + url + '")';
+                    var g = el.closest('.g'); if (g) g.dataset.full = url;
+                };
+                img.src = url;   // if it fails to load, the placeholder stays
+            }
+
+            function getPhotos(q) {
+                var ck = 'rest_pexels_' + q, cached = null;
+                try { cached = JSON.parse(localStorage.getItem(ck) || 'null'); } catch (e) { }
+                if (cached && cached.list && cached.list.length && (Date.now() - cached.t) < 864e5) {
+                    return Promise.resolve(cached.list);
+                }
+                var api = 'https://api.pexels.com/v1/search?per_page=12&orientation=landscape&query=' + encodeURIComponent(q);
+                return fetch(api, { headers: { Authorization: PEXELS_KEY } })
+                    .then(function (r) { if (!r.ok) throw new Error('Pexels ' + r.status); return r.json(); })
+                    .then(function (d) {
+                        var list = ((d && d.photos) || []).map(function (p) {
+                            return { large2x: p.src.large2x, large: p.src.large, medium: p.src.medium };
+                        });
+                        try { localStorage.setItem(ck, JSON.stringify({ list: list, t: Date.now() })); } catch (e) { }
+                        return list;
+                    });
+            }
+
+            var byQ = {};
+            document.querySelectorAll('[data-img]').forEach(function (el) {
+                var k = el.getAttribute('data-img');
+                if (IMAGES[k]) { apply(el, IMAGES[k]); return; }
+                var c = SLOTS[k]; if (!c || !PEXELS_KEY) return;
+                (byQ[c.q] = byQ[c.q] || []).push({ el: el, c: c });
+            });
+            Object.keys(byQ).forEach(function (q) {
+                getPhotos(q).then(function (list) {
+                    if (!list.length) return;
+                    byQ[q].forEach(function (x) {
+                        var p = list[Math.min(x.c.n, list.length - 1)];
+                        apply(x.el, p[x.c.s] || p.large);
+                    });
+                }).catch(function (err) { console.warn('Images not loaded for "' + q + '":', err.message); });
+            });
+
+            /* Header: solid after scroll */
+            var header = document.getElementById('header');
+            function onScroll() {
+                header.classList.toggle('scrolled', window.scrollY > 60);
+                document.getElementById('toTop').classList.toggle('show', window.scrollY > 700);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+            /* Mobile drawer */
+            var burger = document.getElementById('burger'), drawer = document.getElementById('drawer'), overlay = document.getElementById('overlay');
+            function drawerToggle(open) {
+                var st = (typeof open === 'boolean') ? open : !drawer.classList.contains('open');
+                drawer.classList.toggle('open', st); burger.classList.toggle('open', st); overlay.classList.toggle('show', st);
+                burger.setAttribute('aria-expanded', st);
+                document.body.style.overflow = st ? 'hidden' : '';
+            }
+            burger.addEventListener('click', function () { drawerToggle(); });
+            overlay.addEventListener('click', function () { drawerToggle(false); });
+            drawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { drawerToggle(false); }); });
+            window.addEventListener('resize', function () { if (window.innerWidth > 960) drawerToggle(false); });
+
+            /* Active nav link (scroll spy) */
+            var navLinks = document.querySelectorAll('a.link');
+            if ('IntersectionObserver' in window) {
+                var spy = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var id = '#' + e.target.id;
+                        navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === id); });
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                ['home', 'about', 'services', 'menu', 'pricing', 'gallery', 'contact'].forEach(function (id) {
+                    var s = document.getElementById(id); if (s) spy.observe(s);
+                });
+
+                var rev = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target); } });
+                }, { threshold: .12 });
+                document.querySelectorAll('.reveal').forEach(function (el, i) { el.style.transitionDelay = ((i % 3) * 90) + 'ms'; rev.observe(el); });
+
+                var cnt = new IntersectionObserver(function (es) {
+                    es.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var el = e.target, end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+                        (function tick(t) {
+                            if (!t0) t0 = t;
+                            var p = Math.min((t - t0) / 1600, 1);
+                            el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3))) + suf;
+                            if (p < 1) requestAnimationFrame(tick);
+                        })(performance.now());
+                        cnt.unobserve(el);
+                    });
+                }, { threshold: .6 });
+                document.querySelectorAll('[data-count]').forEach(function (el) { cnt.observe(el); });
+            } else {
+                document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+                document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
+            }
+
+            /* Menu tabs */
+            var tabs = document.querySelectorAll('.tab'), panels = document.querySelectorAll('.panel');
+            tabs.forEach(function (t) {
+                t.addEventListener('click', function () {
+                    tabs.forEach(function (x) { x.classList.toggle('on', x === t); });
+                    panels.forEach(function (p) { p.classList.toggle('on', p.id === t.dataset.tab); });
+                });
+            });
+
+            /* Testimonial slider */
+            var slides = document.querySelectorAll('.slide'), dotsNav = document.getElementById('dotsNav'), cur = 0, timer;
+            slides.forEach(function (_, i) {
+                var b = document.createElement('button'); b.setAttribute('aria-label', 'Show review ' + (i + 1));
+                b.addEventListener('click', function () { show(i); restart(); });
+                dotsNav.appendChild(b);
+            });
+            function show(i) {
+                cur = (i + slides.length) % slides.length;
+                slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+                dotsNav.querySelectorAll('button').forEach(function (b, k) { b.classList.toggle('on', k === cur); });
+            }
+            function restart() { clearInterval(timer); timer = setInterval(function () { show(cur + 1); }, 6000); }
+            show(0); restart();
+
+            /* Gallery lightbox */
+            var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
+            document.querySelectorAll('.g').forEach(function (g) {
+                g.addEventListener('click', function () {
+                    if (!g.dataset.full) return;
+                    lbImg.src = g.dataset.full; lb.classList.add('show'); lb.setAttribute('aria-hidden', 'false');
+                });
+            });
+            function closeLb() { lb.classList.remove('show'); lb.setAttribute('aria-hidden', 'true'); }
+            lb.addEventListener('click', closeLb);
+            window.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeLb(); drawerToggle(false); } });
+
+            /* Reservation form (front-end only) */
+            var d = document.getElementById('rdate');
+            var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+            d.min = today.toISOString().slice(0, 10); d.value = d.min;
+            document.getElementById('reserveForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var m = document.getElementById('reserveMsg'), name = document.getElementById('rname').value.trim();
+                m.style.display = 'block';
+                if (!name || !d.value) { m.style.background = '#fdecea'; m.style.color = '#a12a20'; m.textContent = 'Please choose a date and enter your name.'; return; }
+                m.style.background = '#eaf5ea'; m.style.color = '#1f6a31';
+                m.textContent = 'Thank you, ' + name + '! We have noted a table for ' + document.getElementById('rguests').value +
+                    ' on ' + d.value + ' at ' + document.getElementById('rtime').value + '. We will confirm shortly.';
+            });
+
+            /* Contact form (front-end only) */
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var f = e.target, m = document.getElementById('formMsg');
+                var name = document.getElementById('cname').value.trim(), phone = document.getElementById('cphone').value.trim();
+                m.style.display = 'block';
+                if (!name || !phone) { m.style.background = '#fdecea'; m.style.color = '#a12a20'; m.textContent = 'Please enter your name and phone number.'; return; }
+                m.style.background = '#eaf5ea'; m.style.color = '#1f6a31';
+                m.textContent = 'Thank you, ' + name + '! Your message has been received. We will contact you soon.';
+                f.reset();
+            });
+
+            /* Newsletter (front-end only) */
+            document.getElementById('newsForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                document.getElementById('newsMsg').textContent = 'Welcome to the table! Check your inbox soon.';
+                e.target.reset();
+            });
+
+            document.getElementById('toTop').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            document.getElementById('year').textContent = new Date().getFullYear();
+        })();
+    </script>
+</body>
+
+</html>
